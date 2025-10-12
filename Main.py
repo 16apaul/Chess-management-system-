@@ -21,7 +21,7 @@ class MainWindow(QMainWindow):
         # File menu
         file_menu = menubar.addMenu("File")
 
-        # Example actions
+        # actions for the File menu
         new_action = QAction("save", self)
         open_action = QAction("Open", self)
         exit_action = QAction("Exit", self)
@@ -48,25 +48,34 @@ class MainWindow(QMainWindow):
         tournament_name, ok = QInputDialog.getText(
             self, "Tournament Name", "Enter tournament name:"
         )
-        if ok and tournament_name:
+        repeat_names = False
+        for t in tournaments:
+            if t.name == tournament_name:
+                repeat_names = True
+                break
+        if ok and tournament_name and not repeat_names:
             button = QPushButton(tournament_name, self)
-            button.setGeometry(0,self.button_y,150,30)
+            button.setGeometry(0,self.button_y,100,30)
             button.show()
             global tournament_id
+        
             tournament = Tournament(tournament_id, tournament_name)
             tournaments.append(tournament)
-            tournament_id += 1
             
-            self.tournaments[tournament_name] = []
-            button.clicked.connect(lambda checked, name=tournament_name: self.open_tournament(name))
+            self.tournaments[tournament_name] = [] #This creates a key in the dictionary
+            button_id = tournament_id  # Capture the current tournament_id
+            button.clicked.connect(lambda checked, name=tournament_name: self.open_tournament(name,button_id))
+            tournament_id += 1
+
 
             self.button_y += 40
         else:
-            QMessageBox.warning(self, "Input Error", "Tournament name cannot be empty.")
+            QMessageBox.warning(self, "Input Error", "Tournament name cannot be empty and must be unique.")
         
-    def open_tournament(self, name):
+    def open_tournament(self, name,id):
         # Add something to this tournament’s array
-        self.tournaments[name].append("New player")
+        print("hhh", tournaments, id)
+        self.tournaments[name].append(tournaments[id-1]) # id-1 because id starts from 1 but list index starts from 0
         data = self.tournaments[name]
 
         QMessageBox.information(

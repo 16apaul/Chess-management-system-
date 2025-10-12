@@ -8,10 +8,27 @@ class Tournament:
         # If no players provided, initialize empty list
         self.players = players if players else []
         self.id = id  # Unique identifier for the tournament
+        
+    @property
+    def id(self):
+        return self._id
+    @id.setter
+    def id(self, value):    
+        if not isinstance(value, int):
+            raise TypeError("ID must be an integer")
+        self._id = value
+    
+    
+    @property
+    def name(self):
+        return self._name
 
-    def add_player(self, player):
-        """Add a Player object to the tournament"""
-        self.players.append(player)
+    @name.setter
+    def name(self, value):
+        if not isinstance(value, str):
+            raise TypeError("Name must be a string")
+        self._name = value    
+    
     @property
     def player(self):
         return self._players
@@ -20,6 +37,10 @@ class Tournament:
         if not isinstance(value, list):
             raise TypeError("Players must be a list")
         self._players = value
+    def add_player(self, player):
+        """Add a Player object to the tournament"""
+        self.players.append(player)
+   
     def __repr__(self):
         return f"Tournament(name={self.name}, id={self.id}, players={self.players})"
         
