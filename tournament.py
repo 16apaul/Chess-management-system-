@@ -2,13 +2,14 @@ from player import Player
 
 class Tournament:
 
-    def __init__(self,id, name, players=None):
+    def __init__(self,id, name, players=None, style = "swiss", rounds=None):
         self.name = name
 
         # If no players provided, initialize empty list
         self.players = players if players else []
         self.id = id  # Unique identifier for the tournament
-        
+        self.style = style  # Tournament style (e.g., Swiss, Round Robin)
+        self.rounds = rounds  # Number of rounds in the tournament
     @property
     def id(self):
         return self._id
@@ -43,4 +44,17 @@ class Tournament:
    
     def __repr__(self):
         return f"Tournament(name={self.name}, id={self.id}, players={self.players})"
+    
+    @property
+    def style(self):
+        return self._style
+    @style.setter
+    def style(self, value):
+        self._style = value
+    @property
+    def rounds(self):
+        return self._rounds#
+    @rounds.setter
+    def rounds(self, value):
+        self._rounds = value
         
