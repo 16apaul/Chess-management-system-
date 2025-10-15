@@ -41,10 +41,7 @@ class Tournament:
     def add_player(self, player):
         """Add a Player object to the tournament"""
         self.players.append(player)
-   
-    def __repr__(self):
-        return f"Tournament(name={self.name}, id={self.id}, players={self.players})"
-    
+        
     @property
     def style(self):
         return self._style
@@ -56,5 +53,10 @@ class Tournament:
         return self._rounds#
     @rounds.setter
     def rounds(self, value):
-        self._rounds = value
+        self._rounds = value   
+   
+    def __repr__(self):
+        return f"Tournament(name={self.name}, id={self.id}, players={self.players}, style={self.style}, rounds={self.rounds})"
+    
+    
         
