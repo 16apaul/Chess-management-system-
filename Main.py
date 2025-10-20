@@ -2,7 +2,7 @@ import sys
 from tournament import Tournament
 from player import Player
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QAction,QMessageBox,QPushButton,
-QInputDialog,QGroupBox,QVBoxLayout,QWidget,QGridLayout,QTabWidget, QButtonGroup)
+QInputDialog,QGroupBox,QVBoxLayout,QWidget,QGridLayout,QTabWidget, QButtonGroup,QLineEdit)
 from PyQt5.QtCore import Qt
 
 
@@ -34,7 +34,7 @@ class MainWindow(QMainWindow):
         
         # make the tournament buttons toggleable
         self.tournament_buttons = QButtonGroup(self)
-        self.tournament_buttons.setExclusive(True)
+        self.tournament_buttons.setExclusive(True)  # Only one button can be checked at a time
         self.tournament_buttons.buttonClicked.connect(self.on_tournament_selected)
                
         
@@ -48,11 +48,11 @@ class MainWindow(QMainWindow):
         self.tournament_tabs.addTab(add_player_tab, "Add Players")
         self.tournament_tabs.addTab(pairings_tab, "Pairings")
         self.tournament_tabs.addTab(results_tab, "Results")
-        
+        self.tournament_tabs.hide()  # Hide tabs initially
         
         self.menu_ui()
         
-        
+
        
         
     def menu_ui(self):
@@ -108,6 +108,8 @@ class MainWindow(QMainWindow):
                     del self.tournaments[tournament_name] # remove from dictionary
                 global tournaments
                 tournaments = [t for t in tournaments if t.name != tournament_name] # remove from list
+                if self.tournament_buttons.checkedButton() is None:
+                    self.tournament_tabs.hide()  # Hide tabs if no tournament is selected
         else:
             QMessageBox.warning(self, "No Selection", "Please select a tournament to delete.")
 
@@ -115,11 +117,24 @@ class MainWindow(QMainWindow):
 
     def create_tournament(self): # what happens when menu create tournament button is clicked
         
+        self.tournament_tabs.show()  # Show tabs when a tournament is created
         
-        tournament_name, ok = QInputDialog.getText(
-            self, "Tournament Name", "Enter tournament name:"
+        tournament_round = None
+        tournament_name, ok_name = QInputDialog.getText( #input dialog to get tournament name
+            self, "Tournament Name", "Enter tournament name:", QLineEdit.Normal, "Spring Open",
         )
+        tournament_type, ok_type = QInputDialog.getItem( #input dialog to get tournament type
+            self, "Tournament Type", "Select tournament type:", ["Swiss", "Round Robin", "Knockout"],0, False
+        )
+        
+        if tournament_type == "Swiss": # if swiss, get number of rounds
+            tournament_round, ok_round = QInputDialog.getInt(
+                self, "Number of Rounds", "Enter number of rounds:", min=1,
+            )
+        
+       
         repeat_names = False
+        ok = ok_name and ok_type and (tournament_type != "Swiss" or ok_round)
         for t in tournaments:
             if t.name == tournament_name:
                 repeat_names = True
@@ -132,7 +147,7 @@ class MainWindow(QMainWindow):
             self.tournament_buttons_list.append(tournament_button)  # Add button to the list
             global tournament_id
         
-            tournament = Tournament(tournament_id, tournament_name) # Create a new Tournament object
+            tournament = Tournament(tournament_id, tournament_name,None,tournament_type,tournament_round) # Create a new Tournament object
             tournaments.append(tournament)
             
             self.tournaments[tournament_name] = tournament #This creates a key in the dictionary
@@ -141,6 +156,9 @@ class MainWindow(QMainWindow):
             tournament_id += 1
 
 
+        elif  not ok:
+            pass  # User cancelled the input dialog
+            
         else:
             QMessageBox.warning(self, "Input Error", "Tournament name cannot be empty and must be unique.")
         
