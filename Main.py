@@ -1,9 +1,8 @@
 import sys
 from tournament import Tournament
 from player import Player
-from PyQt5.QtWidgets import (QApplication, QMainWindow, QAction,QMessageBox,QPushButton,
-QInputDialog,QGroupBox,QVBoxLayout,QWidget,QGridLayout,QTabWidget, QButtonGroup,QLineEdit)
-from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
 
 
 tournaments = [] # List to hold tournament data
@@ -16,8 +15,8 @@ class MainWindow(QMainWindow):
         # make main layout grid
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
-        layout = QGridLayout()
-        central_widget.setLayout(layout)
+        self.layout = QGridLayout()
+        central_widget.setLayout(self.layout)
         self.tournaments = {}  # Dictionary to hold tournament data
 
         self.setWindowTitle("Chess Manager")
@@ -26,7 +25,7 @@ class MainWindow(QMainWindow):
        
         # create button group box for tournaments
         self.tournament_groupbox = QGroupBox("Tournaments", self) # Group box to hold tournament buttons
-        layout.addWidget(self.tournament_groupbox, 0, 0)
+        self.layout.addWidget(self.tournament_groupbox, 0, 0)
         self.tournament_layout = QVBoxLayout()  
         self.tournament_layout.setAlignment(Qt.AlignTop)  # Align buttons to the top
         self.tournament_groupbox.setLayout(self.tournament_layout)
@@ -38,10 +37,72 @@ class MainWindow(QMainWindow):
         self.tournament_buttons.buttonClicked.connect(self.on_tournament_selected)
                
         
-        #  tabs to the window layout
+      
+        
+        
+        
+        
+        
+        
+        self.tournament_tabs_ui()
+        self.menu_ui()
+        
+
+        
+        
+        
+        
+        
+        
+        
+    def tournament_tabs_ui(self):
+              #  tabs to the window layout
+        
+    
         self.tournament_tabs = QTabWidget() 
-        layout.addWidget(self.tournament_tabs, 0, 1, 1, 3) # spans three columns
+        self.layout.addWidget(self.tournament_tabs, 0, 1, 1, 3) # spans add to main layout spans three columns
         add_player_tab = QWidget()
+        add_player_tab_layout = QGridLayout()
+        add_player_tab.setLayout(add_player_tab_layout)
+        
+        
+        
+        add_player_listbox = QListWidget() #box to show list of players and add players to tournament
+        add_player_tab_layout.addWidget(add_player_listbox, 0, 0, 1,2)
+        add_player_listbox.setSelectionMode(QListWidget.MultiSelection) # allow multiple selection of players
+        
+        
+        add_player_lineedit = QLineEdit()
+        add_player_lineedit.setPlaceholderText("Player name")
+        add_player_tab_layout.addWidget(add_player_lineedit, 4, 0)
+        add_player_rating_lineedit = QLineEdit()
+        add_player_rating_lineedit.setPlaceholderText("Player rating")
+        add_player_tab_layout.addWidget(add_player_rating_lineedit, 4, 1)
+        add_player_button = QPushButton("Add Player") # button to add player to tournament
+        add_player_tab_layout.addWidget(add_player_button, 5, 0,1,1)
+        delete_player_button = QPushButton("Delete Player") # button to delete selected player from tournament
+        add_player_tab_layout.addWidget(delete_player_button, 5, 1,1,1)
+        
+        
+        add_all_players_to_round_button = QPushButton("Add all") # button to add all players to the current round
+        add_player_tab_layout.addWidget(add_all_players_to_round_button, 0, 2)
+        
+        add_selected_players_to_round_button = QPushButton("-->") # button to add selected players to the current round
+        add_player_tab_layout.addWidget(add_selected_players_to_round_button, 2, 1,2,1)
+        
+        remove_selected_players_from_round_button = QPushButton("<--") # button to remove selected players from the current round
+        add_player_tab_layout.addWidget(remove_selected_players_from_round_button, 2, 3,2,1)
+        
+        round_listbox = QListWidget() # box to show list of round players
+        add_player_tab_layout.addWidget(round_listbox, 0, 3, 1,2)
+        round_listbox.setSelectionMode(QListWidget.MultiSelection) # allow multiple selection of players
+        
+        pair_button = QPushButton("Pair Round") # button to pair the current round
+        add_player_tab_layout.addWidget(pair_button, 4, 3,1,1)
+        
+        
+        
+        
         pairings_tab = QWidget()
         results_tab = QWidget()
         
@@ -50,10 +111,7 @@ class MainWindow(QMainWindow):
         self.tournament_tabs.addTab(results_tab, "Results")
         self.tournament_tabs.hide()  # Hide tabs initially
         
-        self.menu_ui()
         
-
-       
         
     def menu_ui(self):
         # Create a menu bar
@@ -117,9 +175,10 @@ class MainWindow(QMainWindow):
 
     def create_tournament(self): # what happens when menu create tournament button is clicked
         
-        self.tournament_tabs.show()  # Show tabs when a tournament is created
         
         tournament_round = None
+        
+        
         tournament_name, ok_name = QInputDialog.getText( #input dialog to get tournament name
             self, "Tournament Name", "Enter tournament name:", QLineEdit.Normal, "Spring Open",
         )
@@ -132,7 +191,9 @@ class MainWindow(QMainWindow):
                 self, "Number of Rounds", "Enter number of rounds:", min=1,
             )
         
-       
+        
+        
+
         repeat_names = False
         ok = ok_name and ok_type and (tournament_type != "Swiss" or ok_round)
         for t in tournaments:
@@ -148,6 +209,7 @@ class MainWindow(QMainWindow):
             global tournament_id
         
             tournament = Tournament(tournament_id, tournament_name,None,tournament_type,tournament_round) # Create a new Tournament object
+            
             tournaments.append(tournament)
             
             self.tournaments[tournament_name] = tournament #This creates a key in the dictionary
@@ -164,6 +226,8 @@ class MainWindow(QMainWindow):
         
     def open_tournament(self, name,id): # what happens when a specific tournament button is clicked
         # Add something to this tournament’s array
+        self.tournament_tabs.show()  # Show tabs when a tournament is created
+
         data = self.tournaments[name]
 
         print(
