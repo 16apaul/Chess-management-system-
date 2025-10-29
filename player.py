@@ -1,12 +1,12 @@
 class Player: # player constructor
-    def __init__(self, player_id, name ):
+    def __init__(self, player_id, name, rating = None):
         self.name = name
         self.id = player_id
         self.color_history = []   # e.g., ["white", "black", "white"]
         self.float_history = []   # e.g., [up,,down]
         self.player_history = []  # e.g., [1, 5,6,7] # list of player IDs played against
         self.points = 0.0         # total score
-
+        self.rating = rating
 
         # --- name ---
     @property
@@ -81,8 +81,16 @@ class Player: # player constructor
         self.float_history.append(score)
         self.player_history.append(opponent_id)
         self.points += score
-        
+    @property
+    def rating(self):
+        return self._rating
+    @rating.setter
+    def rating(self, value):
+        self._rating = value
+    
+    
+    
     def __repr__(self):
         return (f"Player(name={self.name}, id={self.id}, "
         f"points={self.points}, colors={self.color_history}, "
-        f"floats={self.float_history}, opponents={self.player_history})")
+        f"floats={self.float_history}, opponents={self.player_history}), rating={self.rating})")

@@ -11,6 +11,7 @@ class Tournament:
         self.style = style  # Tournament style (e.g., Swiss, Round Robin)
         self.rounds = rounds  # Number of rounds in the tournament
         self.date = date  # Date of the tournament
+        self.next_player_id = 1 # To assign unique IDs to players 
     @property
     def id(self):
         return self._id
@@ -61,9 +62,16 @@ class Tournament:
     @date.setter
     def date(self, value):
         self._date = value
+    @property
+    def next_player_id(self):
+        return self._next_player_id
+    @next_player_id.setter
+    def next_player_id(self, value):
+        self._next_player_id = value
+    
    
     def __repr__(self):
-        return f"Tournament(name={self.name}, id={self.id}, players={self.players}, style={self.style}, rounds={self.rounds}, date={self.date})"
+        return f"Tournament(name={self.name}, id={self.id}, players={self.players}, style={self.style}, rounds={self.rounds}, date={self.date}, next_player_id={self.next_player_id})"
     
     
         
