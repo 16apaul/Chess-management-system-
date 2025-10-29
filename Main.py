@@ -9,7 +9,6 @@ from PyQt5.QtCore import *
 # Output example: ['Windows', 'Fusion', 'Macintosh']
 
 # Set one
-tournaments = [] # List to hold tournament data
 tournament_id = 1  # counter for tournament IDs  
 
 
@@ -36,12 +35,10 @@ class MainWindow(QMainWindow):
         self.tournament_layout = QVBoxLayout()  
         self.tournament_layout.setAlignment(Qt.AlignTop)  # Align buttons to the top
         self.tournament_groupbox.setLayout(self.tournament_layout)
-        self.tournament_buttons_list = []  # List to hold tournament buttons
         
         # make the tournament buttons toggleable
         self.tournament_buttons = QButtonGroup(self)
         self.tournament_buttons.setExclusive(True)  # Only one button can be checked at a time
-        self.tournament_buttons.buttonClicked.connect(self.on_tournament_selected)
                
         
       
@@ -216,14 +213,11 @@ class MainWindow(QMainWindow):
                 # Remove from layout and button group
                 self.tournament_layout.removeWidget(selected_button) # remove from layout
                 self.tournament_buttons.removeButton(selected_button) # remove from button group
-                selected_button.deleteLater()  # Remove the button from the UI
-                self.tournament_buttons_list.remove(selected_button)  # Remove from the list
-
+                selected_button.deleteLater()  # delete the button widget
+            
                 # Remove from data structures
                 if tournament_name in self.tournaments:
-                    del self.tournaments[tournament_name] # remove from dictionary
-                global tournaments
-                tournaments = [t for t in tournaments if t.name != tournament_name] # remove from list
+                    self.tournaments.pop(tournament_name) # remove from dictionary
                 if self.tournament_buttons.checkedButton() is None:
                     self.tournament_tabs.hide()  # Hide tabs if no tournament is selected
         else:
@@ -249,7 +243,7 @@ class MainWindow(QMainWindow):
                 self, "Number of Rounds", "Enter number of rounds:", min=1,
             )
         
-        
+        tournaments = list(self.tournaments.values())  # Get the list of existing tournaments
         
 
         repeat_names = False
@@ -263,16 +257,13 @@ class MainWindow(QMainWindow):
             tournament_button.setCheckable(True)
             self.tournament_layout.addWidget(tournament_button)
             self.tournament_buttons.addButton(tournament_button) # this button group makes the buttons toggleable
-            self.tournament_buttons_list.append(tournament_button)  # Add button to the list
             global tournament_id
         
             tournament = Tournament(tournament_id, tournament_name,None,tournament_type,tournament_round) # Create a new Tournament object
             
-            tournaments.append(tournament)
             
             self.tournaments[tournament_name] = tournament #This creates a key in the dictionary
-            button_id = tournament_id  # Capture the current tournament_id
-            tournament_button.clicked.connect(lambda checked, name=tournament_name: self.open_tournament(name,button_id))
+            tournament_button.toggle.connect(self.open_tournament())
             tournament_id += 1
 
 
@@ -282,22 +273,21 @@ class MainWindow(QMainWindow):
         else:
             QMessageBox.warning(self, "Input Error", "Tournament name cannot be empty and must be unique.")
         
-    def open_tournament(self, name,id): # what happens when a specific tournament button is clicked
+    def open_tournament(self): # what happens when a specific tournament button is clicked
         # Add something to this tournament’s array
+        name = self.tournament_buttons.checkedButton().text()
+        tournament = self.tournaments[name]
+        id = tournament.id
         self.tournament_tabs.show()  # Show tabs when a tournament is created
         self.load_tournament()
-        data = self.tournaments[name]
 
         print(
             f"Opening Tournament: {name} with ID: {id}"
             "Tournament Data",
-            f"Tournament: {name}\nData: {data}"
+            f"\nData: {tournament}"
         )
 
-    def on_tournament_selected(self, button):
-        """Triggered when any tournament button is toggled on."""
-        selected_name = button.text()
-        print(f"Tournament selected: {selected_name}")
+   
 
 
 if __name__ == "__main__":
