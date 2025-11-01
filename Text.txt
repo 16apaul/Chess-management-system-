@@ -1,0 +1,2 @@
+The dictionary holds the key which is name and value which is the object. When updating the object, update the disctionary.
+When deleteing tournaments, Delete from: dictionary, buttongroup and groupbox. The same concept can be applied to changing names.

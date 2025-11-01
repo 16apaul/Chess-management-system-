@@ -122,7 +122,7 @@ class MainWindow(QMainWindow):
         player_name = self.add_player_lineedit.text()
         player_rating = self.add_player_rating_lineedit.text()
         player_listbox = self.add_player_listbox
-        tournament = self.tournaments.get(self.tournament_buttons.checkedButton().text())
+        tournament = self.get_current_tournament()
         print(tournament)
         if player_name:
             try:
@@ -149,7 +149,7 @@ class MainWindow(QMainWindow):
             tournament.next_player_id += 1
             tournament.add_player(player)  # Add player to tournament's player list
 
-            self.tournaments[self.tournament_buttons.checkedButton().text()] = tournament # Update the tournament in the dictionary
+            self.set_current_tournament(tournament) # Update the tournament in the main dictionary
 
             # Clear input fields
             self.add_player_lineedit.clear()
@@ -189,7 +189,7 @@ class MainWindow(QMainWindow):
         delete_tournament_action.triggered.connect(self.delete_tournament)
     
     def load_tournament(self):
-        tournament = self.tournaments.get(self.tournament_buttons.checkedButton().text())
+        tournament = self.get_current_tournament()
         self.add_player_listbox.clear()
         for player in tournament.players:
             if player.rating is not None:
@@ -263,7 +263,8 @@ class MainWindow(QMainWindow):
             
             
             self.tournaments[tournament_name] = tournament #This creates a key in the dictionary
-            tournament_button.toggle.connect(self.open_tournament())
+            tournament_button.toggled.connect(self.open_tournament)
+            
             tournament_id += 1
 
 
@@ -274,20 +275,36 @@ class MainWindow(QMainWindow):
             QMessageBox.warning(self, "Input Error", "Tournament name cannot be empty and must be unique.")
         
     def open_tournament(self): # what happens when a specific tournament button is clicked
-        # Add something to this tournament’s array
-        name = self.tournament_buttons.checkedButton().text()
-        tournament = self.tournaments[name]
-        id = tournament.id
-        self.tournament_tabs.show()  # Show tabs when a tournament is created
-        self.load_tournament()
+        selected_button = self.sender()  # the clicked button
+        if selected_button is not None:
 
-        print(
-            f"Opening Tournament: {name} with ID: {id}"
-            "Tournament Data",
-            f"\nData: {tournament}"
-        )
+            
 
-   
+            tournament = self.get_current_tournament()
+            name = tournament.name
+            id = tournament.id
+            self.tournament_tabs.show()  # Show tabs when a tournament is created
+            self.load_tournament()
+
+            print(
+                f"Opening Tournament: {name} with ID: {id}"
+                "Tournament Data",
+                f"\nData: {tournament}"
+            )
+
+    def get_current_tournament(self):
+        selected_button = self.tournament_buttons.checkedButton()
+        if selected_button:
+            tournament_name = selected_button.text()
+            return self.tournaments.get(tournament_name)
+        return None
+    
+    def set_current_tournament(self, tournament):
+        old_tournament = self.get_current_tournament()
+        if old_tournament:
+            self.tournaments[old_tournament.name] = tournament
+                
+        
 
 
 if __name__ == "__main__":
