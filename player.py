@@ -7,6 +7,9 @@ class Player: # player constructor
         self.player_history = []  # e.g., [1, 5,6,7] # list of player IDs played against
         self.points = 0.0         # total score
         self.rating = rating
+        self.has_played = False # flag to indicate if player has played in tournament
+        self.has_full_bye = False   # flag to indicate if player has received a bye
+        self.has_half_bye = False   # flag to indicate if player has received a half bye
 
         # --- name ---
     @property
@@ -87,10 +90,34 @@ class Player: # player constructor
     @rating.setter
     def rating(self, value):
         self._rating = value
+        
+    @property
+    def has_played(self):
+        return self._has_played
+    @has_played.setter
+    def has_played(self, value):
+        self._has_played = value
+    @property
+    def has_full_bye(self):
+        return self._has_full_bye
+    
+    @has_full_bye.setter
+    def has_full_bye(self, value):
+        self._has_full_bye = value
+        
+    @property
+    def has_half_bye(self):
+        return self._has_half_bye
+    @has_half_bye.setter
+    def has_half_bye(self, value):
+        self._has_half_bye = value
     
     
     
     def __repr__(self):
         return (f"Player(name={self.name}, id={self.id}, "
         f"points={self.points}, colors={self.color_history}, "
-        f"floats={self.float_history}, opponents={self.player_history}), rating={self.rating})")
+        f"floats={self.float_history}, opponents={self.player_history}), rating={self.rating})"
+        f"has_played={self.has_played}, "
+        f"has_full_bye={self.has_full_bye}, "
+        f"has_half_bye={self.has_half_bye})")
