@@ -187,10 +187,6 @@ class MainWindow(QMainWindow):
                 
             except ValueError:
                 rating = None
-              
-        
-            
-                
                 
                 
             next_player_id = tournament.next_player_id #current next player id
@@ -333,7 +329,7 @@ class MainWindow(QMainWindow):
 
 
 
-    def open_all_tournaments(self):
+    def open_all_tournaments(self): # runs when open tournaments is click in the file menu
         import json, os
         if not os.path.exists("tournaments.json"):
             print("No tournaments.json file found — starting fresh.")
@@ -381,19 +377,25 @@ class MainWindow(QMainWindow):
             self.tournament_buttons.removeButton(button)
             button.deleteLater()
         
-        for name in self.tournaments:
-            tournament_button = QPushButton(name)
-            tournament_button.setCheckable(True)
-            self.tournament_layout.addWidget(tournament_button)
-            self.tournament_buttons.addButton(tournament_button) # this button group makes the buttons toggleable
-            global tournament_id
-        
-            
-            
-            tournament_id = len(self.tournaments)
+        for name in self.tournaments: # creates new buttons and assigned to button group
+            self.add_button_to_tournament_group(name)
 
-            tournament_button.clicked.connect(self.open_tournament)
         
+        self.tournament_tabs.hide() # hides the tabs since no tournament is selected when loaded
+            
+
+    def add_button_to_tournament_group(self,name): #adds a tournament button
+        tournament_button = QPushButton(name)
+        tournament_button.setCheckable(True)
+        self.tournament_layout.addWidget(tournament_button)
+        self.tournament_buttons.addButton(tournament_button) # this button group makes the buttons toggleable
+        tournament_button.clicked.connect(self.open_tournament)
+        
+        latest_tournament = list(self.tournaments.values())[-1] 
+        latest_id = latest_tournament.id # get id of most recent tournament
+        
+        global tournament_id
+        tournament_id = latest_id + 1 # set to current id
         
         
         
@@ -489,20 +491,14 @@ class MainWindow(QMainWindow):
                 repeat_names = True
                 break
         if ok and tournament_name and not repeat_names:
-            tournament_button = QPushButton(tournament_name)
-            tournament_button.setCheckable(True)
-            self.tournament_layout.addWidget(tournament_button)
-            self.tournament_buttons.addButton(tournament_button) # this button group makes the buttons toggleable
             global tournament_id
         
             tournament = Tournament(tournament_id, tournament_name,None,tournament_type,tournament_round) # Create a new Tournament object
             
             
             self.tournaments[tournament_name] = tournament #This creates a key in the dictionary
-            tournament_id += 1
 
-            tournament_button.clicked.connect(self.open_tournament)
-            
+            self.add_button_to_tournament_group(tournament_name) # create the button and change current tournament id
 
 
         elif  not ok:
@@ -510,6 +506,8 @@ class MainWindow(QMainWindow):
             
         else:
             QMessageBox.warning(self, "Input Error", "Tournament name cannot be empty and must be unique.")
+            
+        
         
     def open_tournament(self): # what happens when a specific tournament button is clicked
         selected_button = self.sender()  # the clicked button
