@@ -47,9 +47,9 @@ class MainWindow(QMainWindow):
         
         
         
-        
-        self.tournament_tabs_ui()
         self.menu_ui()
+
+        self.tournament_tabs_ui()
         
 
         
@@ -161,14 +161,26 @@ class MainWindow(QMainWindow):
             self.round_listbox.setItemWidget(list_item, item_widget)
             
     
+    def get_players_in_current_tournament(self):
+        tournament = self.get_current_tournament()
+        players = tournament.players
+        return players
+    
     def add_player_to_tournament(self): # what happens when add player button is clicked
-
+        repeat_names = False
+        tournament = self.get_current_tournament()
         player_name = self.add_player_lineedit.text()
         player_rating = self.add_player_rating_lineedit.text()
         player_listbox = self.add_player_listbox
-        tournament = self.get_current_tournament()
+        players = self.get_players_in_current_tournament()
         
-        if player_name:
+        for p in players:
+                if (p.name.upper()) == (player_name.upper()):
+                    repeat_names = True
+                    QMessageBox.warning(self,"No dublicate name" , "name already exists in the tournament")
+                    break
+        
+        if player_name and repeat_names == False:
             try:
                 rating = int(player_rating) if player_rating else None
                 
@@ -176,7 +188,11 @@ class MainWindow(QMainWindow):
             except ValueError:
                 rating = None
               
-              
+        
+            
+                
+                
+                
             next_player_id = tournament.next_player_id #current next player id
             player_id = next_player_id
             player = Player(player_id, player_name, rating)
@@ -211,7 +227,7 @@ class MainWindow(QMainWindow):
             list_item.setSizeHint(item_widget.sizeHint())
 
             
-           # Add to list
+            # Add to list
             self.add_player_listbox.addItem(list_item)
             self.add_player_listbox.setItemWidget(list_item, item_widget)
             
@@ -228,12 +244,12 @@ class MainWindow(QMainWindow):
           
           
           
-    def delete_player_from_round_list(self, list_widget, item_widget): # delete player from round listbox and tournament player list when item is clicked
+    def delete_player_from_round_list(self, round_listbox, item_widget): # delete player from round listbox and tournament player list when item is clicked
         # Find and remove the corresponding QListWidgetItem
-        for i in range(list_widget.count()):
-            list_item = list_widget.item(i)
-            if list_widget.itemWidget(list_item) == item_widget:
-                list_widget.takeItem(i)
+        for i in range(round_listbox.count()):
+            list_item = round_listbox.item(i)
+            if round_listbox.itemWidget(list_item) == item_widget:
+                round_listbox.takeItem(i)
                 
                 break
         
@@ -252,30 +268,41 @@ class MainWindow(QMainWindow):
                     round_item_widget = round_listbox.itemWidget(round_list_item)
                     if round_item_widget and round_item_widget.findChild(QLabel).text().startswith(f"{player.id})"):
                         round_listbox.takeItem(j)
+                        
                         break
                 break
-        
+
         # Remove player from tournament's player list
         tournament.players.remove(player)
         self.set_current_tournament(tournament)  # Update the tournament in the main dictionary    
         print(tournament)
     def menu_ui(self):
+
         # Create a menu bar
+        
+
         menubar = self.menuBar()
 
         # File menu
         file_menu = menubar.addMenu("File")
 
         # actions for the File menu
-        new_action = QAction("save", self)
+        save_action = QAction("save", self)
+        
         open_action = QAction("Open", self)
+        
+        
         exit_action = QAction("Exit", self)
         exit_action.triggered.connect(self.close)
 
-        file_menu.addAction(new_action)
+        file_menu.addAction(save_action)
+        
         file_menu.addAction(open_action)
         file_menu.addSeparator()
         file_menu.addAction(exit_action)
+
+        save_action.triggered.connect(self.save_tournaments)
+        open_action.triggered.connect(self.open_all_tournaments)
 
         # Create Tournament menu
         tournament_menu = menubar.addMenu("Tournament") # add menu
@@ -289,7 +316,88 @@ class MainWindow(QMainWindow):
 
         create_tournament_action.triggered.connect(self.create_tournament) 
         delete_tournament_action.triggered.connect(self.delete_tournament)
-    
+        
+        
+    def save_tournaments(self, checked=False):
+        import json
+        tournaments_data = {}  # dictionary to save
+
+        for name, t in self.tournaments.items():
+            tournaments_data[name] = t.to_dict()
+
+        with open("tournaments.json", "w") as f:
+            json.dump(tournaments_data, f, indent=4)
+
+        print("Tournaments saved successfully!")
+        QMessageBox.information(self, "Saved", "Tournaments saved successfully!")
+
+
+
+    def open_all_tournaments(self):
+        import json, os
+        if not os.path.exists("tournaments.json"):
+            print("No tournaments.json file found — starting fresh.")
+            self.tournaments = {}
+            return
+
+        with open("tournaments.json", "r") as f:
+            data = json.load(f)
+            
+
+        self.tournaments = {}  # reset tournaments dictionary
+
+        for name, t_data in data.items():
+            # Convert each player dict to a Player object
+            players_list = [Player.from_dict(p) for p in t_data.get("players", [])]
+            
+            # Create the Tournament object with Player objects
+            tournament = Tournament(
+                id=t_data["id"],
+                name=t_data["name"],
+                players=players_list,  # list of Player objects
+                style=t_data.get("style"),
+                rounds=t_data.get("rounds"),
+                date=t_data.get("date")
+            )
+            
+            tournament.next_player_id = t_data.get("next_player_id", len(players_list)+1)
+            
+            # Save in your main dictionary by name
+            self.tournaments[name] = tournament
+
+            
+        
+        print(f"Loaded {self.tournaments} tournaments.")
+        
+        # Remove buttons from layout and delete them
+        while self.tournament_layout.count():
+            item = self.tournament_layout.takeAt(0)
+            widget = item.widget()
+            if widget is not None:
+                widget.deleteLater()  
+
+        # Clear all buttons from the button group
+        for button in self.tournament_buttons.buttons():
+            self.tournament_buttons.removeButton(button)
+            button.deleteLater()
+        
+        for name in self.tournaments:
+            tournament_button = QPushButton(name)
+            tournament_button.setCheckable(True)
+            self.tournament_layout.addWidget(tournament_button)
+            self.tournament_buttons.addButton(tournament_button) # this button group makes the buttons toggleable
+            global tournament_id
+        
+            
+            
+            tournament_id = len(self.tournaments)
+
+            tournament_button.clicked.connect(self.open_tournament)
+        
+        
+        
+        
+        
     def load_tournament(self):
         tournament = self.get_current_tournament()
         self.add_player_listbox.clear()
@@ -421,14 +529,14 @@ class MainWindow(QMainWindow):
                 f"\nData: {tournament}"
             )
 
-    def get_current_tournament(self):
+    def get_current_tournament(self):# gets the tournament currently toggled
         selected_button = self.tournament_buttons.checkedButton()
         if selected_button:
             tournament_name = selected_button.text()
             return self.tournaments.get(tournament_name)
         return None
     
-    def set_current_tournament(self, tournament):
+    def set_current_tournament(self, tournament): # changes value in dictionary to update tournament
         old_tournament = self.get_current_tournament()
         if old_tournament:
             self.tournaments[old_tournament.name] = tournament

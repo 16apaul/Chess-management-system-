@@ -1,4 +1,6 @@
+
 from player import Player
+
 
 class Tournament:
 
@@ -12,6 +14,35 @@ class Tournament:
         self.rounds = rounds  # Number of rounds in the tournament
         self.date = date  # Date of the tournament
         self.next_player_id = 1 # To assign unique IDs to players 
+        
+    def to_dict(self):
+        """Convert tournament to a plain dict for saving"""
+        return {
+            "id": self.id,
+            "name": self.name,
+            "players": [p.to_dict() for p in self.players],
+            "style": self.style,
+            "rounds": self.rounds,
+            "date": self.date,
+            "next_player_id": self.next_player_id
+        }
+
+    @staticmethod
+    def from_dict(data):
+        """Create a Tournament instance from a dict"""
+        players = [Player.from_dict(p) for p in data.get("players", [])]
+
+        t = Tournament(
+            id=data.get("id"),
+            name=data.get("name"),
+            players=data.get("players", []),
+            style=data.get("style", "swiss"),
+            rounds=data.get("rounds"),
+            date=data.get("date")
+        )
+        t.next_player_id = data.get("next_player_id", 1)
+        return t    
+        
     @property
     def id(self):
         return self._id

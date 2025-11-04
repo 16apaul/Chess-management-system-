@@ -113,7 +113,34 @@ class Player: # player constructor
         self._has_half_bye = value
     
     
-    
+    # --- JSON serialization ---
+    def to_dict(self):
+        """Convert the player to a JSON-serializable dict"""
+        return {
+            "id": self.id,
+            "name": self.name,
+            "rating": self.rating,
+            "color_history": self.color_history,
+            "float_history": self.float_history,
+            "player_history": self.player_history,
+            "points": self.points,
+            "has_played": self.has_played,
+            "has_full_bye": self.has_full_bye,
+            "has_half_bye": self.has_half_bye,
+        }
+
+    @classmethod
+    def from_dict(cls, data):
+        """Rebuild a Player object from saved JSON data"""
+        player = cls(data["id"], data["name"], data.get("rating"))
+        player.color_history = data.get("color_history", [])
+        player.float_history = data.get("float_history", [])
+        player.player_history = data.get("player_history", [])
+        player.points = data.get("points", 0.0)
+        player.has_played = data.get("has_played", False)
+        player.has_full_bye = data.get("has_full_bye", False)
+        player.has_half_bye = data.get("has_half_bye", False)
+        return player
     def __repr__(self):
         return (f"Player(name={self.name}, id={self.id}, "
         f"points={self.points}, colors={self.color_history}, "
