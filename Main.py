@@ -73,7 +73,8 @@ class MainWindow(QMainWindow):
         
         self.add_player_listbox = QListWidget() #box to show list of players and add players to tournament
         add_player_tab_layout.addWidget(self.add_player_listbox, 0, 0, 1,1)
-        self.add_player_listbox.setSelectionMode(QListWidget.MultiSelection) # allow multiple selection of players
+        self.add_player_listbox.setSelectionMode(QListWidget.SingleSelection)
+
         
         
         self.add_player_lineedit = QLineEdit()
@@ -89,21 +90,19 @@ class MainWindow(QMainWindow):
         
         
         add_all_players_to_round_button = QPushButton("Add all") # button to add all players to the current round
-        add_player_tab_layout.addWidget(add_all_players_to_round_button, 0, 2)
+        add_player_tab_layout.addWidget(add_all_players_to_round_button, 1, 1,1,1)
         add_all_players_to_round_button.clicked.connect(self.add_all_players_to_round)
         
-        
-        add_selected_players_to_round_button = QPushButton("-->") # button to add selected players to the current round
-        add_player_tab_layout.addWidget(add_selected_players_to_round_button, 1, 2,1,1)
         
         
         
         self.round_listbox = QListWidget() # box to show list of round players
-        add_player_tab_layout.addWidget(self.round_listbox, 0, 3, 2,1)
-        self.round_listbox.setSelectionMode(QListWidget.MultiSelection) # allow multiple selection of players
+        add_player_tab_layout.addWidget(self.round_listbox, 0, 2, 1,1)
+        self.round_listbox.setSelectionMode(QListWidget.NoSelection) # allow multiple selection of players
+        
         
         pair_button = QPushButton("Pair Round") # button to pair the current round
-        add_player_tab_layout.addWidget(pair_button, 2, 3,1,1)
+        add_player_tab_layout.addWidget(pair_button, 2, 2,1,1)
         
         
         
@@ -112,7 +111,13 @@ class MainWindow(QMainWindow):
         results_tab = QWidget()
         
         self.tournament_tabs.addTab(add_player_tab, "Add Players")
+        
+        
+        pairings_tab = QWidget()
+        pairings_tab_layout = QHBoxLayout()
+        pairings_tab.setLayout(pairings_tab_layout)
         self.tournament_tabs.addTab(pairings_tab, "Pairings")
+        
         self.tournament_tabs.addTab(results_tab, "Results")
         self.tournament_tabs.hide()  # Hide tabs initially
         
