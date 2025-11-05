@@ -14,6 +14,7 @@ class Tournament:
         self.rounds = rounds  # Number of rounds in the tournament
         self.date = date  # Date of the tournament
         self.next_player_id = 1 # To assign unique IDs to players 
+        self.players_in_current_round = []
         
     def to_dict(self):
         """Convert tournament to a plain dict for saving"""
@@ -24,7 +25,8 @@ class Tournament:
             "style": self.style,
             "rounds": self.rounds,
             "date": self.date,
-            "next_player_id": self.next_player_id
+            "next_player_id": self.next_player_id,
+            "players_in_current_round": [p.to_dict() for p in self.players_in_current_round]
         }
 
     @staticmethod
@@ -40,6 +42,7 @@ class Tournament:
             rounds=data.get("rounds"),
             date=data.get("date")
         )
+        t.players_in_current_round=data.get("players_in_current_round", [])
         t.next_player_id = data.get("next_player_id", 1)
         return t    
         
@@ -64,10 +67,10 @@ class Tournament:
         self._name = value    
     
     @property
-    def player(self):
+    def players(self):
         return self._players
-    @player.setter
-    def player(self, value):
+    @players.setter
+    def players(self, value):
         if not isinstance(value, list):
             raise TypeError("Players must be a list")
         self._players = value
@@ -100,9 +103,24 @@ class Tournament:
     def next_player_id(self, value):
         self._next_player_id = value
     
+    @property
+    def players_in_current_round(self):
+        return self._players_in_current_round
+    
+    @property
+    def players_in_current_round(self):
+        return self._players_in_current_round
+    
+    @players_in_current_round.setter
+    def players_in_current_round(self, value):
+        self._players_in_current_round = value
+        
+    def add_player_to_current_round(self, player):
+        """Add a player to the current round list"""
+        self._players_in_current_round.append(player)
    
     def __repr__(self):
-        return f"Tournament(name={self.name}, id={self.id}, players={self.players}, style={self.style}, rounds={self.rounds}, date={self.date}, next_player_id={self.next_player_id})"
+        return f"Tournament(name={self.name}, id={self.id}, players={self.players}, style={self.style}, rounds={self.rounds}, date={self.date}, next_player_id={self.next_player_id}, Players_in_current_round{self.players_in_current_round})"
     
     
         

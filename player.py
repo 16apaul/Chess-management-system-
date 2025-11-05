@@ -10,6 +10,7 @@ class Player: # player constructor
         self.has_played = False # flag to indicate if player has played in tournament
         self.has_full_bye = False   # flag to indicate if player has received a bye
         self.has_half_bye = False   # flag to indicate if player has received a half bye
+        self.half_bye_history = []
 
         # --- name ---
     @property
@@ -111,6 +112,19 @@ class Player: # player constructor
     @has_half_bye.setter
     def has_half_bye(self, value):
         self._has_half_bye = value
+        
+    @property
+    def half_bye_history(self):
+        """Get the history of half-byes assigned in the tournament."""
+        return self._half_bye_history
+
+    @half_bye_history.setter
+    def half_bye_history(self, value):
+        """Set the history of half-byes (must be a list)."""
+        if not isinstance(value, list):
+            raise TypeError("half_bye_history must be a list")
+        self._half_bye_history = value
+    
     
     
     # --- JSON serialization ---
@@ -127,6 +141,7 @@ class Player: # player constructor
             "has_played": self.has_played,
             "has_full_bye": self.has_full_bye,
             "has_half_bye": self.has_half_bye,
+            "half_bye_history": self.half_bye_history
         }
 
     @classmethod
@@ -140,6 +155,7 @@ class Player: # player constructor
         player.has_played = data.get("has_played", False)
         player.has_full_bye = data.get("has_full_bye", False)
         player.has_half_bye = data.get("has_half_bye", False)
+        player.half_bye_history = data.get("half_bye_history",[])
         return player
     def __repr__(self):
         return (f"Player(name={self.name}, id={self.id}, "
@@ -147,4 +163,4 @@ class Player: # player constructor
         f"floats={self.float_history}, opponents={self.player_history}), rating={self.rating})"
         f"has_played={self.has_played}, "
         f"has_full_bye={self.has_full_bye}, "
-        f"has_half_bye={self.has_half_bye})")
+        f"has_half_bye={self.has_half_bye}) , half_bye_history = {self.half_bye_history}")

@@ -85,7 +85,7 @@ class MainWindow(QMainWindow):
         add_player_tab_layout.addWidget(self.add_player_rating_lineedit, 2, 0)
         add_player_button = QPushButton("Add Player") # button to add player to tournament
         add_player_tab_layout.addWidget(add_player_button, 3, 0,1,1)
-        add_player_button.clicked.connect(self.add_player_to_tournament) 
+        add_player_button.clicked.connect(self.add_all_player_to_tournament) 
        
         
         
@@ -103,6 +103,7 @@ class MainWindow(QMainWindow):
         
         pair_button = QPushButton("Pair Round") # button to pair the current round
         add_player_tab_layout.addWidget(pair_button, 2, 2,1,1)
+        pair_button.clicked.connect(self.pair_players)
         
         
         
@@ -121,62 +122,53 @@ class MainWindow(QMainWindow):
         self.tournament_tabs.addTab(results_tab, "Results")
         self.tournament_tabs.hide()  # Hide tabs initially
         
+        
+    def pair_players(self):
+        
+        round_listbox = self.round_listbox
+        round_listbox.clear()
+            
     
     def add_all_players_to_round(self):
         tournament = self.get_current_tournament()
+        tournament_players = self.get_players_in_current_tournament()
+        tournament.players_in_current_round = tournament_players.copy()
         self.round_listbox.clear()
-        round_listbox = self.round_listbox
         for player in tournament.players:
-            item_widget = QWidget()
-            item_layout = QHBoxLayout(item_widget)
+            self.add_player_to_round_listbox(player)
             
-            label_text = f"{player.id}) {player.name}"
-            if player.rating is not None:
-                label_text += f" (Rating: {player.rating})"
+            
+    def give_half_point_bye(self,button, player): # what happens if 1/2 button is toggled
+        tournament = self.get_current_tournament()
+        
+        
+        
+            
+        if button.isChecked():
+            player.has_half_bye = True
+            print("toggled on \n", player.id) 
 
-            label = QLabel(label_text)
+        else:
+            player.has_half_bye = False
+            print("toggle off")
             
-            item_layout.addWidget(label)
-            item_layout.addStretch()
+        
             
-            # 1/2 point bye button
-            half_bye_button = QPushButton("½")
-            half_bye_button.setToolTip("Assign half-point bye to player")
-            half_bye_button.setCheckable(True)
-            half_bye_button.setStyleSheet("QPushButton { border: none; color: green; } QPushButton:hover { background-color: #ffe5b4; } QPushButton:checked { background-color: #ffe5b4 }")
-            item_layout.addWidget(half_bye_button)
-            
-            # Delete button
-            delete_button = QPushButton("❌")
-            delete_button.setStyleSheet("QPushButton { border: none; color: red; } QPushButton:hover { background-color: #ffcccc; }")
-            delete_button.setToolTip("Remove player from round")
-            item_layout.addWidget(delete_button)
-            delete_button.clicked.connect(lambda _, l=round_listbox, it=item_widget: self.delete_player_from_round_list(l, it))
+        self.set_current_tournament(tournament)
             
             
-            # half_bye_button.clicked.connect(lambda _, p=player: self.assign_half_bye(p))
-            
-            # Create QListWidgetItem
-            list_item = QListWidgetItem(self.round_listbox)
-            list_item.setSizeHint(item_widget.sizeHint())
-
-            
-           # Add to list
-            self.round_listbox.addItem(list_item)
-            self.round_listbox.setItemWidget(list_item, item_widget)
-            
+                   
     
     def get_players_in_current_tournament(self):
         tournament = self.get_current_tournament()
         players = tournament.players
         return players
     
-    def add_player_to_tournament(self): # what happens when add player button is clicked
+    def add_all_player_to_tournament(self): # what happens when add player button is clicked
         repeat_names = False
         tournament = self.get_current_tournament()
         player_name = self.add_player_lineedit.text()
         player_rating = self.add_player_rating_lineedit.text()
-        player_listbox = self.add_player_listbox
         players = self.get_players_in_current_tournament()
         
         for p in players:
@@ -194,45 +186,12 @@ class MainWindow(QMainWindow):
                 rating = None
                 
                 
-            next_player_id = tournament.next_player_id #current next player id
-            player_id = next_player_id
+            player_id = tournament.next_player_id #current next player id
+            
             player = Player(player_id, player_name, rating)
             
             
             
-            # Add player to listbox
-            
-            item_widget = QWidget()
-            item_layout = QHBoxLayout(item_widget)
-            
-            label_text = f"{player.id}) {player.name}"
-            if player.rating is not None:
-                label_text += f" (Rating: {player.rating})"
-
-            label = QLabel(label_text)
-            
-            item_layout.addWidget(label)
-            item_layout.addStretch()
-            
-            # Delete button
-            delete_button = QPushButton("❌")
-            delete_button.setStyleSheet("QPushButton { border: none; color: red; } QPushButton:hover { background-color: #ffcccc; }")
-            delete_button.setToolTip("Remove player from tournament")
-            item_layout.addWidget(delete_button)
-            delete_button.clicked.connect(lambda _, l=player_listbox, it=item_widget: self.delete_player_from_tournament_list(l, it, tournament, player))
-            
-            
-            
-            # Create QListWidgetItem
-            list_item = QListWidgetItem(self.add_player_listbox)
-            list_item.setSizeHint(item_widget.sizeHint())
-
-            
-            # Add to list
-            self.add_player_listbox.addItem(list_item)
-            self.add_player_listbox.setItemWidget(list_item, item_widget)
-            
-                
             # Update tournament's next player ID
             tournament.next_player_id += 1
             tournament.add_player(player)  # Add player to tournament's player list
@@ -242,17 +201,33 @@ class MainWindow(QMainWindow):
             # Clear input fields
             self.add_player_lineedit.clear()
             self.add_player_rating_lineedit.clear()
+            
+            # Add player to listbox
+            self.add_player_to_tournament_listbox(player)
+
           
           
           
-    def delete_player_from_round_list(self, round_listbox, item_widget): # delete player from round listbox and tournament player list when item is clicked
+    def delete_player_from_round_list(self, round_listbox, item_widget, playerid): # delete player from round listbox when item is clicked
         # Find and remove the corresponding QListWidgetItem
+    
+        tournament = self.get_current_tournament()
+        
+        round_players = tournament.players_in_current_round
+
+        for player in round_players:
+            if playerid == player.id:
+                round_players.remove(player)
+                break
+        tournament.players_in_current_round = round_players
+        self.set_current_tournament(tournament)
+
         for i in range(round_listbox.count()):
             list_item = round_listbox.item(i)
             if round_listbox.itemWidget(list_item) == item_widget:
                 round_listbox.takeItem(i)
-                
                 break
+                
         
       
     def delete_player_from_tournament_list(self, list_widget, item_widget, tournament, player): # delete player from tournament listbox and tournament player list when item is clicked
@@ -275,8 +250,10 @@ class MainWindow(QMainWindow):
 
         # Remove player from tournament's player list
         tournament.players.remove(player)
+        tournament.players_in_current_round.remove(player)
         self.set_current_tournament(tournament)  # Update the tournament in the main dictionary    
         print(tournament)
+        
     def menu_ui(self):
 
         # Create a menu bar
@@ -350,7 +327,7 @@ class MainWindow(QMainWindow):
         for name, t_data in data.items():
             # Convert each player dict to a Player object
             players_list = [Player.from_dict(p) for p in t_data.get("players", [])]
-            
+            players_in_current_round_list = [Player.from_dict(p) for p in t_data.get("players_in_current_round", [])]
             # Create the Tournament object with Player objects
             tournament = Tournament(
                 id=t_data["id"],
@@ -358,11 +335,12 @@ class MainWindow(QMainWindow):
                 players=players_list,  # list of Player objects
                 style=t_data.get("style"),
                 rounds=t_data.get("rounds"),
-                date=t_data.get("date")
+                date=t_data.get("date"),
             )
             
-            tournament.next_player_id = t_data.get("next_player_id", len(players_list)+1)
-            
+            tournament.next_player_id = t_data.get("next_player_id")
+            tournament.players_in_current_round = players_in_current_round_list
+
             # Save in your main dictionary by name
             self.tournaments[name] = tournament
 
@@ -409,38 +387,108 @@ class MainWindow(QMainWindow):
         tournament = self.get_current_tournament()
         self.add_player_listbox.clear()
         self.round_listbox.clear()
-        player_listbox = self.add_player_listbox
         for player in tournament.players:
-            item_widget = QWidget()
-            item_layout = QHBoxLayout(item_widget)
+            self.add_player_to_tournament_listbox(player) # adds the ui element
             
-            label_text = f"{player.id}) {player.name}"
-            if player.rating is not None:
-                label_text += f" (Rating: {player.rating})"
+        for player in tournament.players_in_current_round:
+            self.add_player_to_round_listbox(player) # adds the ui element
+          
+          
+          
+    def add_player_to_tournament_listbox(self,player):
+        tournament = self.get_current_tournament()
+        item_widget = QWidget()
+        item_layout = QHBoxLayout(item_widget)
+        player_listbox = self.add_player_listbox
 
-            label = QLabel(label_text)
-            
-            item_layout.addWidget(label)
-            item_layout.addStretch()
-            
-            # Delete button
-            delete_button = QPushButton("❌")
-            delete_button.setStyleSheet("QPushButton { border: none; color: red; } QPushButton:hover { background-color: #ffcccc; }")
-            item_layout.addWidget(delete_button)
-            delete_button.clicked.connect(lambda _, l=player_listbox, it=item_widget: self.delete_player_from_tournament_list(l, it, tournament, player))
-            
-            
-            
-            # Create QListWidgetItem
-            list_item = QListWidgetItem(self.add_player_listbox)
-            list_item.setSizeHint(item_widget.sizeHint())
+        label_text = f"{player.id}) {player.name}"
+        if player.rating is not None:
+            label_text += f" (Rating: {player.rating})"
 
-            
-           # Add to list
-            self.add_player_listbox.addItem(list_item)
-            self.add_player_listbox.setItemWidget(list_item, item_widget)
+        label = QLabel(label_text)
+        
+        item_layout.addWidget(label)
+        item_layout.addStretch()
+        
+        # Delete button
+        delete_button = QPushButton("❌")
+        delete_button.setStyleSheet("QPushButton { border: none; color: red; } QPushButton:hover { background-color: #ffcccc; }")
+        item_layout.addWidget(delete_button)
+        delete_button.clicked.connect(lambda _, l=player_listbox, it=item_widget: self.delete_player_from_tournament_list(l, it, tournament, player))
+        
+        
+        
+        # Create QListWidgetItem
+        list_item = QListWidgetItem(self.add_player_listbox)
+        list_item.setSizeHint(item_widget.sizeHint())
 
-    
+        
+        # Add to list
+        self.add_player_listbox.addItem(list_item)
+        self.add_player_listbox.setItemWidget(list_item, item_widget)
+             
+            
+    def add_player_to_round_listbox(self,player):
+        round_listbox = self.round_listbox
+        tournament = self.get_current_tournament()
+        print(tournament.players_in_current_round)
+        item_widget = QWidget()
+        item_layout = QHBoxLayout(item_widget)
+        
+        label_text = f"{player.id}) {player.name}"
+        if player.rating is not None:
+            label_text += f" (Rating: {player.rating})"
+
+        label = QLabel(label_text)
+        
+        item_layout.addWidget(label)
+        item_layout.addStretch()
+        
+        # 1/2 point bye button
+        half_bye_button = QPushButton("½")
+        half_bye_button.setToolTip("Assign half-point bye to player")
+        half_bye_button.setCheckable(True)
+        if player.has_half_bye == True:
+            half_bye_button.setChecked(True)
+        half_bye_button.setStyleSheet("""
+            QPushButton {
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                color: green;
+                background-color: white;
+                padding: 4px 8px;
+            }
+            QPushButton:hover {
+                background-color: #ffe5b4;
+            }
+            QPushButton:checked {
+                background-color: #b2fab4;
+                color: black;
+                font-weight: bold;
+            }
+        """)            
+        item_layout.addWidget(half_bye_button)
+        half_bye_button.toggled.connect(lambda _, b = half_bye_button,p = player: self.give_half_point_bye(b,p))
+        
+        # Delete button
+        delete_button = QPushButton("❌")
+        delete_button.setStyleSheet("QPushButton { border: none; color: red; } QPushButton:hover { background-color: #ffcccc; }")
+        delete_button.setToolTip("Remove player from round")
+        item_layout.addWidget(delete_button)
+        delete_button.clicked.connect(lambda _, l=round_listbox, it=item_widget, i = player.id: self.delete_player_from_round_list(l, it,i))
+        
+        
+        # half_bye_button.clicked.connect(lambda _, p=player: self.assign_half_bye(p))
+        
+        # Create QListWidgetItem
+        list_item = QListWidgetItem(round_listbox)
+        list_item.setSizeHint(item_widget.sizeHint())
+
+        
+        # Add to list
+        self.round_listbox.addItem(list_item)
+        self.round_listbox.setItemWidget(list_item, item_widget)
+        
     
     def delete_tournament(self): # what happens when menu delete tournament button is clicked
         selected_button = self.tournament_buttons.checkedButton()
@@ -526,11 +574,11 @@ class MainWindow(QMainWindow):
             self.tournament_tabs.show()  # Show tabs when a tournament is created
             self.load_tournament()
 
-            print(
-                f"Opening Tournament: {name} with ID: {id}"
-                "Tournament Data",
-                f"\nData: {tournament}"
-            )
+           # print(
+             #   f"Opening Tournament: {name} with ID: {id}"
+             #   "Tournament Data",
+               # f"\nData: {tournament}"
+            #)
 
     def get_current_tournament(self):# gets the tournament currently toggled
         selected_button = self.tournament_buttons.checkedButton()
