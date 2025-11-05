@@ -117,7 +117,7 @@ class Tournament:
         
     def add_player_to_current_round(self, player):
         """Add a player to the current round list"""
-        self._players_in_current_round.append(player)
+        self.players_in_current_round.append(player)
    
     def __repr__(self):
         return f"Tournament(name={self.name}, id={self.id}, players={self.players}, style={self.style}, rounds={self.rounds}, date={self.date}, next_player_id={self.next_player_id}, Players_in_current_round{self.players_in_current_round})"
