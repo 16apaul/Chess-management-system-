@@ -37,8 +37,11 @@ def create_menu_bar(window):
         create_tournament_action = QAction("Create Tournament", window) # create items for the menu
         delete_tournament_action = QAction("Delete Tournament", window)
         
-        tournament_menu.addAction(create_tournament_action) # link menu to items
+         # link menu to items
+        menubar.addAction(create_tournament_action)
+
         tournament_menu.addAction(delete_tournament_action)
+        
 
 
 

@@ -20,7 +20,9 @@ class RoundController: # handles logic for people to rounds
             label_text += f" (Rating: {player.rating})"
 
         label = QLabel(label_text)
-        
+        bye_history_str = str(player.half_bye_history)
+        label.setToolTip(bye_history_str)
+
         item_layout.addWidget(label)
         item_layout.addStretch()
         
@@ -79,12 +81,14 @@ class RoundController: # handles logic for people to rounds
 
         for player in round_players:
             if playerid == player.id:
-                round_players.remove(player)
+                player.has_half_bye = False # resets the half bye
+                round_players.remove(player) # remove corresponding player from round
                 break
+            
         tournament.players_in_current_round = round_players
         self.main_window.set_current_tournament(tournament)
 
-        for i in range(round_listbox.count()):
+        for i in range(round_listbox.count()): # remove corresponding listbox item
             list_item = round_listbox.item(i)
             if round_listbox.itemWidget(list_item) == item_widget:
                 round_listbox.takeItem(i)

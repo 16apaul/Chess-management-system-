@@ -13,9 +13,9 @@ def create_tournament_tabs(window):
         
         
         
-        window.add_player_listbox = QListWidget() #box to show list of players and add players to tournament
-        add_player_tab_layout.addWidget(window.add_player_listbox, 0, 0, 1,1)
-        window.add_player_listbox.setSelectionMode(QListWidget.SingleSelection)
+        window.tournament_listbox = QListWidget() #box to show list of players in tournament
+        add_player_tab_layout.addWidget(window.tournament_listbox, 0, 0, 1,1)
+        window.tournament_listbox.setSelectionMode(QListWidget.SingleSelection)
 
         
         

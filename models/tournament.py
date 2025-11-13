@@ -14,7 +14,10 @@ class Tournament:
         self.rounds = rounds  # Number of rounds in the tournament
         self.date = date  # Date of the tournament
         self.next_player_id = 1 # To assign unique IDs to players 
-        self.players_in_current_round = []
+        self.players_in_current_round = [] # Players to be paired
+        self.current_round = 0 # current round number tournament is on
+        
+        
         
     def to_dict(self):
         """Convert tournament to a plain dict for saving"""
@@ -26,13 +29,13 @@ class Tournament:
             "rounds": self.rounds,
             "date": self.date,
             "next_player_id": self.next_player_id,
-            "players_in_current_round": [p.to_dict() for p in self.players_in_current_round]
+            "players_in_current_round": [p.to_dict() for p in self.players_in_current_round],
+            "current_round_number": self.current_round
         }
 
     @staticmethod
     def from_dict(data):
         """Create a Tournament instance from a dict"""
-        players = [Player.from_dict(p) for p in data.get("players", [])]
 
         t = Tournament(
             id=data.get("id"),
@@ -44,6 +47,7 @@ class Tournament:
         )
         t.players_in_current_round=data.get("players_in_current_round", [])
         t.next_player_id = data.get("next_player_id", 1)
+        t.current_round = data.get("current_round", 0)
         return t    
         
     @property
@@ -118,6 +122,18 @@ class Tournament:
     def add_player_to_current_round(self, player):
         """Add a player to the current round list"""
         self.players_in_current_round.append(player)
+        
+        
+    @property
+    def current_round(self):
+        return self._current_round
+    
+    @current_round.setter
+    def current_round(self,value):
+        self._current_round = value
+    
+    def increment_current_round(self):
+        self.current_round += 1
    
     def __repr__(self):
         return f"Tournament(name={self.name}, id={self.id}, players={self.players}, style={self.style}, rounds={self.rounds}, date={self.date}, next_player_id={self.next_player_id}, Players_in_current_round{self.players_in_current_round})"

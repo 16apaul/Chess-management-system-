@@ -5,7 +5,20 @@
         "players": [
             {
                 "id": 1,
-                "name": "EE",
+                "name": "eee",
+                "rating": null,
+                "color_history": [],
+                "float_history": [],
+                "player_history": [],
+                "points": 0.0,
+                "has_played": false,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": []
+            },
+            {
+                "id": 2,
+                "name": "fff",
                 "rating": null,
                 "color_history": [],
                 "float_history": [],
@@ -18,7 +31,7 @@
             },
             {
                 "id": 3,
-                "name": "YYY",
+                "name": "cc",
                 "rating": null,
                 "color_history": [],
                 "float_history": [],
@@ -31,7 +44,7 @@
             },
             {
                 "id": 4,
-                "name": "rr",
+                "name": "ss",
                 "rating": null,
                 "color_history": [],
                 "float_history": [],
@@ -39,12 +52,25 @@
                 "points": 0.0,
                 "has_played": false,
                 "has_full_bye": false,
-                "has_half_bye": true,
+                "has_half_bye": false,
                 "half_bye_history": []
             },
             {
-                "id": 7,
-                "name": "heteha",
+                "id": 5,
+                "name": "zz",
+                "rating": null,
+                "color_history": [],
+                "float_history": [],
+                "player_history": [],
+                "points": 0.0,
+                "has_played": false,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": []
+            },
+            {
+                "id": 6,
+                "name": "wwwq",
                 "rating": null,
                 "color_history": [],
                 "float_history": [],
@@ -59,11 +85,24 @@
         "style": "Swiss",
         "rounds": 1,
         "date": null,
-        "next_player_id": 9,
+        "next_player_id": 7,
         "players_in_current_round": [
             {
                 "id": 1,
-                "name": "EE",
+                "name": "eee",
+                "rating": null,
+                "color_history": [],
+                "float_history": [],
+                "player_history": [],
+                "points": 0.0,
+                "has_played": false,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": []
+            },
+            {
+                "id": 2,
+                "name": "fff",
                 "rating": null,
                 "color_history": [],
                 "float_history": [],
@@ -76,7 +115,7 @@
             },
             {
                 "id": 3,
-                "name": "YYY",
+                "name": "cc",
                 "rating": null,
                 "color_history": [],
                 "float_history": [],
@@ -89,7 +128,7 @@
             },
             {
                 "id": 4,
-                "name": "rr",
+                "name": "ss",
                 "rating": null,
                 "color_history": [],
                 "float_history": [],
@@ -97,12 +136,25 @@
                 "points": 0.0,
                 "has_played": false,
                 "has_full_bye": false,
-                "has_half_bye": true,
+                "has_half_bye": false,
                 "half_bye_history": []
             },
             {
-                "id": 7,
-                "name": "heteha",
+                "id": 5,
+                "name": "zz",
+                "rating": null,
+                "color_history": [],
+                "float_history": [],
+                "player_history": [],
+                "points": 0.0,
+                "has_played": false,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": []
+            },
+            {
+                "id": 6,
+                "name": "wwwq",
                 "rating": null,
                 "color_history": [],
                 "float_history": [],
@@ -113,6 +165,7 @@
                 "has_half_bye": false,
                 "half_bye_history": []
             }
-        ]
+        ],
+        "current_round_number": 0
     }
 }

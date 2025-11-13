@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
 
-class PlayerController: # handles logic for people to tournaments
+class PlayerController: # handles logic for people in tournaments
     def __init__(self, main_window):
         self.main_window = main_window
         
@@ -11,7 +11,7 @@ class PlayerController: # handles logic for people to tournaments
         tournament = self.main_window.get_current_tournament()
         item_widget = QWidget()
         item_layout = QHBoxLayout(item_widget)
-        player_listbox = self.main_window.add_player_listbox
+        player_listbox = self.main_window.tournament_listbox
         
         label_text = f"{player.id}) {player.name}"
         if player.rating is not None:
@@ -23,21 +23,23 @@ class PlayerController: # handles logic for people to tournaments
         item_layout.addStretch()
         
         # Delete button
-        delete_button = QPushButton("❌")
-        delete_button.setStyleSheet("QPushButton { border: none; color: red; } QPushButton:hover { background-color: #ffcccc; }")
-        item_layout.addWidget(delete_button)
-        delete_button.clicked.connect(lambda _, l=player_listbox, it=item_widget, p = player: self.delete_player_from_tournament_list(l, it, tournament, p))
         
+        if player.has_played == False: # can't delete if player already played
+            delete_button = QPushButton("❌")
+            delete_button.setStyleSheet("QPushButton { border: none; color: red; } QPushButton:hover { background-color: #ffcccc; }")
+            item_layout.addWidget(delete_button)
+            delete_button.clicked.connect(lambda _, l=player_listbox, it=item_widget, p = player: self.delete_player_from_tournament_list(l, it, tournament, p))
+            
         
         
         # Create QListWidgetItem
-        list_item = QListWidgetItem(self.main_window.add_player_listbox)
+        list_item = QListWidgetItem(self.main_window.tournament_listbox)
         list_item.setSizeHint(item_widget.sizeHint())
 
         
         # Add to list
-        self.main_window.add_player_listbox.addItem(list_item)
-        self.main_window.add_player_listbox.setItemWidget(list_item, item_widget)        
+        self.main_window.tournament_listbox.addItem(list_item)
+        self.main_window.tournament_listbox.setItemWidget(list_item, item_widget)        
         
     
         
@@ -75,11 +77,11 @@ class PlayerController: # handles logic for people to tournaments
             player_rating = self.main_window.add_player_rating_lineedit.text()
             players = self.get_players_in_current_tournament()
             
-            for p in players:
-                    if (p.name.upper()) == (player_name.upper()):
-                        repeat_names = True
-                        QMessageBox.warning(self.main_window,"No dublicate name" , "name already exists in the tournament")
-                        break
+            for p in players: # check if name already exists in the tournament
+                if (p.name.upper()) == (player_name.upper()):
+                    repeat_names = True 
+                    QMessageBox.warning(self.main_window,"No dublicate name" , "name already exists in the tournament")
+                    break
             
             if player_name and repeat_names == False:
                 try:
@@ -106,6 +108,10 @@ class PlayerController: # handles logic for people to tournaments
                 self.main_window.add_player_lineedit.clear()
                 self.main_window.add_player_rating_lineedit.clear()
                 
+                for i in range(tournament.current_round): # populate half bye history for new players
+                    player.add_half_bye_history(False) 
+                    
+                
                 # Add player to listbox
                 self.add_player_to_tournament_listbox(player)
                 
@@ -113,6 +119,15 @@ class PlayerController: # handles logic for people to tournaments
         tournament = self.main_window.get_current_tournament()
         players = tournament.players
         return players
+    
+    def add_all_players_to_tournament_listbox(self):
+        tournament = self.main_window.get_current_tournament()
+        tournament_listbox = self.main_window.tournament_listbox()
+        tournament_listbox.clear()
+        for player in tournament.players:
+            self.add_player_to_tournament_listbox(player)
+            
+            
     
                 
                 

@@ -99,12 +99,15 @@ class TournamentController: # handle how tournament logic
 
             
             tournament = self.main_window.get_current_tournament()
-            self.main_window.add_player_listbox.clear()
-            self.main_window.round_listbox.clear()
             print(tournament)
+            
+            
+            self.main_window.tournament_listbox.clear()
             for player in tournament.players:
                 self.main_window.player_controller.add_player_to_tournament_listbox(player) # adds the ui element
                 
+                
+            self.main_window.round_listbox.clear()
             for player in tournament.players_in_current_round:
                 self.main_window.round_controller.add_player_to_round_listbox(player) # adds the ui element
 

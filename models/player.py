@@ -10,7 +10,7 @@ class Player: # player constructor
         self.has_played = False # flag to indicate if player has played in tournament
         self.has_full_bye = False   # flag to indicate if player has received a bye
         self.has_half_bye = False   # flag to indicate if player has received a half bye
-        self.half_bye_history = []
+        self.half_bye_history = [] # to see how may times a player had a half bye
 
         # --- name ---
     @property
@@ -124,6 +124,9 @@ class Player: # player constructor
         if not isinstance(value, list):
             raise TypeError("half_bye_history must be a list")
         self._half_bye_history = value
+        
+    def add_half_bye_history(self,value):
+        self.half_bye_history.append(value)
     
     
     
