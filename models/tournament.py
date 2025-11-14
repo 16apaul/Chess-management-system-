@@ -30,7 +30,7 @@ class Tournament:
             "date": self.date,
             "next_player_id": self.next_player_id,
             "players_in_current_round": [p.to_dict() for p in self.players_in_current_round],
-            "current_round_number": self.current_round
+            "current_round": self.current_round
         }
 
     @staticmethod

@@ -46,7 +46,59 @@ class MainWindow(QMainWindow):
 
         create_tournament_tabs(self) 
     
+    
+    
+    def submit_results(self):
         
+        row_layouts = self.get_rows_from_layout(self.pairings_scroll_layout)
+        for row in row_layouts:
+            w = self.get_row_widgets(row)
+
+            label1 = w[0]      # QLabel
+            combo1 = w[1]      # QComboBox
+            combo2 = w[2]      # QComboBox
+            label2 = w[3]      # QLabel
+
+            print(label1.text(), combo1.currentText(), combo2.currentText(), label2.text())
+    
+    
+    def get_row_widgets(self,row_layout):
+        widgets = []
+        for i in range(row_layout.count()):
+            w = row_layout.itemAt(i).widget()
+            if w:
+                widgets.append(w)
+        return widgets
+    
+    def get_rows_from_layout(self, layout):
+        row_layouts = []
+        for i in range(layout.count()):
+            item = layout.itemAt(i)
+
+            if item.layout():
+                row_layouts.append(item.layout())
+
+
+        return row_layouts
+    
+    def add_pairing_row(self):
+        # Create a horizontal row
+        row_layout = QHBoxLayout()
+
+        label1 = QLabel("Label 1")
+        combo1 = QComboBox()
+        combo1.addItems(["0", "1/2", "1"])
+        combo2 = QComboBox()
+        combo2.addItems(["0", "1/2", "1"])
+        label2 = QLabel("Label 2")
+
+        row_layout.addWidget(label1)
+        row_layout.addWidget(combo1)
+        row_layout.addWidget(combo2)
+        row_layout.addWidget(label2)
+
+        self.pairings_scroll_layout.addLayout(row_layout)
+
         
     def pair_players(self):
         
@@ -62,7 +114,7 @@ class MainWindow(QMainWindow):
             player.has_half_bye = False # set half bye to false
             
             
-        for player in round_players: # go through every rouund player
+        for player in round_players: # go through every round player
             player.has_played = True # set every player has played to true
             
             
@@ -71,8 +123,8 @@ class MainWindow(QMainWindow):
         
         
         
-        
-        if tournament.current_round == 0: # first round gets paired diferently than the others
+        self.add_pairing_row()
+        if tournament.current_round == 0: # first round gets paired differently than the others
             pass
        
        
