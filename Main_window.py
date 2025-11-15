@@ -8,10 +8,7 @@ from controllers.player_controller import PlayerController
 from controllers.round_controller import RoundController
 from controllers.tournament_controller import TournamentController
 from controllers.persistence_controller import PersistenceController
-# List available styles
-# Output example: ['Windows', 'Fusion', 'Macintosh']
-
-# Set one
+from controllers.pair_players_controller import PairPlayersController
 
 
 class MainWindow(QMainWindow):
@@ -36,6 +33,7 @@ class MainWindow(QMainWindow):
         self.player_controller = PlayerController(self)
         self.round_controller = RoundController(self)
         self.persistence_controller = PersistenceController(self)
+        self.pair_players_controller = PairPlayersController(self)
 
       
         
@@ -81,70 +79,8 @@ class MainWindow(QMainWindow):
 
         return row_layouts
     
-    def add_pairing_row(self):
-        # Create a horizontal row
-        row_layout = QHBoxLayout()
-
-        label1 = QLabel("Label 1")
-        combo1 = QComboBox()
-        combo1.addItems(["0", "1/2", "1"])
-        combo2 = QComboBox()
-        combo2.addItems(["0", "1/2", "1"])
-        label2 = QLabel("Label 2")
-
-        row_layout.addWidget(label1)
-        row_layout.addWidget(combo1)
-        row_layout.addWidget(combo2)
-        row_layout.addWidget(label2)
-
-        self.pairings_scroll_layout.addLayout(row_layout)
-
+    
         
-    def pair_players(self):
-        
-        round_listbox = self.round_listbox
-        tournament_listbox = self.tournament_listbox
-        tournament = self.get_current_tournament()
-        round_players = tournament.players_in_current_round
-        tournament_players = tournament.players
-
-        
-        for player in tournament_players:
-            player.add_half_bye_history(player.has_half_bye) # add a half bye to half bye history
-            player.has_half_bye = False # set half bye to false
-            
-            
-        for player in round_players: # go through every round player
-            player.has_played = True # set every player has played to true
-            
-            
-        
-        # update player ID's in tournament
-        
-        
-        
-        self.add_pairing_row()
-        if tournament.current_round == 0: # first round gets paired differently than the others
-            pass
-       
-       
-       
-       
-       
-        round_players.clear() # clears players in round list in tournament
-        round_listbox.clear() # clears the list box
-        
-        # runs when pairings are finished
-        tournament.increment_current_round() # increment after round is finished
-        self.set_current_tournament(tournament) # saves the tournament.
-        
-        tournament_listbox.clear()
-        for player in tournament.players: # update the listbox
-            self.player_controller.add_player_to_tournament_listbox(player)
-            
-        
-            
-
 
     def get_current_tournament(self):# gets the tournament currently toggled
         selected_button = self.tournament_buttons.checkedButton()

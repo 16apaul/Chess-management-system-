@@ -161,9 +161,9 @@ class Player: # player constructor
         player.half_bye_history = data.get("half_bye_history",[])
         return player
     def __repr__(self):
-        return (f"Player(name={self.name}, id={self.id}, "
+        return (f"Player_name={self.name}, id={self.id}, "
         f"points={self.points}, colors={self.color_history}, "
-        f"floats={self.float_history}, opponents={self.player_history}), rating={self.rating})"
+        f"floats={self.float_history}, opponents={self.player_history}, rating={self.rating})"
         f"has_played={self.has_played}, "
         f"has_full_bye={self.has_full_bye}, "
         f"has_half_bye={self.has_half_bye}) , half_bye_history = {self.half_bye_history}")

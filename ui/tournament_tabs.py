@@ -45,7 +45,7 @@ def create_tournament_tabs(window):
 
       pair_button = QPushButton("Pair Round") # button to pair the current round
       add_player_tab_layout.addWidget(pair_button, 3, 2,1,2)
-      pair_button.clicked.connect(window.pair_players)
+      pair_button.clicked.connect(window.pair_players_controller.pair_players)
 
 
       window.tournament_tabs.addTab(add_player_tab, "Add Players")

@@ -136,7 +136,11 @@ class Tournament:
         self.current_round += 1
    
     def __repr__(self):
-        return f"Tournament(name={self.name}, id={self.id}, players={self.players}, style={self.style}, rounds={self.rounds}, date={self.date}, next_player_id={self.next_player_id}, Players_in_current_round{self.players_in_current_round})"
+        return (f"Tournament(name={self.name}, id={self.id}, "
+                f"players={self.players}, style={self.style}, "
+                f"rounds={self.rounds}, date={self.date}, next_player_id={self.next_player_id}, "
+                f"players_in_current_round={self.players_in_current_round}, "
+                f"current_round={self.current_round}")
     
     
         
