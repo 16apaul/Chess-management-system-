@@ -99,7 +99,7 @@ class TournamentController: # handle how tournament logic
 
             
             tournament = self.main_window.get_current_tournament()
-            print(tournament)
+            # print(tournament)
             
             
             self.main_window.tournament_listbox.clear()

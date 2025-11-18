@@ -4,7 +4,7 @@ class Player: # player constructor
         self.id = player_id
         self.color_history = []   # e.g., ["white", "black", "white"]
         self.float_history = []   # e.g., [up,,down]
-        self.player_history = []  # e.g., [1, 5,6,7] # list of player IDs played against
+        self.player_history = []  # e.g., [player1,player2] # list of players played against
         self.points = 0.0         # total score
         self.rating = rating
         self.has_played = False # flag to indicate if player has played in tournament
@@ -79,6 +79,18 @@ class Player: # player constructor
         if value < 0:
             raise ValueError("Points cannot be negative")
         self._points = float(value)
+        
+    @property
+    def has_full_bye(self):
+        return self._has_full_bye
+        
+    @has_full_bye.setter
+    def has_full_bye(self,value):
+        self._has_full_bye = value
+        
+    def points_increment(self, value):
+        self.points += value # increment by value
+        
     def add_game(self, color, score, opponent_id):
         """Record a new game result."""
         self.color_history.append(color)

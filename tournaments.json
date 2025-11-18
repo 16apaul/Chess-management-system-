@@ -5,30 +5,88 @@
         "players": [
             {
                 "id": 1,
-                "name": "aaa",
+                "name": "1",
                 "rating": null,
                 "color_history": [],
                 "float_history": [],
                 "player_history": [],
                 "points": 0.0,
-                "has_played": true,
+                "has_played": false,
                 "has_full_bye": false,
                 "has_half_bye": false,
-                "half_bye_history": [
-                    false,
-                    false,
-                    false,
-                    false,
-                    false,
-                    false
-                ]
+                "half_bye_history": []
+            },
+            {
+                "id": 2,
+                "name": "2",
+                "rating": null,
+                "color_history": [],
+                "float_history": [],
+                "player_history": [],
+                "points": 0.0,
+                "has_played": false,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": []
+            },
+            {
+                "id": 3,
+                "name": "3",
+                "rating": null,
+                "color_history": [],
+                "float_history": [],
+                "player_history": [],
+                "points": 0.0,
+                "has_played": false,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": []
+            },
+            {
+                "id": 4,
+                "name": "4",
+                "rating": null,
+                "color_history": [],
+                "float_history": [],
+                "player_history": [],
+                "points": 0.0,
+                "has_played": false,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": []
+            },
+            {
+                "id": 5,
+                "name": "5",
+                "rating": null,
+                "color_history": [],
+                "float_history": [],
+                "player_history": [],
+                "points": 0.0,
+                "has_played": false,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": []
+            },
+            {
+                "id": 6,
+                "name": "6",
+                "rating": null,
+                "color_history": [],
+                "float_history": [],
+                "player_history": [],
+                "points": 0.0,
+                "has_played": false,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": []
             }
         ],
         "style": "Swiss",
         "rounds": 1,
         "date": null,
-        "next_player_id": 2,
+        "next_player_id": 7,
         "players_in_current_round": [],
-        "current_round": 6
+        "current_round": 0
     }
 }
