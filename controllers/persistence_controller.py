@@ -39,6 +39,7 @@ class PersistenceController: # handles saving and loading tournaments/tournament
             # Convert each player dict to a Player object
             players_list = [Player.from_dict(p) for p in t_data.get("players", [])]
             players_in_current_round_list = [Player.from_dict(p) for p in t_data.get("players_in_current_round", [])]
+            
             # Create the Tournament object with Player objects
             tournament = Tournament(
                 id=t_data["id"],

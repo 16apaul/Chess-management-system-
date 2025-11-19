@@ -107,8 +107,10 @@ class PlayerController: # handles logic for people in tournaments
                 self.main_window.add_player_lineedit.clear()
                 self.main_window.add_player_rating_lineedit.clear()
                 
-                for i in range(tournament.current_round): # populate half bye history for new players
+                for _ in range(tournament.current_round): # populate half bye/point history for new players
                     player.add_half_bye_history(False) 
+                    player.add_point_history(0)
+                    
                     
                 
                 # Add player to listbox

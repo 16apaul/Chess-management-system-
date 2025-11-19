@@ -11,6 +11,7 @@ class Player: # player constructor
         self.has_full_bye = False   # flag to indicate if player has received a bye
         self.has_half_bye = False   # flag to indicate if player has received a half bye
         self.half_bye_history = [] # to see how may times a player had a half bye
+        self.point_history = [] # tracks points
 
         # --- name ---
     @property
@@ -22,6 +23,19 @@ class Player: # player constructor
         if not isinstance(value, str):
             raise TypeError("Name must be a string")
         self._name = value
+    # --- point history ---
+    @property
+    def point_history(self):
+        return self._point_history
+
+    @point_history.setter
+    def point_history(self, value):
+        if not isinstance(value, list):
+            raise TypeError("point_history must be a list")
+        self._point_history = value
+
+    def add_point_history(self, value):
+        self._point_history.append(value)
 
     # --- id ---
     @property
@@ -80,6 +94,13 @@ class Player: # player constructor
             raise ValueError("Points cannot be negative")
         self._points = float(value)
         
+    def points_increment(self, value):
+        self.points += value # increment by value
+        
+        
+        
+        
+        
     @property
     def has_full_bye(self):
         return self._has_full_bye
@@ -88,15 +109,19 @@ class Player: # player constructor
     def has_full_bye(self,value):
         self._has_full_bye = value
         
-    def points_increment(self, value):
-        self.points += value # increment by value
+    
         
-    def add_game(self, color, score, opponent_id):
+    def add_game(self, color, score, player):
         """Record a new game result."""
         self.color_history.append(color)
-        self.float_history.append(score)
-        self.player_history.append(opponent_id)
+        self.player_history.append(player)
+        self.point_history.append(score)
         self.points += score
+        
+    def add_pairing(self,color,opponent_id):
+        self.color_history.append(color)
+        self.player_history.append(opponent_id)
+        
     @property
     def rating(self):
         return self._rating
@@ -156,7 +181,8 @@ class Player: # player constructor
             "has_played": self.has_played,
             "has_full_bye": self.has_full_bye,
             "has_half_bye": self.has_half_bye,
-            "half_bye_history": self.half_bye_history
+            "half_bye_history": self.half_bye_history,
+            "point_history": self.point_history
         }
 
     @classmethod
@@ -171,6 +197,7 @@ class Player: # player constructor
         player.has_full_bye = data.get("has_full_bye", False)
         player.has_half_bye = data.get("has_half_bye", False)
         player.half_bye_history = data.get("half_bye_history",[])
+        player.point_history = data.get("point_history",[])
         return player
     def __repr__(self):
         return (f"Player_name={self.name}, id={self.id}, "

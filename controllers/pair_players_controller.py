@@ -24,6 +24,9 @@ class PairPlayersController: # handle how tournament logic
         row_layout.addWidget(label2)
 
         self.main_window.pairings_scroll_layout.addLayout(row_layout)
+        
+        
+
 
         
     def pair_players(self):
@@ -32,7 +35,10 @@ class PairPlayersController: # handle how tournament logic
         tournament = self.main_window.get_current_tournament()
         round_players = tournament.players_in_current_round
         tournament_players = tournament.players
-
+        
+        layout = self.main_window.pairings_scroll_layout
+                        
+                
         # Reset half-byes and set has_played for this round
         for player in tournament_players:
             player.add_half_bye_history(player.has_half_bye)
@@ -42,9 +48,16 @@ class PairPlayersController: # handle how tournament logic
             player.has_played = True
 
         # Players eligible for pairing (no recent half-bye)
-        players_to_be_paired = [
-            player for player in round_players if not player.half_bye_history[-1]
-        ]
+        players_to_be_paired = []
+        for player in round_players:
+            last_half_bye = player.half_bye_history[-1] if player.half_bye_history else False
+            if not last_half_bye:
+                players_to_be_paired.append(player)
+            else:
+                player.points_increment(0.5)
+                player.add_point_history(0.5)
+
+
 
         # Handle odd number of players: assign bye to lowest score player without a bye
         
@@ -60,6 +73,7 @@ class PairPlayersController: # handle how tournament logic
                 
                 lowest_scoring_player.has_full_bye = True
                 lowest_scoring_player.points_increment(1)
+                lowest_scoring_player.add_point_history(1)
                 
                 players_to_be_paired.remove(lowest_scoring_player)
                 print(f"{lowest_scoring_player.name} gets a bye this round.")
@@ -90,6 +104,10 @@ class PairPlayersController: # handle how tournament logic
 
         # Flatten all buckets for final Swiss pairing
 
+
+
+        # Flatten all buckets for final Swiss pairing
+
        
 
         # Generate final pairings
@@ -101,20 +119,34 @@ class PairPlayersController: # handle how tournament logic
                 for p1, p2 in bucket_pairings:
                     if alternate_color % 2 == 0:
                         self.add_pairing_row(p1.name, p2.name)
-                        
+                        p1.add_pairing("white",p2)
+                        p2.add_pairing("black",p1)
                     else:
                         self.add_pairing_row(p2.name, p1.name)
+                        p1.add_pairing("black",p2)
+                        p2.add_pairing("white",p1)
                     alternate_color+=1
                     
                     
                     
                     
-        else:
+        else: # for every other round bar first
             for bucket in valid_score_buckets:
                 bucket_pairings = self.swiss_pairing(bucket) # pairings generated disregards color
                 for p1, p2 in bucket_pairings:
-                    self.add_pairing_row(p1.name, p2.name)
+                    
+                    p1_color_score = self.get_player_color_score(p1)
+                    p2_color_score = self.get_player_color_score(p2)
+                    print(p1_color_score - p2_color_score)
+                    if p1_color_score - p2_color_score < 0:
+                        self.add_pairing_row(p1.name, p2.name)
+                        p1.add_pairing("white",p2)
+                        p2.add_pairing("black",p1)
                         
+                    else: 
+                        self.add_pairing_row(p2.name, p1.name)
+                        p1.add_pairing("black",p2)
+                        p2.add_pairing("white",p1)
             
         # Add pairings to UI
         #self.add_pairing_row("White player", "Black player")
@@ -204,51 +236,71 @@ class PairPlayersController: # handle how tournament logic
         return False
 
 
-    def swiss_pairing(self,players):
+    def swiss_pairing(self, players):
         """
-        Creates Swiss-style pairings: top half vs bottom half
-        Returns a list of tuples (player1, player2)
+        Swiss pairing with individual player swapping (floating)
+        to ensure valid top-half vs bottom-half matchups.
         """
-        # Sort players by score descending
+
+        # Sort by score descending
         players = sorted(players, key=lambda p: p.points, reverse=True)
 
-        # Handle odd number of players by giving a bye to the lowest score player
-        if len(players) % 2 == 1:
-            bye_player = players.pop(-1)
-            print(f"{bye_player} gets a bye this round.")
 
-        # Split top half vs bottom half
         mid = len(players) // 2
-        top_half = players[:mid]
-        bottom_half = players[mid:]
 
-        # Try to find valid pairings
-        def backtrack(top, bottom, current_pairings):
-            if not top:
+        # ----- helper pairing function -----
+        def can_pair(top, bottom):
+            """Backtracking test."""
+            def backtrack(t, b, result):
+                if not t:
+                    return result
+                p = t[0]
+                for i, opp in enumerate(b):
+                    if opp in p.player_history:
+                        continue
+                    new_t = t[1:]
+                    new_b = b[:i] + b[i+1:]
+                    out = backtrack(new_t, new_b, result + [(p, opp)])
+                    if out is not None:
+                        return out
+                return None
+
+            return backtrack(top, bottom, [])
+
+        # ----- FIRST ATTEMPT: strict halves -----
+        top = players[:mid]
+        bottom = players[mid:]
+
+        result = can_pair(top, bottom)
+        if result is not None:
+            return result
+
+        print("Strict Swiss pairing failed — attempting player swaps...")
+
+        # ----- SWAP LOGIC (FLOATING) -----
+        # Try swapping 1 player from top with 1 from bottom
+        
+        for i in range(mid):
+
+            for j in range(mid): 
+                player = top.pop(i)
+                player2 = bottom.pop(j)
                 
-                return current_pairings  # all paired successfully
+                bottom.insert(0,player)
+                top.append(player2)
+                
+                
 
-            player = top[0]
-
-            for i, opponent in enumerate(bottom):
-                if opponent in player.player_history:
-                    continue
-
-                new_top = top[1:]
-                new_bottom = bottom[:i] + bottom[i+1:]
-                result = backtrack(new_top, new_bottom, current_pairings + [(player, opponent)])
+                result = can_pair(top, bottom)
                 if result is not None:
-                    return result  # found valid pairing
+                    print(f"Swapped {player.name} with {player2.name} to enable pairing.")
+                    return result
+        
 
-            return None  # no valid pairing possible
+        # If everything fails
+        print("No valid Swiss pairings found even after swaps.")
+        return []
 
-        final_pairings = backtrack(top_half, bottom_half, [])
-
-        if final_pairings is None:
-            print("No valid pairings possible for this round!")
-            return []
-
-        return final_pairings
 
     
     
