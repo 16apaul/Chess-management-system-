@@ -5,30 +5,42 @@
         "players": [
             {
                 "id": 1,
-                "name": "ddd",
+                "name": "2",
                 "rating": null,
-                "color_history": [],
+                "color_history": [
+                    "white"
+                ],
                 "float_history": [],
-                "player_history": [],
+                "player_history": [
+                    2
+                ],
                 "points": 0.0,
-                "has_played": false,
+                "has_played": true,
                 "has_full_bye": false,
                 "has_half_bye": false,
-                "half_bye_history": [],
+                "half_bye_history": [
+                    false
+                ],
                 "point_history": []
             },
             {
                 "id": 2,
-                "name": "eee",
+                "name": "3",
                 "rating": null,
-                "color_history": [],
+                "color_history": [
+                    "black"
+                ],
                 "float_history": [],
-                "player_history": [],
+                "player_history": [
+                    1
+                ],
                 "points": 0.0,
-                "has_played": false,
+                "has_played": true,
                 "has_full_bye": false,
                 "has_half_bye": false,
-                "half_bye_history": [],
+                "half_bye_history": [
+                    false
+                ],
                 "point_history": []
             }
         ],
@@ -39,33 +51,45 @@
         "players_in_current_round": [
             {
                 "id": 1,
-                "name": "ddd",
+                "name": "2",
                 "rating": null,
-                "color_history": [],
+                "color_history": [
+                    "white"
+                ],
                 "float_history": [],
-                "player_history": [],
+                "player_history": [
+                    2
+                ],
                 "points": 0.0,
-                "has_played": false,
+                "has_played": true,
                 "has_full_bye": false,
                 "has_half_bye": false,
-                "half_bye_history": [],
+                "half_bye_history": [
+                    false
+                ],
                 "point_history": []
             },
             {
                 "id": 2,
-                "name": "eee",
+                "name": "3",
                 "rating": null,
-                "color_history": [],
+                "color_history": [
+                    "black"
+                ],
                 "float_history": [],
-                "player_history": [],
+                "player_history": [
+                    1
+                ],
                 "points": 0.0,
-                "has_played": false,
+                "has_played": true,
                 "has_full_bye": false,
                 "has_half_bye": false,
-                "half_bye_history": [],
+                "half_bye_history": [
+                    false
+                ],
                 "point_history": []
             }
         ],
-        "current_round": 0
+        "current_round": 1
     }
 }

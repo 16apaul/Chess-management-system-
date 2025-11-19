@@ -45,7 +45,23 @@ class MainWindow(QMainWindow):
         create_tournament_tabs(self) 
     
     
-    
+    def clear_layout(self,layout):
+        if layout is not None:
+            while layout.count():
+                item = layout.takeAt(0)
+
+                # If the item is a widget, delete it
+                widget = item.widget()
+                if widget is not None:
+                    widget.setParent(None)
+                    widget.deleteLater()
+
+                # If the item is a layout, clear it recursively
+                else:
+                    child_layout = item.layout()
+                    if child_layout is not None:
+                        self.clear_layout(child_layout)
+                        
     def submit_results(self):
         
         row_layouts = self.get_rows_from_layout(self.pairings_scroll_layout)
@@ -58,6 +74,10 @@ class MainWindow(QMainWindow):
             label2 = w[3]      # QLabel
 
             print(label1.text(), combo1.currentText(), combo2.currentText(), label2.text())
+            
+        self.clear_layout(self.pairings_scroll_layout)
+            
+            
     
     
     def get_row_widgets(self,row_layout):

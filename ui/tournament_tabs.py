@@ -46,7 +46,7 @@ def create_tournament_tabs(window):
 
       window.round_listbox = QListWidget() # box to show list of round players
       add_player_tab_layout.addWidget(window.round_listbox, 0, 2, 3,2)
-      window.round_listbox.setSelectionMode(QListWidget.NoSelection) # allow multiple selection of players
+      window.round_listbox.setSelectionMode(QListWidget.NoSelection) # allow no selection of players
 
 
       pair_button = QPushButton("Pair Round") # button to pair the current round

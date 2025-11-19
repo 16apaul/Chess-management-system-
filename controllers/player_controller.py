@@ -109,7 +109,7 @@ class PlayerController: # handles logic for people in tournaments
                 
                 for _ in range(tournament.current_round): # populate half bye/point history for new players
                     player.add_half_bye_history(False) 
-                    player.add_point_history(0)
+                    player.add_game(None,0,None)
                     
                     
                 

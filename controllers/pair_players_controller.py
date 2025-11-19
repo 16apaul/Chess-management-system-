@@ -36,135 +36,130 @@ class PairPlayersController: # handle how tournament logic
         round_players = tournament.players_in_current_round
         tournament_players = tournament.players
         
-        layout = self.main_window.pairings_scroll_layout
+        if not len(round_listbox) == 0:
+        
+                            
+                    
+            # Reset half-byes and set has_played for this round
+            for player in tournament_players:
+                player.add_half_bye_history(player.has_half_bye)
+                player.has_half_bye = False
+
+            for player in round_players:
+                player.has_played = True
+
+            # Players eligible for pairing (no recent half-bye)
+            players_to_be_paired = []
+            for player in round_players:
+                last_half_bye = player.half_bye_history[-1] if player.half_bye_history else False
+                if not last_half_bye:
+                    players_to_be_paired.append(player)
+                else:
+                    player.points_increment(0.5)
+                    player.add_point_history(0.5)
+
+
+
+            # Handle odd number of players: assign bye to lowest score player without a bye
+            
+            if len(players_to_be_paired) % 2 == 1:
+                # Reverse the list so min() picks the last ranked player if multiple have lowest score
+                reversed_players = list(reversed(players_to_be_paired))
+                
+                try:
+                    lowest_scoring_player = min(
+                        (p for p in reversed_players if not p.has_full_bye),
+                        key=lambda x: x.points
+                    )
+                    
+                    lowest_scoring_player.has_full_bye = True
+                    lowest_scoring_player.points_increment(1)
+                    lowest_scoring_player.add_point_history(1)
+                    
+                    players_to_be_paired.remove(lowest_scoring_player)
+                    print(f"{lowest_scoring_player.name} gets a bye this round.")
+                except ValueError:
+                    # Handle the case when no player is eligible for a bye
+                    print("No eligible player for a bye this round.")
+                    lowest_scoring_player = None
+
+                
+            
+            # Create score buckets
+
+            score_buckets = self.scoring_buckets(players_to_be_paired)
+            all_players_flat = [p for b in score_buckets for p in b] # flatten bucket
+            if not self.valid_pairings_exist(all_players_flat):
+                print("No valid pairings possible this round!")
+                for player in tournament_players:
+                    player.half_bye_history = player.half_bye_history[:-1] # reset the half bye history
+                    
+                    
+                return
+                
+            valid_score_buckets = self.valid_buckets(score_buckets)
+
+
+        
+
+            # Generate final pairings
+            
+            if tournament.current_round == 0: # first round paired differently
+                alternate_color = 0
+                for bucket in valid_score_buckets:
+                    bucket_pairings = self.swiss_pairing(bucket) # pairings generated disregards color
+                    for p1, p2 in bucket_pairings:
+                        if alternate_color % 2 == 0:
+                            self.add_pairing_row(p1.name, p2.name)
+                            p1.add_pairing("white",p2.id)
+                            p2.add_pairing("black",p1.id)
+                        else:
+                            self.add_pairing_row(p2.name, p1.name)
+                            p1.add_pairing("black",p2.id)
+                            p2.add_pairing("white",p1.id)
+                        alternate_color+=1
                         
-                
-        # Reset half-byes and set has_played for this round
-        for player in tournament_players:
-            player.add_half_bye_history(player.has_half_bye)
-            player.has_half_bye = False
-
-        for player in round_players:
-            player.has_played = True
-
-        # Players eligible for pairing (no recent half-bye)
-        players_to_be_paired = []
-        for player in round_players:
-            last_half_bye = player.half_bye_history[-1] if player.half_bye_history else False
-            if not last_half_bye:
-                players_to_be_paired.append(player)
-            else:
-                player.points_increment(0.5)
-                player.add_point_history(0.5)
-
-
-
-        # Handle odd number of players: assign bye to lowest score player without a bye
-        
-        if len(players_to_be_paired) % 2 == 1:
-            # Reverse the list so min() picks the last ranked player if multiple have lowest score
-            reversed_players = list(reversed(players_to_be_paired))
-            
-            try:
-                lowest_scoring_player = min(
-                    (p for p in reversed_players if not p.has_full_bye),
-                    key=lambda x: x.points
-                )
-                
-                lowest_scoring_player.has_full_bye = True
-                lowest_scoring_player.points_increment(1)
-                lowest_scoring_player.add_point_history(1)
-                
-                players_to_be_paired.remove(lowest_scoring_player)
-                print(f"{lowest_scoring_player.name} gets a bye this round.")
-            except ValueError:
-                # Handle the case when no player is eligible for a bye
-                print("No eligible player for a bye this round.")
-                lowest_scoring_player = None
-
-            
-            
-
-        
-        
-        
-        
-        
-        
-        # Create score buckets
-
-        score_buckets = self.scoring_buckets(players_to_be_paired)
-        all_players_flat = [p for b in score_buckets for p in b]
-        if not self.valid_pairings_exist(all_players_flat):
-            print("No valid pairings possible this round!")
-            return
-            
-        valid_score_buckets = self.valid_buckets(score_buckets)
-
-
-        # Flatten all buckets for final Swiss pairing
-
-
-
-        # Flatten all buckets for final Swiss pairing
-
-       
-
-        # Generate final pairings
-        
-        if tournament.current_round == 0: # first round paired differently
-            alternate_color = 0
-            for bucket in valid_score_buckets:
-                bucket_pairings = self.swiss_pairing(bucket) # pairings generated disregards color
-                for p1, p2 in bucket_pairings:
-                    if alternate_color % 2 == 0:
-                        self.add_pairing_row(p1.name, p2.name)
-                        p1.add_pairing("white",p2)
-                        p2.add_pairing("black",p1)
-                    else:
-                        self.add_pairing_row(p2.name, p1.name)
-                        p1.add_pairing("black",p2)
-                        p2.add_pairing("white",p1)
-                    alternate_color+=1
-                    
-                    
-                    
-                    
-        else: # for every other round bar first
-            for bucket in valid_score_buckets:
-                bucket_pairings = self.swiss_pairing(bucket) # pairings generated disregards color
-                for p1, p2 in bucket_pairings:
-                    
-                    p1_color_score = self.get_player_color_score(p1)
-                    p2_color_score = self.get_player_color_score(p2)
-                    print(p1_color_score - p2_color_score)
-                    if p1_color_score - p2_color_score < 0:
-                        self.add_pairing_row(p1.name, p2.name)
-                        p1.add_pairing("white",p2)
-                        p2.add_pairing("black",p1)
                         
-                    else: 
-                        self.add_pairing_row(p2.name, p1.name)
-                        p1.add_pairing("black",p2)
-                        p2.add_pairing("white",p1)
-            
-        # Add pairings to UI
-        #self.add_pairing_row("White player", "Black player")
-        #for p1, p2 in pairings:
-            #self.add_pairing_row(p1.name, p2.name)
+                        
+                        
+            else: # for every other round bar first
+                for bucket in valid_score_buckets:
+                    bucket_pairings = self.swiss_pairing(bucket) # pairings generated disregards color
+                    for p1, p2 in bucket_pairings:
+                        
+                        p1_color_score = self.get_player_color_score(p1)
+                        p2_color_score = self.get_player_color_score(p2)
+                        print(p1_color_score , p2_color_score)
+                        if p1_color_score < p2_color_score :
+                            self.add_pairing_row(p1.name, p2.name)
+                            p1.add_pairing("white",p2.id)
+                            p2.add_pairing("black",p1.id)
+                            
+                        else: 
+                            self.add_pairing_row(p2.name, p1.name)
+                            p1.add_pairing("black",p2.id)
+                            p2.add_pairing("white",p1.id)
+                
+            # Add pairings to UI
+            #self.add_pairing_row("White player", "Black player")
+            #for p1, p2 in pairings:
+                #self.add_pairing_row(p1.name, p2.name)
 
-        # Clear round listbox and round players
-        round_players.clear()
-        round_listbox.clear()
+            # Clear round listbox and round players
+            round_players.clear()
+            round_listbox.clear()
 
-        # Increment round and update tournament
-        tournament.increment_current_round()
-        self.main_window.set_current_tournament(tournament)
+            # Increment round and update tournament
+            tournament.increment_current_round()
+            self.main_window.set_current_tournament(tournament)
 
-        # Refresh tournament listbox
-        tournament_listbox.clear()
-        for player in tournament.players:
-            self.main_window.player_controller.add_player_to_tournament_listbox(player)
+            # Refresh tournament listbox
+            tournament_listbox.clear()
+            for player in tournament.players:
+                self.main_window.player_controller.add_player_to_tournament_listbox(player)
+                
+        else:
+            print("emply round")
 
             
     def valid_buckets(self, score_buckets): # makes sure valud pairings exist for every bucket
@@ -226,7 +221,7 @@ class PairPlayersController: # handle how tournament logic
 
         for i in range(1, len(players)):
             opponent = players[i]
-            if opponent in player.player_history:
+            if opponent.id in player.player_history:
                 continue
 
             remaining = players[1:i] + players[i+1:]
@@ -256,7 +251,7 @@ class PairPlayersController: # handle how tournament logic
                     return result
                 p = t[0]
                 for i, opp in enumerate(b):
-                    if opp in p.player_history:
+                    if opp.id in p.player_history:
                         continue
                     new_t = t[1:]
                     new_b = b[:i] + b[i+1:]

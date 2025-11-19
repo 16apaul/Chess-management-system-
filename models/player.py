@@ -4,7 +4,7 @@ class Player: # player constructor
         self.id = player_id
         self.color_history = []   # e.g., ["white", "black", "white"]
         self.float_history = []   # e.g., [up,,down]
-        self.player_history = []  # e.g., [player1,player2] # list of players played against
+        self.player_history = []  # e.g., [1,2....] # list of players IDs played against
         self.points = 0.0         # total score
         self.rating = rating
         self.has_played = False # flag to indicate if player has played in tournament
@@ -111,16 +111,16 @@ class Player: # player constructor
         
     
         
-    def add_game(self, color, score, player):
+    def add_game(self, color, score, opp_id):
         """Record a new game result."""
         self.color_history.append(color)
-        self.player_history.append(player)
+        self.player_history.append(opp_id)
         self.point_history.append(score)
         self.points += score
         
-    def add_pairing(self,color,opponent_id):
+    def add_pairing(self,color,opp_id):
         self.color_history.append(color)
-        self.player_history.append(opponent_id)
+        self.player_history.append(opp_id)
         
     @property
     def rating(self):
