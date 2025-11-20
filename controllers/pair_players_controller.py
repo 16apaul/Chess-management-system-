@@ -89,7 +89,7 @@ class PairPlayersController: # handle how tournament logic
 
             score_buckets = self.scoring_buckets(players_to_be_paired)
             all_players_flat = [p for b in score_buckets for p in b] # flatten bucket
-            if not self.valid_pairings_exist(all_players_flat):
+            if not self.valid_pairings_exist(all_players_flat):# checks whether a valid pairing exists
                 print("No valid pairings possible this round!")
                 for player in tournament_players:
                     player.half_bye_history = player.half_bye_history[:-1] # reset the half bye history
@@ -103,7 +103,7 @@ class PairPlayersController: # handle how tournament logic
         
 
             # Generate final pairings
-            
+            tournament.pairings.clear() # clear the model first
             if tournament.current_round == 0: # first round paired differently
                 alternate_color = 0
                 for bucket in valid_score_buckets:
@@ -113,10 +113,12 @@ class PairPlayersController: # handle how tournament logic
                             self.add_pairing_row(p1.name, p2.name)
                             p1.add_pairing("white",p2.id)
                             p2.add_pairing("black",p1.id)
+                            tournament.add_pairing(p1,p2)
                         else:
                             self.add_pairing_row(p2.name, p1.name)
                             p1.add_pairing("black",p2.id)
                             p2.add_pairing("white",p1.id)
+                            tournament.add_pairing(p2,p1)
                         alternate_color+=1
                         
                         
@@ -134,11 +136,12 @@ class PairPlayersController: # handle how tournament logic
                             self.add_pairing_row(p1.name, p2.name)
                             p1.add_pairing("white",p2.id)
                             p2.add_pairing("black",p1.id)
-                            
+                            tournament.add_pairing(p1,p2)
                         else: 
                             self.add_pairing_row(p2.name, p1.name)
                             p1.add_pairing("black",p2.id)
                             p2.add_pairing("white",p1.id)
+                            tournament.add_pairing(p2,p1)
                 
             # Add pairings to UI
             #self.add_pairing_row("White player", "Black player")
@@ -175,12 +178,12 @@ class PairPlayersController: # handle how tournament logic
             if not bucket:
                 continue
 
-            # 1️⃣ Odd bucket → move 1 player to next bucket
+            # Odd bucket → move 1 player to next bucket
             if len(bucket) % 2 == 1:
                 moved = False
                 for i in reversed(range(len(bucket))):
                     player = bucket.pop(i)
-                    score_buckets[b_index + 1].insert(0, player)
+                    score_buckets[b_index + 1].insert(0, player) # remove and put player to next bucket
 
                     if self.valid_pairings_exist(bucket):
                         moved = True
@@ -206,13 +209,13 @@ class PairPlayersController: # handle how tournament logic
                 print(f"No valid player to Pair from bucket {b_index} (Even bucket)! Moving all players down.")
                 all_players = bucket.copy()
                 bucket.clear()
-                score_buckets[b_index + 1] = all_players + score_buckets[b_index + 1]
+                score_buckets[b_index + 1] = all_players + score_buckets[b_index + 1] # move all players down a bucket if no pairings exist
                 # Recurse after moving all
                 score_buckets = self.valid_buckets(score_buckets)
                 return score_buckets
         return score_buckets
    
-    def valid_pairings_exist(self, players):
+    def valid_pairings_exist(self, players): 
    
         if not players:
             return True

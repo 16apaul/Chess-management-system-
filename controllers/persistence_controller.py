@@ -39,6 +39,14 @@ class PersistenceController: # handles saving and loading tournaments/tournament
             # Convert each player dict to a Player object
             players_list = [Player.from_dict(p) for p in t_data.get("players", [])]
             players_in_current_round_list = [Player.from_dict(p) for p in t_data.get("players_in_current_round", [])]
+             # Build lookup table for ID → Player object
+            id_map = {p.id: p for p in players_list}
+
+            # Rebuild pairings as tuples of Player objects
+            pairings = [
+                (id_map[white_id], id_map[black_id])
+                for white_id, black_id in t_data.get("pairings", [])
+            ]
             
             # Create the Tournament object with Player objects
             tournament = Tournament(
@@ -53,6 +61,7 @@ class PersistenceController: # handles saving and loading tournaments/tournament
             tournament.next_player_id = t_data.get("next_player_id")
             tournament.players_in_current_round = players_in_current_round_list
             tournament.current_round = t_data.get("current_round")
+            tournament.pairings = pairings
 
             # Save in your main dictionary by name
             self.main_window.tournaments[name] = tournament
