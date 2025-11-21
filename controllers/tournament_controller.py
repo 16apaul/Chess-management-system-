@@ -112,7 +112,7 @@ class TournamentController: # handle how tournament logic
                 self.main_window.round_controller.add_player_to_round_listbox(player) # adds the ui element
 
             
-            self.main_window.clear_layout(self.main_window.pairings_scroll_layout) # clear pairings layout
+            self.main_window.submit_results_controller.clear_layout(self.main_window.pairings_scroll_layout) # clear pairings layout
             for white,black in tournament.pairings:
                 self.main_window.pair_players_controller.add_pairing_row(white.name, black.name) # rebuild the layout
 

@@ -14,7 +14,7 @@
                 "player_history": [
                     2
                 ],
-                "points": 1.0,
+                "points": 0.0,
                 "has_played": true,
                 "has_full_bye": false,
                 "has_half_bye": false,
@@ -22,7 +22,7 @@
                     false
                 ],
                 "point_history": [
-                    1.0
+                    0.0
                 ]
             },
             {

@@ -87,7 +87,7 @@ def create_tournament_tabs(window):
 
       results_button = QPushButton("Submit results")
       pairings_tab_layout.addWidget(results_button, 0,3)
-      results_button.clicked.connect(window.submit_results)
+      results_button.clicked.connect(window.submit_results_controller.submit_results)
 
 
 
