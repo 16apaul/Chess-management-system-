@@ -68,7 +68,6 @@ class PlayerController: # handles logic for people in tournaments
         # Remove player from tournament's player list
         tournament.players.remove(player)
         self.main_window.set_current_tournament(tournament)  # Update the tournament in the main dictionary    
-        print(tournament)
         
     def add_player_to_tournament(self): # what happens when add player button is clicked 
             repeat_names = False
@@ -108,8 +107,10 @@ class PlayerController: # handles logic for people in tournaments
                 self.main_window.add_player_lineedit.clear()
                 self.main_window.add_player_rating_lineedit.clear()
                 
-                for i in range(tournament.current_round): # populate half bye history for new players
+                for _ in range(tournament.current_round): # populate half bye/point history for new players
                     player.add_half_bye_history(False) 
+                    player.add_game(None,0,None)
+                    
                     
                 
                 # Add player to listbox

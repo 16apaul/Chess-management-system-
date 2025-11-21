@@ -99,19 +99,26 @@ class TournamentController: # handle how tournament logic
 
             
             tournament = self.main_window.get_current_tournament()
-            print(tournament)
+            # print(tournament)
             
             
             self.main_window.tournament_listbox.clear()
-            for player in tournament.players:
+            for player in tournament.players: # rebuilds tournament listbox
                 self.main_window.player_controller.add_player_to_tournament_listbox(player) # adds the ui element
                 
                 
             self.main_window.round_listbox.clear()
-            for player in tournament.players_in_current_round:
+            for player in tournament.players_in_current_round: # rebuilds round listbox
                 self.main_window.round_controller.add_player_to_round_listbox(player) # adds the ui element
 
-    
+            
+            self.main_window.submit_results_controller.clear_layout(self.main_window.pairings_scroll_layout) # clear pairings layout
+            for white,black in tournament.pairings:
+                self.main_window.pair_players_controller.add_pairing_row(white.name, black.name) # rebuild the layout
+
+                
+                
+            
 
             tournament = self.main_window.get_current_tournament()
             name = tournament.name

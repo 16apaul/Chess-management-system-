@@ -16,7 +16,7 @@ class Tournament:
         self.next_player_id = 1 # To assign unique IDs to players 
         self.players_in_current_round = [] # Players to be paired
         self.current_round = 0 # current round number tournament is on
-        
+        self.pairings = [] # stores pairs of players e.g. [(1,2),(3,4)] where left value is white for current round
         
         
     def to_dict(self):
@@ -30,13 +30,19 @@ class Tournament:
             "date": self.date,
             "next_player_id": self.next_player_id,
             "players_in_current_round": [p.to_dict() for p in self.players_in_current_round],
-            "current_round": self.current_round
+            "current_round": self.current_round,
+            # store pairings as player IDs
+            "pairings": [
+                [white.id, black.id] for (white, black) in self.pairings
+            ]
         }
 
     @staticmethod
     def from_dict(data):
         """Create a Tournament instance from a dict"""
 
+        # First reconstruct players
+        players = [Player.from_dict(p) for p in data.get("players", [])]
         t = Tournament(
             id=data.get("id"),
             name=data.get("name"),
@@ -48,6 +54,14 @@ class Tournament:
         t.players_in_current_round=data.get("players_in_current_round", [])
         t.next_player_id = data.get("next_player_id", 1)
         t.current_round = data.get("current_round", 0)
+        # Build lookup dictionary for ID → Player object
+        id_map = {p.id: p for p in players}
+
+        # Rebuild pairings: list of tuples of Player objects
+        t.pairings = [
+            (id_map[white_id], id_map[black_id])
+            for white_id, black_id in data.get("pairings", [])
+        ]
         return t    
         
     @property
@@ -134,6 +148,24 @@ class Tournament:
     
     def increment_current_round(self):
         self.current_round += 1
+   
+   
+   
+
+    @property
+    def pairings(self):
+        return self._pairings
+
+    @pairings.setter
+    def pairings(self, value):
+        if not isinstance(value, list):
+            raise ValueError("pairings must be a list")
+        self._pairings = value
+        
+    def add_pairing(self, white, black):
+
+
+        self._pairings.append((white, black))
    
     def __repr__(self):
         return (f"Tournament(name={self.name}, id={self.id}, "
