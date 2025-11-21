@@ -36,7 +36,7 @@ class PairPlayersController: # handle how tournament logic
         round_players = tournament.players_in_current_round
         tournament_players = tournament.players
         
-        if not len(round_listbox) == 0:
+        if not len(round_listbox) == 0 and len(self.main_window.pairings_scroll_layout) == 0: 
         
                             
                     
@@ -162,7 +162,7 @@ class PairPlayersController: # handle how tournament logic
                 self.main_window.player_controller.add_player_to_tournament_listbox(player)
                 
         else:
-            print("emply round")
+            print("emply round/ put score to players")
 
             
     def valid_buckets(self, score_buckets): # makes sure valud pairings exist for every bucket

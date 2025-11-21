@@ -63,18 +63,34 @@ class MainWindow(QMainWindow):
                         self.clear_layout(child_layout)
                         
     def submit_results(self):
+        tournament = self.get_current_tournament()
+        
+        
         
         row_layouts = self.get_rows_from_layout(self.pairings_scroll_layout)
-        for row in row_layouts:
-            w = self.get_row_widgets(row)
+        for row_widget in row_layouts:
+            w = self.get_row_widgets(row_widget)
 
-            label1 = w[0]      # QLabel
-            combo1 = w[1]      # QComboBox
-            combo2 = w[2]      # QComboBox
-            label2 = w[3]      # QLabel
+            label1 = w[0]      # QLabel White name
+            combo1 = w[1]      # QComboBox white score
+            combo2 = w[2]      # QComboBox Black score
+            label2 = w[3]      # QLabel Black name
 
             print(label1.text(), combo1.currentText(), combo2.currentText(), label2.text())
             
+            for player in tournament.players:
+                if player.name == label1.text():
+                    value = float(combo1.currentText())
+
+                    player.points_increment(value)
+                    player.add_point_history(value)
+                elif player.name == label2.text():
+                    value = float(combo2.currentText())
+
+                    player.points_increment(value)
+                    player.add_point_history(value)
+                
+        self.set_current_tournament(tournament)
         self.clear_layout(self.pairings_scroll_layout)
             
             
