@@ -34,17 +34,20 @@ def create_menu_bar(window):
 
         # Create Tournament menu
         tournament_menu = menubar.addMenu("Tournament") # add menu
-        create_tournament_action = QAction("Create Tournament", window) # create items for the menu
         delete_tournament_action = QAction("Delete Tournament", window)
-        
+        tournament_menu.addAction(delete_tournament_action)
+
          # link menu to items
+        create_tournament_action = QAction("Create Tournament", window) # create items for the menu
+
         menubar.addAction(create_tournament_action)
 
-        tournament_menu.addAction(delete_tournament_action)
         
 
-
+        import_dataset_action = QAction("Import Dataset", window)
+        menubar.addAction(import_dataset_action)
+        
 
         create_tournament_action.triggered.connect(window.tournament_controller.create_tournament) 
         delete_tournament_action.triggered.connect(window.tournament_controller.delete_tournament)
-
+        import_dataset_action.triggered.connect(window.create_tournament_from_dataset)

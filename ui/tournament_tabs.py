@@ -90,12 +90,28 @@ def create_tournament_tabs(window):
       results_button.clicked.connect(window.submit_results_controller.submit_results)
 
 
-
+      simulate_round_button = QPushButton("Simulate this round")
+      pairings_tab_layout.addWidget(simulate_round_button, 1,3)
+      
+      
+      simulate_all_round_button = QPushButton("Simulate all rounds")
+      pairings_tab_layout.addWidget(simulate_all_round_button, 2,3)
+      
+      
+      import_result_from_dataset_button = QPushButton("Import result from dataset")
+      pairings_tab_layout.addWidget(import_result_from_dataset_button,3,3)
+      
+      
+      generate_result_button = QPushButton("Generate results")
+      pairings_tab_layout.addWidget(generate_result_button,5,3)
+      
 
 
       window.tournament_tabs.addTab(pairings_tab, "Pairings")
 
 
       results_tab = QWidget()
+      
+      
       window.tournament_tabs.addTab(results_tab, "Results")
       window.tournament_tabs.hide()  # Hide tabs initially

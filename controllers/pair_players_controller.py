@@ -7,15 +7,21 @@ class PairPlayersController: # handle how tournament logic
     def __init__(self, main_window):
         self.main_window = main_window
         
-    def add_pairing_row(self,white,black):
-        # Create a horizontal row
+    def add_pairing_row(self, white, black):
         row_layout = QHBoxLayout()
 
         label1 = QLabel(white)
+
         combo1 = QComboBox()
         combo1.addItems(["0", "1/2", "1"])
+        combo1.setFixedWidth(50)
+        combo1.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+
         combo2 = QComboBox()
         combo2.addItems(["0", "1/2", "1"])
+        combo2.setFixedWidth(50)
+        combo2.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+
         label2 = QLabel(black)
 
         row_layout.addWidget(label1)
@@ -276,7 +282,7 @@ class PairPlayersController: # handle how tournament logic
         print("Strict Swiss pairing failed — attempting player swaps...")
 
         # ----- SWAP LOGIC (FLOATING) -----
-        # Try swapping 1 player from top with 1 from bottom
+        # Try swapping player from top with from bottom
         
         for i in range(mid):
 
