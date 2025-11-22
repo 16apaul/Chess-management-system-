@@ -63,7 +63,7 @@ class TournamentController: # handle how tournament logic
         
         if tournament_type == "Swiss": # if swiss, get number of rounds
             tournament_round, ok_round = QInputDialog.getInt(
-                self.main_window, "Number of Rounds", "Enter number of rounds:", min=1,
+                self.main_window, "Number of Rounds", "Enter number of rounds:", min=0, # 0 means manager can end tournament whenever he wants
             )
         
         tournaments = list(self.main_window.tournaments.values())  # Get the list of existing tournaments
@@ -71,7 +71,7 @@ class TournamentController: # handle how tournament logic
 
         repeat_names = False
         ok = ok_name and ok_type and (tournament_type != "Swiss" or ok_round)
-        for t in tournaments:
+        for t in tournaments: # makes sure no repeating names
             if t.name == tournament_name:
                 repeat_names = True
                 break
