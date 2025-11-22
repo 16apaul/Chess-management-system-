@@ -44,10 +44,10 @@ def create_menu_bar(window):
 
         
 
-        import_dataset_action = QAction("Import Dataset", window)
+        import_dataset_action = QAction("Import players from dataset", window)
         menubar.addAction(import_dataset_action)
         
 
         create_tournament_action.triggered.connect(window.tournament_controller.create_tournament) 
         delete_tournament_action.triggered.connect(window.tournament_controller.delete_tournament)
-        import_dataset_action.triggered.connect(window.create_tournament_from_dataset)
+        import_dataset_action.triggered.connect(window.dataset_controller.import_players_from_dataset)
