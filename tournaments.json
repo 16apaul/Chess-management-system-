@@ -1,127 +1,3728 @@
 {
-    "Spring Open": {
+    "Grand swiss.csv": {
         "id": 1,
-        "name": "Spring Open",
+        "name": "Grand swiss.csv",
         "players": [
             {
                 "id": 1,
-                "name": "1",
-                "rating": null,
-                "color_history": [],
+                "name": "Praggnanandhaa R ",
+                "rating": 2785,
+                "color_history": [
+                    "white",
+                    "black",
+                    "black"
+                ],
                 "float_history": [],
-                "player_history": [],
-                "points": 0.0,
-                "has_played": false,
+                "player_history": [
+                    59,
+                    69,
+                    43
+                ],
+                "points": 1.0,
+                "has_played": true,
                 "has_full_bye": false,
                 "has_half_bye": false,
-                "half_bye_history": [],
-                "point_history": []
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    0.5,
+                    0.5
+                ]
             },
             {
                 "id": 2,
-                "name": "2",
-                "rating": null,
-                "color_history": [],
+                "name": "Erigaisi Arjun ",
+                "rating": 2771,
+                "color_history": [
+                    "black",
+                    "black",
+                    "black"
+                ],
                 "float_history": [],
-                "player_history": [],
-                "points": 0.0,
-                "has_played": false,
+                "player_history": [
+                    60,
+                    61,
+                    46
+                ],
+                "points": 1.0,
+                "has_played": true,
                 "has_full_bye": false,
                 "has_half_bye": false,
-                "half_bye_history": [],
-                "point_history": []
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.0,
+                    0.5
+                ]
             },
             {
                 "id": 3,
-                "name": "3",
-                "rating": null,
-                "color_history": [],
+                "name": "Gukesh D ",
+                "rating": 2767,
+                "color_history": [
+                    "white",
+                    "black",
+                    "black"
+                ],
                 "float_history": [],
-                "player_history": [],
-                "points": 0.0,
-                "has_played": false,
+                "player_history": [
+                    61,
+                    60,
+                    51
+                ],
+                "points": 1.0,
+                "has_played": true,
                 "has_full_bye": false,
                 "has_half_bye": false,
-                "half_bye_history": [],
-                "point_history": []
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    0.0
+                ]
             },
             {
                 "id": 4,
-                "name": "4",
-                "rating": null,
-                "color_history": [],
+                "name": "Firouzja Alireza ",
+                "rating": 2754,
+                "color_history": [
+                    "black",
+                    "black",
+                    "white"
+                ],
                 "float_history": [],
-                "player_history": [],
-                "points": 0.0,
-                "has_played": false,
+                "player_history": [
+                    62,
+                    54,
+                    74
+                ],
+                "points": 2.5,
+                "has_played": true,
                 "has_full_bye": false,
                 "has_half_bye": false,
-                "half_bye_history": [],
-                "point_history": []
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    0.5,
+                    1.0
+                ]
             },
             {
                 "id": 5,
-                "name": "5",
-                "rating": null,
-                "color_history": [],
+                "name": "Keymer Vincent ",
+                "rating": 2751,
+                "color_history": [
+                    "white",
+                    "black",
+                    "black"
+                ],
                 "float_history": [],
-                "player_history": [],
-                "points": 0.0,
-                "has_played": false,
+                "player_history": [
+                    63,
+                    64,
+                    56
+                ],
+                "points": 0.5,
+                "has_played": true,
                 "has_full_bye": false,
                 "has_half_bye": false,
-                "half_bye_history": [],
-                "point_history": []
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.0,
+                    0.0
+                ]
             },
             {
                 "id": 6,
-                "name": "6",
-                "rating": null,
-                "color_history": [],
+                "name": "Abdusattorov Nodirbek ",
+                "rating": 2748,
+                "color_history": [
+                    "black",
+                    "black",
+                    "white"
+                ],
                 "float_history": [],
-                "player_history": [],
-                "points": 0.0,
-                "has_played": false,
+                "player_history": [
+                    64,
+                    63,
+                    52
+                ],
+                "points": 1.0,
+                "has_played": true,
                 "has_full_bye": false,
                 "has_half_bye": false,
-                "half_bye_history": [],
-                "point_history": []
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    0.0
+                ]
             },
             {
                 "id": 7,
-                "name": "7",
-                "rating": null,
-                "color_history": [],
+                "name": "Giri Anish ",
+                "rating": 2746,
+                "color_history": [
+                    "white",
+                    "black",
+                    "white"
+                ],
                 "float_history": [],
-                "player_history": [],
-                "points": 0.0,
-                "has_played": false,
+                "player_history": [
+                    65,
+                    73,
+                    88
+                ],
+                "points": 0.5,
+                "has_played": true,
                 "has_full_bye": false,
                 "has_half_bye": false,
-                "half_bye_history": [],
-                "point_history": []
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    0.0,
+                    0.5
+                ]
             },
             {
                 "id": 8,
-                "name": "8",
-                "rating": null,
-                "color_history": [],
+                "name": "Aronian Levon ",
+                "rating": 2744,
+                "color_history": [
+                    "black",
+                    "black",
+                    "black"
+                ],
                 "float_history": [],
-                "player_history": [],
-                "points": 0.0,
-                "has_played": false,
+                "player_history": [
+                    66,
+                    79,
+                    58
+                ],
+                "points": 1.0,
+                "has_played": true,
                 "has_full_bye": false,
                 "has_half_bye": false,
-                "half_bye_history": [],
-                "point_history": []
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 9,
+                "name": "Nepomniachtchi Ian ",
+                "rating": 2742,
+                "color_history": [
+                    "white",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    67,
+                    57,
+                    76
+                ],
+                "points": 3.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            {
+                "id": 10,
+                "name": "Mamedyarov Shakhriyar ",
+                "rating": 2741,
+                "color_history": [
+                    "black",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    68,
+                    70,
+                    55
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 11,
+                "name": "Vachier-Lagrave Maxime ",
+                "rating": 2738,
+                "color_history": [
+                    "white",
+                    "black",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    69,
+                    59,
+                    77
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    0.5,
+                    0.0
+                ]
+            },
+            {
+                "id": 12,
+                "name": "Niemann Hans Moke ",
+                "rating": 2733,
+                "color_history": [
+                    "black",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    70,
+                    68,
+                    62
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.0,
+                    0.5
+                ]
+            },
+            {
+                "id": 13,
+                "name": "Fedoseev Vladimir ",
+                "rating": 2731,
+                "color_history": [
+                    "white",
+                    "black",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    71,
+                    77,
+                    67
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.0,
+                    0.5
+                ]
+            },
+            {
+                "id": 14,
+                "name": "Sindarov Javokhir ",
+                "rating": 2722,
+                "color_history": [
+                    "black",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    72,
+                    82,
+                    95
+                ],
+                "points": 0.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            },
+            {
+                "id": 15,
+                "name": "Yu Yangyi ",
+                "rating": 2714,
+                "color_history": [
+                    "white",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    73,
+                    65,
+                    57
+                ],
+                "points": 2.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    0.0,
+                    1.0
+                ]
+            },
+            {
+                "id": 16,
+                "name": "Vidit Santosh Gujrathi ",
+                "rating": 2712,
+                "color_history": [
+                    "black",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    74,
+                    85,
+                    60
+                ],
+                "points": 2.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            {
+                "id": 17,
+                "name": "Rapport Richard ",
+                "rating": 2711,
+                "color_history": [
+                    "white",
+                    "black",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    75,
+                    88,
+                    63
+                ],
+                "points": 2.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            {
+                "id": 18,
+                "name": "Harikrishna Pentala ",
+                "rating": 2704,
+                "color_history": [
+                    "black",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    76,
+                    91,
+                    100
+                ],
+                "points": 0.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    0.0,
+                    0.5
+                ]
+            },
+            {
+                "id": 19,
+                "name": "Liang Awonder ",
+                "rating": 2698,
+                "color_history": [
+                    "white",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    77,
+                    71,
+                    80
+                ],
+                "points": 2.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    1.0,
+                    1.0
+                ]
+            },
+            {
+                "id": 20,
+                "name": "Nihal Sarin ",
+                "rating": 2693,
+                "color_history": [
+                    "black",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    78,
+                    95,
+                    70
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    1.0,
+                    0.5
+                ]
+            },
+            {
+                "id": 21,
+                "name": "Maghsoodloo Parham ",
+                "rating": 2692,
+                "color_history": [
+                    "white",
+                    "black",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    79,
+                    66,
+                    72
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    0.0,
+                    0.5
+                ]
+            },
+            {
+                "id": 22,
+                "name": "Sevian Samuel ",
+                "rating": 2692,
+                "color_history": [
+                    "black",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    80,
+                    81,
+                    69
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.0,
+                    1.0
+                ]
+            },
+            {
+                "id": 23,
+                "name": "Van Foreest Jorden ",
+                "rating": 2692,
+                "color_history": [
+                    "white",
+                    "black",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    81,
+                    80,
+                    71
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.0,
+                    0.5
+                ]
+            },
+            {
+                "id": 24,
+                "name": "Dubov Daniil ",
+                "rating": 2691,
+                "color_history": [
+                    "black",
+                    "white",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    82,
+                    72,
+                    78
+                ],
+                "points": 3.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            {
+                "id": 25,
+                "name": "Esipenko Andrey ",
+                "rating": 2687,
+                "color_history": [
+                    "white",
+                    "black",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    83,
+                    84,
+                    73
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    0.0
+                ]
+            },
+            {
+                "id": 26,
+                "name": "Sarana Alexey ",
+                "rating": 2686,
+                "color_history": [
+                    "black",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    84,
+                    83,
+                    79
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.0,
+                    0.5
+                ]
+            },
+            {
+                "id": 27,
+                "name": "Eljanov Pavel ",
+                "rating": 2682,
+                "color_history": [
+                    "white",
+                    "black",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    85,
+                    74,
+                    81
+                ],
+                "points": 2.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    0.5,
+                    1.0
+                ]
+            },
+            {
+                "id": 28,
+                "name": "Yakubboev Nodirbek ",
+                "rating": 2681,
+                "color_history": [
+                    "black",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    86,
+                    87,
+                    102
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.0,
+                    0.5
+                ]
+            },
+            {
+                "id": 29,
+                "name": "Deac Bogdan-Daniel ",
+                "rating": 2674,
+                "color_history": [
+                    "white",
+                    "black",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    87,
+                    86,
+                    107
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.0,
+                    0.5
+                ]
+            },
+            {
+                "id": 30,
+                "name": "Robson Ray ",
+                "rating": 2674,
+                "color_history": [
+                    "black",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    88,
+                    75,
+                    82
+                ],
+                "points": 2.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    0.0,
+                    1.0
+                ]
+            },
+            {
+                "id": 31,
+                "name": "Tabatabaei M. Amin ",
+                "rating": 2673,
+                "color_history": [
+                    "white",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    89,
+                    100,
+                    84
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    1.0,
+                    0.5
+                ]
+            },
+            {
+                "id": 32,
+                "name": "Bluebaum Matthias ",
+                "rating": 2671,
+                "color_history": [
+                    "black",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    90,
+                    93,
+                    91
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    0.0
+                ]
+            },
+            {
+                "id": 33,
+                "name": "Murzin Volodar ",
+                "rating": 2670,
+                "color_history": [
+                    "white",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    91,
+                    76,
+                    90
+                ],
+                "points": 2.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    0.0,
+                    1.0
+                ]
+            },
+            {
+                "id": 34,
+                "name": "Shankland Sam ",
+                "rating": 2670,
+                "color_history": [
+                    "black",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    92,
+                    102,
+                    109
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 35,
+                "name": "Karthikeyan Murali ",
+                "rating": 2669,
+                "color_history": [
+                    "white",
+                    "black",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    93,
+                    90,
+                    96
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    0.0
+                ]
+            },
+            {
+                "id": 36,
+                "name": "Vitiugov Nikita ",
+                "rating": 2666,
+                "color_history": [
+                    "black",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    94,
+                    106,
+                    93
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    1.0,
+                    0.5
+                ]
+            },
+            {
+                "id": 37,
+                "name": "Artemiev Vladislav ",
+                "rating": 2664,
+                "color_history": [
+                    "white",
+                    "black",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    95,
+                    78,
+                    97
+                ],
+                "points": 2.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    0.0,
+                    1.0
+                ]
+            },
+            {
+                "id": 38,
+                "name": "Wojtaszek Radoslaw ",
+                "rating": 2661,
+                "color_history": [
+                    "black",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    96,
+                    98,
+                    111
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.0,
+                    0.5
+                ]
+            },
+            {
+                "id": 39,
+                "name": "Oparin Grigoriy ",
+                "rating": 2660,
+                "color_history": [
+                    "white",
+                    "black",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    97,
+                    107,
+                    112
+                ],
+                "points": 0.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    0.5,
+                    0.0
+                ]
+            },
+            {
+                "id": 40,
+                "name": "Sadhwani Raunak ",
+                "rating": 2658,
+                "color_history": [
+                    "black",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    98,
+                    96,
+                    99
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 41,
+                "name": "Grischuk Alexander ",
+                "rating": 2657,
+                "color_history": [
+                    "white",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    99,
+                    103,
+                    104
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 42,
+                "name": "Saric Ivan ",
+                "rating": 2655,
+                "color_history": [
+                    "black",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    100,
+                    89,
+                    83
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    0.5,
+                    0.0
+                ]
+            },
+            {
+                "id": 43,
+                "name": "Sargsyan Shant ",
+                "rating": 2653,
+                "color_history": [
+                    "white",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    101,
+                    109,
+                    1
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 44,
+                "name": "Gelfand Boris ",
+                "rating": 2652,
+                "color_history": [
+                    "black",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    102,
+                    92,
+                    103
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    0.0,
+                    0.5
+                ]
+            },
+            {
+                "id": 45,
+                "name": "Bjerre Jonas Buhl ",
+                "rating": 2651,
+                "color_history": [
+                    "white",
+                    "black",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    103,
+                    99,
+                    108
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 46,
+                "name": "Mamedov Rauf ",
+                "rating": 2651,
+                "color_history": [
+                    "black",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    104,
+                    105,
+                    2
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.0,
+                    0.5
+                ]
+            },
+            {
+                "id": 47,
+                "name": "Indjic Aleksandar ",
+                "rating": 2650,
+                "color_history": [
+                    "white",
+                    "black",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    105,
+                    104,
+                    110
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    0.0
+                ]
+            },
+            {
+                "id": 48,
+                "name": "Grandelius Nils ",
+                "rating": 2648,
+                "color_history": [
+                    "black",
+                    "white",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    106,
+                    94,
+                    114
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    0.0,
+                    0.0
+                ]
+            },
+            {
+                "id": 49,
+                "name": "Yuffa Daniil ",
+                "rating": 2648,
+                "color_history": [
+                    "white",
+                    "black",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    107,
+                    97,
+                    92
+                ],
+                "points": 2.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    1.0,
+                    0.0
+                ]
+            },
+            {
+                "id": 50,
+                "name": "Kollars Dmitrij ",
+                "rating": 2647,
+                "color_history": [
+                    "black",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    108,
+                    110,
+                    115
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 51,
+                "name": "Lu Shanglei ",
+                "rating": 2647,
+                "color_history": [
+                    "white",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    109,
+                    101,
+                    3
+                ],
+                "points": 2.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    0.0,
+                    1.0
+                ]
+            },
+            {
+                "id": 52,
+                "name": "Erdogmus Yagiz Kaan ",
+                "rating": 2646,
+                "color_history": [
+                    "black",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    110,
+                    108,
+                    6
+                ],
+                "points": 2.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    1.0
+                ]
+            },
+            {
+                "id": 53,
+                "name": "Theodorou Nikolas ",
+                "rating": 2646,
+                "color_history": [
+                    "white",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    111,
+                    116,
+                    86
+                ],
+                "points": 2.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 54,
+                "name": "Rodshtein Maxim ",
+                "rating": 2645,
+                "color_history": [
+                    "black",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    112,
+                    4,
+                    87
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    0.5,
+                    0.0
+                ]
+            },
+            {
+                "id": 55,
+                "name": "Vokhidov Shamsiddin ",
+                "rating": 2645,
+                "color_history": [
+                    "white",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    113,
+                    114,
+                    10
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 56,
+                "name": "Svane Frederik ",
+                "rating": 2643,
+                "color_history": [
+                    "black",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    114,
+                    113,
+                    5
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.0,
+                    1.0
+                ]
+            },
+            {
+                "id": 57,
+                "name": "Puranik Abhimanyu ",
+                "rating": 2640,
+                "color_history": [
+                    "white",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    115,
+                    9,
+                    15
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    0.0,
+                    0.0
+                ]
+            },
+            {
+                "id": 58,
+                "name": "Salem A.R. Saleh ",
+                "rating": 2640,
+                "color_history": [
+                    "black",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    116,
+                    115,
+                    8
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.0,
+                    0.5
+                ]
+            },
+            {
+                "id": 59,
+                "name": "Xiong Jeffery ",
+                "rating": 2640,
+                "color_history": [
+                    "black",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    1,
+                    11,
+                    89
+                ],
+                "points": 2.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 60,
+                "name": "Chigaev Maksim ",
+                "rating": 2638,
+                "color_history": [
+                    "white",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    2,
+                    3,
+                    16
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    0.0
+                ]
+            },
+            {
+                "id": 61,
+                "name": "Bacrot Etienne ",
+                "rating": 2637,
+                "color_history": [
+                    "black",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    3,
+                    2,
+                    98
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    1.0,
+                    0.0
+                ]
+            },
+            {
+                "id": 62,
+                "name": "Amin Bassem ",
+                "rating": 2636,
+                "color_history": [
+                    "white",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    4,
+                    111,
+                    12
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 63,
+                "name": "Gurel Ediz ",
+                "rating": 2631,
+                "color_history": [
+                    "black",
+                    "white",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    5,
+                    6,
+                    17
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    0.0
+                ]
+            },
+            {
+                "id": 64,
+                "name": "Ivic Velimir ",
+                "rating": 2630,
+                "color_history": [
+                    "white",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    6,
+                    5,
+                    105
+                ],
+                "points": 2.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    1.0,
+                    1.0
+                ]
+            },
+            {
+                "id": 65,
+                "name": "Hovhannisyan Robert ",
+                "rating": 2629,
+                "color_history": [
+                    "black",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    7,
+                    15,
+                    94
+                ],
+                "points": 3.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            {
+                "id": 66,
+                "name": "Martirosyan Haik M. ",
+                "rating": 2628,
+                "color_history": [
+                    "white",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    8,
+                    21,
+                    101
+                ],
+                "points": 2.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    1.0,
+                    0.5
+                ]
+            },
+            {
+                "id": 67,
+                "name": "Volokitin Andrei ",
+                "rating": 2628,
+                "color_history": [
+                    "black",
+                    "white",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    9,
+                    112,
+                    13
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 68,
+                "name": "Cheparinov Ivan ",
+                "rating": 2627,
+                "color_history": [
+                    "white",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    10,
+                    12,
+                    116
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    1.0,
+                    0.0
+                ]
+            },
+            {
+                "id": 69,
+                "name": "Sjugirov Sanan ",
+                "rating": 2627,
+                "color_history": [
+                    "black",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    11,
+                    1,
+                    22
+                ],
+                "points": 0.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    0.5,
+                    0.0
+                ]
+            },
+            {
+                "id": 70,
+                "name": "Sargissian Gabriel ",
+                "rating": 2626,
+                "color_history": [
+                    "white",
+                    "black",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    12,
+                    10,
+                    20
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 71,
+                "name": "Anton Guijarro David ",
+                "rating": 2625,
+                "color_history": [
+                    "black",
+                    "white",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    13,
+                    19,
+                    23
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.0,
+                    0.5
+                ]
+            },
+            {
+                "id": 72,
+                "name": "Hakobyan Aram ",
+                "rating": 2625,
+                "color_history": [
+                    "white",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    14,
+                    24,
+                    21
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    0.0,
+                    0.5
+                ]
+            },
+            {
+                "id": 73,
+                "name": "Dardha Daniel ",
+                "rating": 2624,
+                "color_history": [
+                    "black",
+                    "white",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    15,
+                    7,
+                    25
+                ],
+                "points": 2.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            {
+                "id": 74,
+                "name": "Donchenko Alexander ",
+                "rating": 2624,
+                "color_history": [
+                    "white",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    16,
+                    27,
+                    4
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    0.5,
+                    0.0
+                ]
+            },
+            {
+                "id": 75,
+                "name": "Ponomariov Ruslan ",
+                "rating": 2622,
+                "color_history": [
+                    "black",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    17,
+                    30,
+                    113
+                ],
+                "points": 3.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            {
+                "id": 76,
+                "name": "Demchenko Anton ",
+                "rating": 2620,
+                "color_history": [
+                    "white",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    18,
+                    33,
+                    9
+                ],
+                "points": 2.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    1.0,
+                    0.0
+                ]
+            },
+            {
+                "id": 77,
+                "name": "Santos Latasa Jaime ",
+                "rating": 2620,
+                "color_history": [
+                    "black",
+                    "white",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    19,
+                    13,
+                    11
+                ],
+                "points": 2.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    1.0,
+                    1.0
+                ]
+            },
+            {
+                "id": 78,
+                "name": "Svane Rasmus ",
+                "rating": 2620,
+                "color_history": [
+                    "white",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    20,
+                    37,
+                    24
+                ],
+                "points": 2.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    1.0,
+                    0.0
+                ]
+            },
+            {
+                "id": 79,
+                "name": "Aryan Chopra ",
+                "rating": 2619,
+                "color_history": [
+                    "black",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    21,
+                    8,
+                    26
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 80,
+                "name": "Hammer Jon Ludvig ",
+                "rating": 2618,
+                "color_history": [
+                    "white",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    22,
+                    23,
+                    19
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    1.0,
+                    0.0
+                ]
+            },
+            {
+                "id": 81,
+                "name": "Korobov Anton ",
+                "rating": 2616,
+                "color_history": [
+                    "black",
+                    "white",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    23,
+                    22,
+                    27
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    1.0,
+                    0.0
+                ]
+            },
+            {
+                "id": 82,
+                "name": "Shirov Alexei ",
+                "rating": 2616,
+                "color_history": [
+                    "white",
+                    "black",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    24,
+                    14,
+                    30
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    1.0,
+                    0.0
+                ]
+            },
+            {
+                "id": 83,
+                "name": "Mendonca Leon Luke ",
+                "rating": 2615,
+                "color_history": [
+                    "black",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    25,
+                    26,
+                    42
+                ],
+                "points": 2.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    1.0,
+                    1.0
+                ]
+            },
+            {
+                "id": 84,
+                "name": "Xu Xiangyu ",
+                "rating": 2615,
+                "color_history": [
+                    "white",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    26,
+                    25,
+                    31
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 85,
+                "name": "Najer Evgeniy ",
+                "rating": 2613,
+                "color_history": [
+                    "black",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    27,
+                    16,
+                    106
+                ],
+                "points": 0.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            },
+            {
+                "id": 86,
+                "name": "Mishra Abhimanyu ",
+                "rating": 2611,
+                "color_history": [
+                    "white",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    28,
+                    29,
+                    53
+                ],
+                "points": 2.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    1.0,
+                    0.5
+                ]
+            },
+            {
+                "id": 87,
+                "name": "Maurizzi Marcandria ",
+                "rating": 2610,
+                "color_history": [
+                    "black",
+                    "white",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    29,
+                    28,
+                    54
+                ],
+                "points": 2.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    1.0,
+                    1.0
+                ]
+            },
+            {
+                "id": 88,
+                "name": "Lagarde Maxime ",
+                "rating": 2609,
+                "color_history": [
+                    "white",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    30,
+                    17,
+                    7
+                ],
+                "points": 0.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    0.0,
+                    0.5
+                ]
+            },
+            {
+                "id": 89,
+                "name": "Matlakov Maxim ",
+                "rating": 2609,
+                "color_history": [
+                    "black",
+                    "white",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    31,
+                    42,
+                    59
+                ],
+                "points": 2.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 90,
+                "name": "Predke Alexandr ",
+                "rating": 2609,
+                "color_history": [
+                    "white",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    32,
+                    35,
+                    33
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    0.0
+                ]
+            },
+            {
+                "id": 91,
+                "name": "Ivanchuk Vasyl ",
+                "rating": 2608,
+                "color_history": [
+                    "black",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    33,
+                    18,
+                    32
+                ],
+                "points": 2.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            {
+                "id": 92,
+                "name": "Wagner Dennis ",
+                "rating": 2608,
+                "color_history": [
+                    "white",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    34,
+                    44,
+                    49
+                ],
+                "points": 3.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            {
+                "id": 93,
+                "name": "Suleymanli Aydin ",
+                "rating": 2602,
+                "color_history": [
+                    "black",
+                    "white",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    35,
+                    32,
+                    36
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 94,
+                "name": "Kuzubov Yuriy ",
+                "rating": 2600,
+                "color_history": [
+                    "white",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    36,
+                    48,
+                    65
+                ],
+                "points": 2.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    1.0,
+                    0.0
+                ]
+            },
+            {
+                "id": 95,
+                "name": "Daneshvar Bardiya ",
+                "rating": 2598,
+                "color_history": [
+                    "black",
+                    "white",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    37,
+                    20,
+                    14
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    0.0,
+                    1.0
+                ]
+            },
+            {
+                "id": 96,
+                "name": "Pranav V ",
+                "rating": 2596,
+                "color_history": [
+                    "white",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    38,
+                    40,
+                    35
+                ],
+                "points": 2.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    1.0
+                ]
+            },
+            {
+                "id": 97,
+                "name": "Henriquez Villagra Cristobal ",
+                "rating": 2594,
+                "color_history": [
+                    "black",
+                    "white",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    39,
+                    49,
+                    37
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    0.0,
+                    0.0
+                ]
+            },
+            {
+                "id": 98,
+                "name": "Moussard Jules ",
+                "rating": 2591,
+                "color_history": [
+                    "white",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    40,
+                    38,
+                    61
+                ],
+                "points": 2.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    1.0,
+                    1.0
+                ]
+            },
+            {
+                "id": 99,
+                "name": "Narayanan S L",
+                "rating": 2591,
+                "color_history": [
+                    "black",
+                    "white",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    41,
+                    45,
+                    40
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 100,
+                "name": "Warmerdam Max ",
+                "rating": 2591,
+                "color_history": [
+                    "white",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    42,
+                    31,
+                    18
+                ],
+                "points": 0.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    0.0,
+                    0.5
+                ]
+            },
+            {
+                "id": 101,
+                "name": "Gumularz Szymon ",
+                "rating": 2590,
+                "color_history": [
+                    "black",
+                    "white",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    43,
+                    51,
+                    66
+                ],
+                "points": 2.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    1.0,
+                    1.0,
+                    0.5
+                ]
+            },
+            {
+                "id": 102,
+                "name": "Jobava Baadur ",
+                "rating": 2590,
+                "color_history": [
+                    "white",
+                    "black",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    44,
+                    34,
+                    28
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 103,
+                "name": "Muradli Mahammad ",
+                "rating": 2590,
+                "color_history": [
+                    "black",
+                    "white",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    45,
+                    41,
+                    44
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 104,
+                "name": "Aditya Mittal ",
+                "rating": 2589,
+                "color_history": [
+                    "white",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    46,
+                    47,
+                    41
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 105,
+                "name": "Zemlyanskii Ivan ",
+                "rating": 2586,
+                "color_history": [
+                    "black",
+                    "white",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    47,
+                    46,
+                    64
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    1.0,
+                    0.0
+                ]
+            },
+            {
+                "id": 106,
+                "name": "Bartel Mateusz ",
+                "rating": 2581,
+                "color_history": [
+                    "white",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    48,
+                    36,
+                    85
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    0.0,
+                    1.0
+                ]
+            },
+            {
+                "id": 107,
+                "name": "Madaminov Mukhiddin ",
+                "rating": 2560,
+                "color_history": [
+                    "black",
+                    "white",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    49,
+                    39,
+                    29
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 108,
+                "name": "Woodward Andy ",
+                "rating": 2557,
+                "color_history": [
+                    "white",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    50,
+                    52,
+                    45
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 109,
+                "name": "Samunenkov Ihor ",
+                "rating": 2550,
+                "color_history": [
+                    "black",
+                    "white",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    51,
+                    43,
+                    34
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 110,
+                "name": "Goryachkina Aleksandra ",
+                "rating": 2528,
+                "color_history": [
+                    "white",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    52,
+                    50,
+                    47
+                ],
+                "points": 2.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    1.0
+                ]
+            },
+            {
+                "id": 111,
+                "name": "Vakhidov Jakhongir ",
+                "rating": 2521,
+                "color_history": [
+                    "black",
+                    "white",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    53,
+                    62,
+                    38
+                ],
+                "points": 1.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    0.5,
+                    0.5
+                ]
+            },
+            {
+                "id": 112,
+                "name": "Abdisalimov Abdimalik ",
+                "rating": 2488,
+                "color_history": [
+                    "white",
+                    "black",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    54,
+                    67,
+                    39
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    0.5,
+                    1.0
+                ]
+            },
+            {
+                "id": 113,
+                "name": "Nigmatov Ortik ",
+                "rating": 2488,
+                "color_history": [
+                    "black",
+                    "white",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    55,
+                    56,
+                    75
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    1.0,
+                    0.0
+                ]
+            },
+            {
+                "id": 114,
+                "name": "Suyarov Mukhammadzokhid ",
+                "rating": 2482,
+                "color_history": [
+                    "white",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    56,
+                    55,
+                    48
+                ],
+                "points": 2.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    1.0
+                ]
+            },
+            {
+                "id": 115,
+                "name": "Divya Deshmukh ",
+                "rating": 2478,
+                "color_history": [
+                    "black",
+                    "white",
+                    "white"
+                ],
+                "float_history": [],
+                "player_history": [
+                    57,
+                    58,
+                    50
+                ],
+                "points": 1.5,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.0,
+                    1.0,
+                    0.5
+                ]
+            },
+            {
+                "id": 116,
+                "name": "Olisa Tennyson Ewomazino ",
+                "rating": 2287,
+                "color_history": [
+                    "white",
+                    "white",
+                    "black"
+                ],
+                "float_history": [],
+                "player_history": [
+                    58,
+                    53,
+                    68
+                ],
+                "points": 2.0,
+                "has_played": true,
+                "has_full_bye": false,
+                "has_half_bye": false,
+                "half_bye_history": [
+                    false,
+                    false,
+                    false
+                ],
+                "point_history": [
+                    0.5,
+                    0.5,
+                    1.0
+                ]
             }
         ],
-        "style": "Swiss",
-        "rounds": 2,
+        "style": null,
+        "rounds": null,
         "date": null,
-        "next_player_id": 9,
+        "next_player_id": 1,
         "players_in_current_round": [],
-        "current_round": 0,
-        "pairings": []
+        "current_round": 3,
+        "pairings": [
+            [
+                7,
+                88
+            ],
+            [
+                95,
+                14
+            ],
+            [
+                18,
+                100
+            ],
+            [
+                106,
+                85
+            ],
+            [
+                43,
+                1
+            ],
+            [
+                46,
+                2
+            ],
+            [
+                56,
+                5
+            ],
+            [
+                58,
+                8
+            ],
+            [
+                62,
+                12
+            ],
+            [
+                67,
+                13
+            ],
+            [
+                22,
+                69
+            ],
+            [
+                71,
+                23
+            ],
+            [
+                26,
+                79
+            ],
+            [
+                28,
+                102
+            ],
+            [
+                107,
+                29
+            ],
+            [
+                109,
+                34
+            ],
+            [
+                111,
+                38
+            ],
+            [
+                112,
+                39
+            ],
+            [
+                51,
+                3
+            ],
+            [
+                6,
+                52
+            ],
+            [
+                55,
+                10
+            ],
+            [
+                15,
+                57
+            ],
+            [
+                16,
+                60
+            ],
+            [
+                63,
+                17
+            ],
+            [
+                20,
+                70
+            ],
+            [
+                72,
+                21
+            ],
+            [
+                73,
+                25
+            ],
+            [
+                30,
+                82
+            ],
+            [
+                31,
+                84
+            ],
+            [
+                32,
+                91
+            ],
+            [
+                33,
+                90
+            ],
+            [
+                96,
+                35
+            ],
+            [
+                93,
+                36
+            ],
+            [
+                97,
+                37
+            ],
+            [
+                99,
+                40
+            ],
+            [
+                41,
+                104
+            ],
+            [
+                103,
+                44
+            ],
+            [
+                108,
+                45
+            ],
+            [
+                110,
+                47
+            ],
+            [
+                48,
+                114
+            ],
+            [
+                115,
+                50
+            ],
+            [
+                4,
+                74
+            ],
+            [
+                77,
+                11
+            ],
+            [
+                19,
+                80
+            ],
+            [
+                81,
+                27
+            ],
+            [
+                42,
+                83
+            ],
+            [
+                53,
+                86
+            ],
+            [
+                87,
+                54
+            ],
+            [
+                89,
+                59
+            ],
+            [
+                98,
+                61
+            ],
+            [
+                105,
+                64
+            ],
+            [
+                68,
+                116
+            ],
+            [
+                9,
+                76
+            ],
+            [
+                24,
+                78
+            ],
+            [
+                92,
+                49
+            ],
+            [
+                94,
+                65
+            ],
+            [
+                101,
+                66
+            ],
+            [
+                113,
+                75
+            ]
+        ]
     }
 }

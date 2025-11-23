@@ -102,7 +102,7 @@ def create_tournament_tabs(window):
       
       random_scores_button = QPushButton("Randomly assign scores")
       pairings_tab_layout.addWidget(random_scores_button,3,3)
-      
+      random_scores_button.clicked.connect(window.submit_results_controller.random_scores)
       
       end_tournament_button = QPushButton("End tournament")
       pairings_tab_layout.addWidget(end_tournament_button,5,3)

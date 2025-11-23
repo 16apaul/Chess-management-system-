@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
 
-class SubmitResultsController: # handle how tournament logic
+class SubmitResultsController: # submit scores and assigns scores
     
     def __init__(self, main_window):
         self.main_window = main_window
@@ -78,3 +78,35 @@ class SubmitResultsController: # handle how tournament logic
 
 
         return row_layouts
+    
+    
+    def random_scores(self): # assigns random scores to each player
+        
+        row_layouts = self.get_rows_from_layout(self.main_window.pairings_scroll_layout)        
+        
+        
+        for row_widget in row_layouts:
+            w = self.get_row_widgets(row_widget)
+
+            combo1 = w[1]      # QComboBox white score            
+            
+            combo2 = w[2]      # QComboBox Black score
+            
+            import random
+
+            if random.randint(1, 3) == 1: # 1/3 percent chance white wins
+                print("Event happened!")
+                
+                combo1.setCurrentIndex(2)   # White wins
+                combo2.setCurrentIndex(0)   # Black loses
+
+            elif random.randint(1, 3) == 2: # 1/3 black wins
+                combo1.setCurrentIndex(0)   # White loses
+                combo2.setCurrentIndex(2)   # Black wins
+
+            else: #1/3 it is a draw
+                combo1.setCurrentIndex(1)   # White draws
+                combo2.setCurrentIndex(1)   # Black draws
+            
+        
+        print("running")

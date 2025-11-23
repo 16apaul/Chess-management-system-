@@ -40,7 +40,6 @@ class MainWindow(QMainWindow):
         self.pair_players_controller = PairPlayersController(self)
         self.submit_results_controller = SubmitResultsController(self)
         self.dataset_controller = DatasetController(self)
-      
         
         
         create_tournament_group(self)# creates a group to hold tournament buttons

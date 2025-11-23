@@ -13,12 +13,12 @@ class PairPlayersController: # handle how tournament logic
         label1 = QLabel(white)
 
         combo1 = QComboBox()
-        combo1.addItems(["0", "1/2", "1"])
+        combo1.addItems(["0", "0.5", "1"])
         combo1.setFixedWidth(50)
         combo1.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
 
         combo2 = QComboBox()
-        combo2.addItems(["0", "1/2", "1"])
+        combo2.addItems(["0", "0.5", "1"])
         combo2.setFixedWidth(50)
         combo2.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
 
