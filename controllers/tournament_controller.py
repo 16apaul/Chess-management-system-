@@ -14,7 +14,7 @@ class TournamentController: # handle how tournament logic
     def add_button_to_tournament_group(self,name): #adds a tournament button
             tournament_button = QPushButton(name)
             tournament_button.setCheckable(True)
-            self.main_window.tournament_layout.addWidget(tournament_button)
+            self.main_window.tournament_layout.addWidget(tournament_button) # add to layout
             self.main_window.tournament_buttons.addButton(tournament_button) # this button group makes the buttons toggleable
             tournament_button.clicked.connect(self.open_tournament)
             

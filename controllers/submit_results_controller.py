@@ -27,7 +27,6 @@ class SubmitResultsController: # submit scores and assigns scores
                         self.clear_layout(child_layout)
                         
     def submit_results(self):
-        tournament = self.main_window.get_current_tournament()
         
         
         
@@ -41,20 +40,19 @@ class SubmitResultsController: # submit scores and assigns scores
             label2 = w[3]      # QLabel Black name
 
             print(label1.text(), combo1.currentText(), combo2.currentText(), label2.text())
+            white_player = self.get_player_from_name(label1.text())
+            black_player = self.get_player_from_name(label2.text())
+            value_white = float(combo1.currentText())
+            value_black = float(combo2.currentText())
             
-            for player in tournament.players:
-                if player.name == label1.text():
-                    value = float(combo1.currentText())
-
-                    player.points_increment(value)
-                    player.add_point_history(value)
-                elif player.name == label2.text():
-                    value = float(combo2.currentText())
-
-                    player.points_increment(value)
-                    player.add_point_history(value)
-                
-        self.main_window.set_current_tournament(tournament)
+            
+            white_player.points_increment(value_white)
+            white_player.add_point_history(value_white)
+            black_player.points_increment(value_black)
+            black_player.add_point_history(value_black)
+            
+            
+            
         self.clear_layout(self.main_window.pairings_scroll_layout)
             
             
@@ -95,7 +93,6 @@ class SubmitResultsController: # submit scores and assigns scores
             import random
 
             if random.randint(1, 3) == 1: # 1/3 percent chance white wins
-                print("Event happened!")
                 
                 combo1.setCurrentIndex(2)   # White wins
                 combo2.setCurrentIndex(0)   # Black loses
@@ -109,4 +106,34 @@ class SubmitResultsController: # submit scores and assigns scores
                 combo2.setCurrentIndex(1)   # Black draws
             
         
-        print("running")
+    def simulate_round_on_rating(self):
+        row_layouts = self.get_rows_from_layout(self.main_window.pairings_scroll_layout)        
+
+        
+        for row_widget in row_layouts:
+            w = self.get_row_widgets(row_widget)
+
+            label1 = w[0]      # QLabel White name
+            combo1 = w[1]      # QComboBox white score
+            combo2 = w[2]      # QComboBox Black score
+            label2 = w[3]      # QLabel Black name
+            
+            white_player = self.get_player_from_name(label1.text())
+            black_player = self.get_player_from_name(label2.text())
+            if abs(white_player.rating - black_player.rating) <= 50 : # makes draws less rare
+                combo1.setCurrentIndex(1)   # White draws
+                combo2.setCurrentIndex(1)   # Black draws
+            elif white_player.rating < black_player.rating:
+                combo1.setCurrentIndex(0)   # White loses
+                combo2.setCurrentIndex(2)   # Black wins
+            elif white_player.rating > black_player.rating :
+                combo1.setCurrentIndex(2)   # White wins
+                combo2.setCurrentIndex(0)   # Black loses
+                    
+    def get_player_from_name(self,name):
+        tournament = self.main_window.get_current_tournament()
+
+        for player in tournament.players:
+            if player.name == name:
+                return player
+        

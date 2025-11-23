@@ -45,14 +45,14 @@ def create_tournament_tabs(window):
 
 
       window.round_listbox = QListWidget() # box to show list of round players
-      add_player_tab_layout.addWidget(window.round_listbox, 0, 2, 2,2)
+      add_player_tab_layout.addWidget(window.round_listbox, 0, 2, 2,1)
       window.round_listbox.setSelectionMode(QListWidget.NoSelection) # allow no selection of players
 
       pair_round_from_dataset_button = QPushButton("Pair round/apply scores like in dataset")
-      add_player_tab_layout.addWidget(pair_round_from_dataset_button,2,2,1,2)
+      add_player_tab_layout.addWidget(pair_round_from_dataset_button,2,2,1,1)
       
       pair_button = QPushButton("Pair Round") # button to pair the current round
-      add_player_tab_layout.addWidget(pair_button, 3, 2,1,2)
+      add_player_tab_layout.addWidget(pair_button, 3, 2,1,1)
       pair_button.clicked.connect(window.pair_players_controller.pair_players)
 
 
@@ -92,8 +92,9 @@ def create_tournament_tabs(window):
       results_button.clicked.connect(window.submit_results_controller.submit_results)
 
 
-      simulate_round_button = QPushButton("Simulate this round")
-      pairings_tab_layout.addWidget(simulate_round_button, 1,3)
+      simulate_round_on_rating_button = QPushButton("Simulate this round on rating")
+      pairings_tab_layout.addWidget(simulate_round_on_rating_button, 1,3)
+      simulate_round_on_rating_button.clicked.connect(window.submit_results_controller.simulate_round_on_rating)
       
       
       simulate_all_round_button = QPushButton("Simulate all rounds")
