@@ -312,11 +312,19 @@ class PairPlayersController: # handle how tournament logic
     
     def get_player_color_score(self,player): # white is 1 black is -1, if color score is 2 they shoud be black next
         color_score = 0
-        for color in player.color_history:
-            if color == "white":
-                color_score += 1
-            elif color == "black":
-                color_score -= 1
+        if player.color_history: # if color history exists
+            for color in player.color_history:
+                if color == "white":
+                    color_score += 1
+                elif color == "black":
+                    color_score -= 1
+                
+            if color_score == 0:  # players should get paired alternating colors even if they have even number of black and white
+                if player.color_history[-1] == "black": # if most recent game color is black
+                    color_score -= 0.1 
+                elif player.color_history[-1] == "white":  # if most recent game color is white
+                    color_score +=0.1
+            return color_score
         return color_score
     
     def scoring_buckets(self, players_list): # puts players to be paired in their own scoring bucket

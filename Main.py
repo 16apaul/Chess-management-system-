@@ -8,6 +8,12 @@ from Main_window import MainWindow
 
 def main():
     app = QApplication(sys.argv)
+    
+    try:
+        with open("style/", "r") as f:
+            app.setStyleSheet(f.read())
+    except Exception as e:
+        print("Failed to load stylesheet:", e)
     window = MainWindow()
     window.show()
     sys.exit(app.exec_())

@@ -88,9 +88,14 @@ def create_tournament_tabs(window):
 
 
       results_button = QPushButton("Submit results")
-      pairings_tab_layout.addWidget(results_button, 0,3)
+      pairings_tab_layout.addWidget(results_button, 5,0)
       results_button.clicked.connect(window.submit_results_controller.submit_results)
 
+
+
+      random_scores_button = QPushButton("Randomly assign scores")
+      pairings_tab_layout.addWidget(random_scores_button,0,3)
+      random_scores_button.clicked.connect(window.submit_results_controller.random_scores)
 
       simulate_round_on_rating_button = QPushButton("Simulate this round on rating")
       pairings_tab_layout.addWidget(simulate_round_on_rating_button, 1,3)
@@ -101,9 +106,7 @@ def create_tournament_tabs(window):
       pairings_tab_layout.addWidget(simulate_all_round_button, 2,3)
       
       
-      random_scores_button = QPushButton("Randomly assign scores")
-      pairings_tab_layout.addWidget(random_scores_button,3,3)
-      random_scores_button.clicked.connect(window.submit_results_controller.random_scores)
+      
       
       end_tournament_button = QPushButton("End tournament")
       pairings_tab_layout.addWidget(end_tournament_button,5,3)
@@ -113,7 +116,19 @@ def create_tournament_tabs(window):
       window.tournament_tabs.addTab(pairings_tab, "Pairings")
 
 
+
+
+      # results tab
       results_tab = QWidget()
+      results_tab_layout = QGridLayout()
+      results_tab.setLayout(results_tab_layout)
+      
+      results_listbox = QListWidget()
+      results_tab_layout.addWidget(results_listbox,0,0)
+      
+      
+      
+      
       
       
       window.tournament_tabs.addTab(results_tab, "Results")
