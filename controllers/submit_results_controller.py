@@ -129,6 +129,10 @@ class SubmitResultsController: # submit scores and assigns scores
             elif white_player.rating > black_player.rating :
                 combo1.setCurrentIndex(2)   # White wins
                 combo2.setCurrentIndex(0)   # Black loses
+                
+                
+    def simulate_all_rounds(self):
+        pass
                     
     def get_player_from_name(self,name):
         tournament = self.main_window.get_current_tournament()

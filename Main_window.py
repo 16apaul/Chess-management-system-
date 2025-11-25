@@ -28,7 +28,7 @@ class MainWindow(QMainWindow):
         self.tournaments = {}  # Dictionary to hold tournament data. key is tournament name, value is Tournament object
 
         self.setWindowTitle("Chess Manager")
-        self.setGeometry(100, 100, 1000, 500)
+        self.setGeometry(100, 100, 1500, 1000)
        
        
        
@@ -50,10 +50,45 @@ class MainWindow(QMainWindow):
 
 
 
-        
+    def end_tournament(self):
+        tournament = self.get_current_tournament()
+        players = tournament.players
+
+        # Sort by points
+        players_sorted = sorted(players, key=lambda p: p.points, reverse=True)
+
+        self.results_listbox.clear()
+
+        for p in players_sorted:
+            summary_label = QLabel(f"{p.id}) {p.name} - {p.points}") 
+            item = QListWidgetItem()
+
+            self.results_listbox.addItem(item)
+
+            # put the label into the item
+            self.results_listbox.setItemWidget(item, summary_label)
+            
+            
+        tau = 0    
+        sim_label = QLabel(f"Kendall Tau:{tau}" )
+        self.stats_groupbox.layout().addWidget(sim_label)              
+            
+            
+
 
     
-
+    
+    
+    
+    
+    def find_player_from_name(self,name):
+        tournament = self.get_current_tournament()
+        players = tournament.players
+        
+        for player in players:
+            if player.name == name:
+                return player
+        
 
 
     

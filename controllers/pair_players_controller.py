@@ -131,23 +131,29 @@ class PairPlayersController: # handle how tournament logic
                             
                             
                 else: # for every other round bar first
-                    for bucket in valid_score_buckets:
-                        bucket_pairings = self.swiss_pairing(bucket) # pairings generated disregards color
+                    for bucket in reversed(valid_score_buckets): # reverse so highest scoring buckets paired first.
+                        
+                        sorted_bucket = sorted(bucket, key=lambda b: b.id)
+                        bucket_pairings = self.swiss_pairing(sorted_bucket) # pairings generated disregards color
+                     
                         for p1, p2 in bucket_pairings:
                             
                             p1_color_score = self.get_player_color_score(p1)
                             p2_color_score = self.get_player_color_score(p2)
-                            print(p1_color_score , p2_color_score)
-                            if p1_color_score < p2_color_score :
+                            #print(p1_color_score , p2_color_score)
+                            if p1_color_score < p2_color_score : # assign color later
                                 self.add_pairing_row(p1.name, p2.name)
                                 p1.add_pairing("white",p2.id)
                                 p2.add_pairing("black",p1.id)
                                 tournament.add_pairing(p1,p2)
+                                print(p1.id,p2.id)
                             else: 
                                 self.add_pairing_row(p2.name, p1.name)
                                 p1.add_pairing("black",p2.id)
                                 p2.add_pairing("white",p1.id)
                                 tournament.add_pairing(p2,p1)
+                                print(p2.id,p1.id)
+
                     
                 # Add pairings to UI
                 #self.add_pairing_row("White player", "Black player")
@@ -188,7 +194,7 @@ class PairPlayersController: # handle how tournament logic
             # Odd bucket → move 1 player to next bucket
             if len(bucket) % 2 == 1:
                 moved = False
-                for i in reversed(range(len(bucket))):
+                for i in range(len(bucket)):
                     player = bucket.pop(i)
                     score_buckets[b_index + 1].insert(0, player) # remove and put player to next bucket
 
@@ -241,14 +247,15 @@ class PairPlayersController: # handle how tournament logic
         return False
 
 
-    def swiss_pairing(self, players):
+    def swiss_pairing(self, bucket_players): # pair the buckets
         """
         Swiss pairing with individual player swapping (floating)
         to ensure valid top-half vs bottom-half matchups.
         """
-
         # Sort by score descending
-        players = sorted(players, key=lambda p: p.points, reverse=True)
+        players = sorted(bucket_players, key=lambda p: p.points, reverse=True)
+        for p in players:
+            print("inside swiss", p.id)
 
 
         mid = len(players) // 2
@@ -257,18 +264,22 @@ class PairPlayersController: # handle how tournament logic
         def can_pair(top, bottom):
             """Backtracking test."""
             def backtrack(t, b, result):
-                if not t:
+                if not t:  # all top players paired
                     return result
+
                 p = t[0]
                 for i, opp in enumerate(b):
                     if opp.id in p.player_history:
-                        continue
+                        print("can't pair", p.id,opp.id)
+                        continue  # skip invalid opponents
                     new_t = t[1:]
                     new_b = b[:i] + b[i+1:]
                     out = backtrack(new_t, new_b, result + [(p, opp)])
+                    print("pairing,",p.id,opp.id)
                     if out is not None:
-                        return out
-                return None
+                        return out  # found a complete pairing
+
+                return None  # no valid opponent found, backtrack
 
             return backtrack(top, bottom, [])
 
