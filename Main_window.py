@@ -11,6 +11,8 @@ from controllers.persistence_controller import PersistenceController
 from controllers.pair_players_controller import PairPlayersController
 from controllers.submit_results_controller import SubmitResultsController
 from dataset_controllers.dataset_controller import DatasetController
+from controllers.simulation_contoller import SimulationController
+from controllers.end_tournament_controller import EndTournamentController
 import pandas as pd
 from models.tournament import Tournament
 from models.player import Player
@@ -40,8 +42,8 @@ class MainWindow(QMainWindow):
         self.pair_players_controller = PairPlayersController(self)
         self.submit_results_controller = SubmitResultsController(self)
         self.dataset_controller = DatasetController(self)
-        
-        
+        self.simulation_controller = SimulationController(self)
+        self.end_tournament_controller = EndTournamentController(self)
         create_tournament_group(self)# creates a group to hold tournament buttons
         
         create_menu_bar(self)
@@ -50,37 +52,15 @@ class MainWindow(QMainWindow):
 
 
 
-    def end_tournament(self):
+    
+    def find_player_from_id(self,id):
         tournament = self.get_current_tournament()
         players = tournament.players
-
-        # Sort by points
-        players_sorted = sorted(players, key=lambda p: p.points, reverse=True)
-
-        self.results_listbox.clear()
-
-        for p in players_sorted:
-            summary_label = QLabel(f"{p.id}) {p.name} - {p.points}") 
-            item = QListWidgetItem()
-
-            self.results_listbox.addItem(item)
-
-            # put the label into the item
-            self.results_listbox.setItemWidget(item, summary_label)
-            
-            
-        tau = 0    
-        sim_label = QLabel(f"Kendall Tau:{tau}" )
-        self.stats_groupbox.layout().addWidget(sim_label)              
-            
-            
-
-
-    
-    
-    
-    
-    
+        print("id",id)
+        for player in players:
+            if player.id == id:
+                return player
+        
     def find_player_from_name(self,name):
         tournament = self.get_current_tournament()
         players = tournament.players
@@ -88,8 +68,6 @@ class MainWindow(QMainWindow):
         for player in players:
             if player.name == name:
                 return player
-        
-
 
     
     

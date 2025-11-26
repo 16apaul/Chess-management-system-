@@ -95,16 +95,16 @@ def create_tournament_tabs(window):
 
       random_scores_button = QPushButton("Randomly assign scores")
       pairings_tab_layout.addWidget(random_scores_button,0,3)
-      random_scores_button.clicked.connect(window.submit_results_controller.random_scores)
+      random_scores_button.clicked.connect(window.simulation_controller.random_scores)
 
       simulate_round_on_rating_button = QPushButton("Simulate this round on rating")
       pairings_tab_layout.addWidget(simulate_round_on_rating_button, 1,3)
-      simulate_round_on_rating_button.clicked.connect(window.submit_results_controller.simulate_round_on_rating)
+      simulate_round_on_rating_button.clicked.connect(window.simulation_controller.simulate_round_on_rating)
       
       
       simulate_all_round_button = QPushButton("Simulate all rounds")
       pairings_tab_layout.addWidget(simulate_all_round_button, 2,3)
-      simulate_all_round_button.clicked.connect(window.submit_results_controller.simulate_all_rounds)
+      simulate_all_round_button.clicked.connect(window.simulation_controller.simulate_all_rounds)
       
       apply_scores_in_dataset_button = QPushButton("Apply scores in dataset")
       pairings_tab_layout.addWidget(apply_scores_in_dataset_button,3,3)
@@ -112,7 +112,7 @@ def create_tournament_tabs(window):
       
       end_tournament_button = QPushButton("End tournament")
       pairings_tab_layout.addWidget(end_tournament_button,5,3)
-      end_tournament_button.clicked.connect(window.end_tournament)
+      end_tournament_button.clicked.connect(window.end_tournament_controller.end_tournament)
       
 
 
@@ -131,6 +131,7 @@ def create_tournament_tabs(window):
       
       window.stats_groupbox = QGroupBox("stats")
       window.stats_groupbox_layout = QVBoxLayout()
+      window.stats_groupbox_layout.setAlignment(Qt.AlignTop)  # Align buttons to the top
       window.stats_groupbox.setLayout(window.stats_groupbox_layout)
       results_tab_layout.addWidget(window.stats_groupbox,0,1)
       

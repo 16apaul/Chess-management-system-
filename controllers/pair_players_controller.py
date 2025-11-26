@@ -35,14 +35,16 @@ class PairPlayersController: # handle how tournament logic
 
 
         
-    def pair_players(self):
+    def pair_players(self,sim = False):
         round_listbox = self.main_window.round_listbox
         tournament_listbox = self.main_window.tournament_listbox
         tournament = self.main_window.get_current_tournament()
         round_players = tournament.players_in_current_round
         tournament_players = tournament.players
         
-        if not len(round_listbox) == 0 and len(self.main_window.pairings_scroll_layout) == 0:
+        
+        
+        if ((not len(round_listbox) == 0 and len(self.main_window.pairings_scroll_layout) == 0)) or sim: # skip ui updates when sim is True
         
                             
             if tournament.rounds != tournament.current_round or tournament.rounds == 0: # can't pair more rounds than initalised, 0 bypasses this    
@@ -116,12 +118,14 @@ class PairPlayersController: # handle how tournament logic
                         bucket_pairings = self.swiss_pairing(bucket) # pairings generated disregards color
                         for p1, p2 in bucket_pairings:
                             if alternate_color % 2 == 0:
-                                self.add_pairing_row(p1.name, p2.name)
+                                if not sim:
+                                    self.add_pairing_row(p1.name, p2.name)
                                 p1.add_pairing("white",p2.id)
                                 p2.add_pairing("black",p1.id)
                                 tournament.add_pairing(p1,p2)
                             else:
-                                self.add_pairing_row(p2.name, p1.name)
+                                if not sim:
+                                    self.add_pairing_row(p2.name, p1.name)
                                 p1.add_pairing("black",p2.id)
                                 p2.add_pairing("white",p1.id)
                                 tournament.add_pairing(p2,p1)
@@ -142,13 +146,15 @@ class PairPlayersController: # handle how tournament logic
                             p2_color_score = self.get_player_color_score(p2)
                             #print(p1_color_score , p2_color_score)
                             if p1_color_score < p2_color_score : # assign color later
-                                self.add_pairing_row(p1.name, p2.name)
+                                if not sim:
+                                    self.add_pairing_row(p1.name, p2.name)
                                 p1.add_pairing("white",p2.id)
                                 p2.add_pairing("black",p1.id)
                                 tournament.add_pairing(p1,p2)
                                 print(p1.id,p2.id)
                             else: 
-                                self.add_pairing_row(p2.name, p1.name)
+                                if not sim:
+                                    self.add_pairing_row(p2.name, p1.name)
                                 p1.add_pairing("black",p2.id)
                                 p2.add_pairing("white",p1.id)
                                 tournament.add_pairing(p2,p1)
@@ -161,6 +167,7 @@ class PairPlayersController: # handle how tournament logic
                     #self.add_pairing_row(p1.name, p2.name)
 
                 # Clear round listbox and round players
+                
                 round_players.clear()
                 round_listbox.clear()
 
@@ -169,9 +176,10 @@ class PairPlayersController: # handle how tournament logic
                 self.main_window.set_current_tournament(tournament)
 
                 # Refresh tournament listbox
-                tournament_listbox.clear()
-                for player in tournament.players:
-                    self.main_window.player_controller.add_player_to_tournament_listbox(player)
+                if not sim:
+                    tournament_listbox.clear()
+                    for player in tournament.players:
+                        self.main_window.player_controller.add_player_to_tournament_listbox(player)
             else:
                 print("exceeded round limit")        
         else:
@@ -254,13 +262,13 @@ class PairPlayersController: # handle how tournament logic
         """
         # Sort by score descending
         players = sorted(bucket_players, key=lambda p: p.points, reverse=True)
-        for p in players:
-            print("inside swiss", p.id)
-
 
         mid = len(players) // 2
 
-        # ----- helper pairing function -----
+        
+       
+        
+         # normal can pair color not regarded
         def can_pair(top, bottom):
             """Backtracking test."""
             def backtrack(t, b, result):
@@ -270,12 +278,10 @@ class PairPlayersController: # handle how tournament logic
                 p = t[0]
                 for i, opp in enumerate(b):
                     if opp.id in p.player_history:
-                        print("can't pair", p.id,opp.id)
                         continue  # skip invalid opponents
                     new_t = t[1:]
                     new_b = b[:i] + b[i+1:]
                     out = backtrack(new_t, new_b, result + [(p, opp)])
-                    print("pairing,",p.id,opp.id)
                     if out is not None:
                         return out  # found a complete pairing
 
@@ -283,15 +289,16 @@ class PairPlayersController: # handle how tournament logic
 
             return backtrack(top, bottom, [])
 
-        # ----- FIRST ATTEMPT: strict halves -----
+        print("Strict Swiss pairing failed — attempting player swaps...")
+        
+        # ----- Second ATTEMPT: strict halves -----
         top = players[:mid]
         bottom = players[mid:]
 
         result = can_pair(top, bottom)
         if result is not None:
             return result
-
-        print("Strict Swiss pairing failed — attempting player swaps...")
+       
 
         # ----- SWAP LOGIC (FLOATING) -----
         # Try swapping player from top with from bottom

@@ -94,9 +94,17 @@ class RoundController: # handles logic for people to rounds
                 round_listbox.takeItem(i)
                 break
             
-    def add_all_players_to_round(self):
+    def add_all_players_to_round(self,sim = False): # skip ui updates when sim is True
+        
         tournament = self.main_window.get_current_tournament()
         tournament.players_in_current_round = []
+        
+        if sim:
+            for player in tournament.players:
+                tournament.add_player_to_current_round(player)
+            return
+        
+        
 
         self.main_window.round_listbox.clear()
         for player in tournament.players:

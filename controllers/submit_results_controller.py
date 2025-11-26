@@ -26,11 +26,27 @@ class SubmitResultsController: # submit scores and assigns scores
                     if child_layout is not None:
                         self.clear_layout(child_layout)
                         
-    def submit_results(self):
-        
-        
-        
+    def submit_results(self, sim=False, results=None):
+        if results is None:
+            results = []
+
+        # ---- SIMULATION MODE (FAST, NO UI) ----
+        if sim:
+            for white_player, black_player, ws, bs in results:
+                white_player.points_increment(ws)
+                white_player.add_point_history(ws)
+
+                black_player.points_increment(bs)
+                black_player.add_point_history(bs)
+
+            # Do NOT clear the layout in sim mode
+            self.clear_layout(self.main_window.pairings_scroll_layout)
+
+            return
+
+        # ---- UI MODE (read from widgets) ----
         row_layouts = self.get_rows_from_layout(self.main_window.pairings_scroll_layout)
+
         for row_widget in row_layouts:
             w = self.get_row_widgets(row_widget)
 
@@ -39,21 +55,22 @@ class SubmitResultsController: # submit scores and assigns scores
             combo2 = w[2]      # QComboBox Black score
             label2 = w[3]      # QLabel Black name
 
-            print(label1.text(), combo1.currentText(), combo2.currentText(), label2.text())
             white_player = self.get_player_from_name(label1.text())
             black_player = self.get_player_from_name(label2.text())
+
             value_white = float(combo1.currentText())
             value_black = float(combo2.currentText())
-            
-            
+
             white_player.points_increment(value_white)
             white_player.add_point_history(value_white)
+
             black_player.points_increment(value_black)
             black_player.add_point_history(value_black)
-            
-            
-            
+
+        # Clear only in UI mode
         self.clear_layout(self.main_window.pairings_scroll_layout)
+
+
             
             
     
@@ -105,34 +122,10 @@ class SubmitResultsController: # submit scores and assigns scores
                 combo1.setCurrentIndex(1)   # White draws
                 combo2.setCurrentIndex(1)   # Black draws
             
-        
-    def simulate_round_on_rating(self):
-        row_layouts = self.get_rows_from_layout(self.main_window.pairings_scroll_layout)        
+    
 
         
-        for row_widget in row_layouts:
-            w = self.get_row_widgets(row_widget)
-
-            label1 = w[0]      # QLabel White name
-            combo1 = w[1]      # QComboBox white score
-            combo2 = w[2]      # QComboBox Black score
-            label2 = w[3]      # QLabel Black name
-            
-            white_player = self.get_player_from_name(label1.text())
-            black_player = self.get_player_from_name(label2.text())
-            if abs(white_player.rating - black_player.rating) <= 50 : # makes draws less rare
-                combo1.setCurrentIndex(1)   # White draws
-                combo2.setCurrentIndex(1)   # Black draws
-            elif white_player.rating < black_player.rating:
-                combo1.setCurrentIndex(0)   # White loses
-                combo2.setCurrentIndex(2)   # Black wins
-            elif white_player.rating > black_player.rating :
-                combo1.setCurrentIndex(2)   # White wins
-                combo2.setCurrentIndex(0)   # Black loses
-                
-                
-    def simulate_all_rounds(self):
-        pass
+        
                     
     def get_player_from_name(self,name):
         tournament = self.main_window.get_current_tournament()
