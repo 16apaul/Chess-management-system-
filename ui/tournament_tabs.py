@@ -102,13 +102,17 @@ def create_tournament_tabs(window):
       simulate_round_on_rating_button.clicked.connect(window.simulation_controller.simulate_round_on_rating)
       
       
-      simulate_all_round_button = QPushButton("Simulate all rounds")
+      simulate_all_round_button = QPushButton("Simulate all rounds on rating")
       pairings_tab_layout.addWidget(simulate_all_round_button, 2,3)
       simulate_all_round_button.clicked.connect(window.simulation_controller.simulate_all_rounds)
       
-      apply_scores_in_dataset_button = QPushButton("Apply scores in dataset")
-      pairings_tab_layout.addWidget(apply_scores_in_dataset_button,3,3)
-      apply_scores_in_dataset_button.clicked.connect(window.dataset_controller.apply_scores_in_dataset)
+      simulate_all_round_randomly_button = QPushButton("Simulate all rounds randomly")
+      pairings_tab_layout.addWidget(simulate_all_round_randomly_button, 3,3)
+      simulate_all_round_randomly_button.clicked.connect(window.simulation_controller.simulate_all_rounds_randomly)
+      
+      #apply_scores_in_dataset_button = QPushButton("Apply scores in dataset")
+      #pairings_tab_layout.addWidget(apply_scores_in_dataset_button,3,3)
+      #apply_scores_in_dataset_button.clicked.connect(window.dataset_controller.apply_scores_in_dataset)
       
       end_tournament_button = QPushButton("End tournament")
       pairings_tab_layout.addWidget(end_tournament_button,5,3)
@@ -127,7 +131,7 @@ def create_tournament_tabs(window):
       results_tab.setLayout(results_tab_layout)
       
       window.results_listbox = QListWidget()
-      results_tab_layout.addWidget(window.results_listbox,0,0)
+      results_tab_layout.addWidget(window.results_listbox,0,0,2,1)
       
       window.stats_groupbox = QGroupBox("stats")
       window.stats_groupbox_layout = QVBoxLayout()
@@ -136,7 +140,9 @@ def create_tournament_tabs(window):
       results_tab_layout.addWidget(window.stats_groupbox,0,1)
       
       
-      
+      get_results_button = QPushButton("get results")
+      results_tab_layout.addWidget(get_results_button,1,1)
+      get_results_button.clicked.connect(window.end_tournament_controller.end_tournament)
       
       
       

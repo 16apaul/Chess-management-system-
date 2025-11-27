@@ -151,14 +151,12 @@ class PairPlayersController: # handle how tournament logic
                                 p1.add_pairing("white",p2.id)
                                 p2.add_pairing("black",p1.id)
                                 tournament.add_pairing(p1,p2)
-                                print(p1.id,p2.id)
                             else: 
                                 if not sim:
                                     self.add_pairing_row(p2.name, p1.name)
                                 p1.add_pairing("black",p2.id)
                                 p2.add_pairing("white",p1.id)
                                 tournament.add_pairing(p2,p1)
-                                print(p2.id,p1.id)
 
                     
                 # Add pairings to UI
@@ -180,6 +178,8 @@ class PairPlayersController: # handle how tournament logic
                     tournament_listbox.clear()
                     for player in tournament.players:
                         self.main_window.player_controller.add_player_to_tournament_listbox(player)
+                    self.main_window.tournament_tabs.setCurrentIndex(1)  # auto changes to second tab
+
             else:
                 print("exceeded round limit")        
         else:
@@ -289,7 +289,7 @@ class PairPlayersController: # handle how tournament logic
 
             return backtrack(top, bottom, [])
 
-        print("Strict Swiss pairing failed — attempting player swaps...")
+        #print("Strict Swiss pairing failed — attempting player swaps...")
         
         # ----- Second ATTEMPT: strict halves -----
         top = players[:mid]

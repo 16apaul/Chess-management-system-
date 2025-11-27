@@ -141,3 +141,29 @@ class SimulationController: # assigns scores
         self.main_window.setUpdatesEnabled(True)
         QApplication.restoreOverrideCursor()
  
+    def simulate_all_rounds_randomly(self):
+
+        
+        tournament = self.main_window.get_current_tournament()
+        current_round = tournament.current_round
+        total_rounds = tournament.rounds
+        
+        
+        
+        QApplication.setOverrideCursor(Qt.WaitCursor)
+        self.main_window.setUpdatesEnabled(False)
+
+        for r in range(current_round, total_rounds):
+            self.main_window.round_controller.add_all_players_to_round(True)
+            self.main_window.pair_players_controller.pair_players(True)
+            
+            
+            results = self.random_scores(True)
+            #results = self.simulate_round_on_rating(True)
+            self.main_window.submit_results_controller.submit_results(True,results)
+            
+        self.main_window.end_tournament_controller.end_tournament()
+        
+
+        self.main_window.setUpdatesEnabled(True)
+        QApplication.restoreOverrideCursor()

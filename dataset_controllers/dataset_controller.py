@@ -32,8 +32,8 @@ class DatasetController:
                 rating = row["Rtg"]
                 federation = row["FED"]
                 #points = row["Pts."]
-                player = Player(i+1,name,rating)
-                rd_values = []
+                id = row["No."]
+                player = Player(id,name,rating)
                 for col in self.df.columns:
                     if col.endswith(".Rd"):
                         rd_number = int(col.split(".Rd")[0]) # gets the latest .Rd number

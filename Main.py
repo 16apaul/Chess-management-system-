@@ -10,8 +10,9 @@ def main():
     app = QApplication(sys.argv)
     
     try:
-        with open("style/", "r") as f:
-            app.setStyleSheet(f.read())
+       # with open("style/", "r") as f:
+        #    app.setStyleSheet(f.read())
+        pass
     except Exception as e:
         print("Failed to load stylesheet:", e)
     window = MainWindow()

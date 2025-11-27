@@ -116,15 +116,17 @@ class TournamentController: # handle how tournament logic
             for white,black in tournament.pairings:
                 self.main_window.pair_players_controller.add_pairing_row(white.name, black.name) # rebuild the layout
 
-                
+            self.main_window.submit_results_controller.clear_layout(self.main_window.stats_groupbox_layout) # clear groupbox
                 
             
-
+            self.main_window.results_listbox.clear() # clear results
+            
+            
             tournament = self.main_window.get_current_tournament()
             name = tournament.name
             id = tournament.id
             self.main_window.tournament_tabs.show()  # Show tabs when a tournament is created
-
+            self.main_window.tournament_tabs.setCurrentIndex(0) # auto change to first tab
            # print(
              #   f"Opening Tournament: {name} with ID: {id}"
              #   "Tournament Data",
