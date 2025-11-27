@@ -56,7 +56,6 @@ class MainWindow(QMainWindow):
     def find_player_from_id(self,id):
         tournament = self.get_current_tournament()
         players = tournament.players
-        print("id",id)
         for player in players:
             if player.id == id:
                 return player
