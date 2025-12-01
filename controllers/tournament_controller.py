@@ -126,7 +126,7 @@ class TournamentController: # handle how tournament logic
             name = tournament.name
             id = tournament.id
             self.main_window.tournament_tabs.show()  # Show tabs when a tournament is created
-            self.main_window.tournament_tabs.setCurrentIndex(0) # auto change to first tab
+            #self.main_window.tournament_tabs.setCurrentIndex(0) # auto change to first tab
            # print(
              #   f"Opening Tournament: {name} with ID: {id}"
              #   "Tournament Data",
