@@ -63,7 +63,7 @@ class EndTournamentController: # when end tournament is clicked
         y_sorted_ids = list(y_sorted_actual_dict.keys())
         
         
-        tau, p_value = kendalltau(x_sorted_ids, y_sorted_ids) # program forced to rank tied values
+        tau, p_value = kendalltau(x_sorted_ids, y_sorted_ids) # program forced to rank tied values, ties are broken based on higher id count
         print("Kendall tau:", tau)
         print("p-value:", p_value)        
         

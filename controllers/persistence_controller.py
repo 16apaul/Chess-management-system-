@@ -62,6 +62,7 @@ class PersistenceController: # handles saving and loading tournaments/tournament
             tournament.players_in_current_round = players_in_current_round_list
             tournament.current_round = t_data.get("current_round")
             tournament.pairings = pairings
+            tournament.point_system = t_data.get("point_system")
 
             # Save in your main dictionary by name
             self.main_window.tournaments[name] = tournament

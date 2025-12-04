@@ -36,7 +36,13 @@ def create_menu_bar(window):
         tournament_menu = menubar.addMenu("Tournament") # add menu
         delete_tournament_action = QAction("Delete Tournament", window)
         tournament_menu.addAction(delete_tournament_action)
+        delete_tournament_action.triggered.connect(window.tournament_controller.delete_tournament)
 
+        
+        
+        edit_tournament_action = QAction("Edit tournament", window)
+        tournament_menu.addAction(edit_tournament_action)
+        edit_tournament_action.triggered.connect(window.tournament_controller.edit_tournament)
          # link menu to items
         create_tournament_action = QAction("Create Tournament", window) # create items for the menu
 
@@ -49,5 +55,4 @@ def create_menu_bar(window):
         
 
         create_tournament_action.triggered.connect(window.tournament_controller.create_tournament) 
-        delete_tournament_action.triggered.connect(window.tournament_controller.delete_tournament)
         import_dataset_action.triggered.connect(window.dataset_controller.import_players_from_all_datasets)

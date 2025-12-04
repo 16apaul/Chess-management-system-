@@ -7,6 +7,8 @@ from PyQt5.QtCore import *
 class TournamentController: # handle how tournament logic
     
     def __init__(self, main_window):
+        
+        
         self.main_window = main_window
 
     
@@ -47,7 +49,35 @@ class TournamentController: # handle how tournament logic
                 
         
 
+    def edit_tournament(self):
+        from dialog.edit_tournament_dialog import EditTournamentDialog
 
+        tournament = self.main_window.get_current_tournament()
+
+        old_name = tournament.name   
+        
+        selected_button = self.main_window.tournament_buttons.checkedButton()
+        if selected_button:
+            dialog = EditTournamentDialog(tournament)
+
+            if dialog.exec_() == QDialog.Accepted:
+                print("Updated:", tournament.name, tournament.point_system)
+
+                # Update selected button text
+                selected_button = self.main_window.tournament_buttons.checkedButton()
+                selected_button.setText(tournament.name)
+
+                tournaments = self.main_window.tournaments  # get the dict
+
+                # rename the dict
+                if old_name in tournaments:
+                    tournaments[tournament.name] = tournaments.pop(old_name)
+
+        else:
+            QMessageBox.warning(self.main_window, "No Selection", "Please select a tournament to edit.")
+
+            
+   
     def create_tournament(self): # what happens when menu create tournament button is clicked
         
         

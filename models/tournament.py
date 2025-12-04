@@ -17,6 +17,7 @@ class Tournament:
         self.players_in_current_round = [] # Players to be paired
         self.current_round = 0 # current round number tournament is on
         self.pairings = [] # stores pairs of players e.g. [(1,2),(3,4)] where left value is white for current round
+        self.point_system = [0,0.5,1] # point system for loss, draw, win respectively
         
         
     def to_dict(self):
@@ -34,7 +35,9 @@ class Tournament:
             # store pairings as player IDs
             "pairings": [
                 [white.id, black.id] for (white, black) in self.pairings
-            ]
+            ],
+            "point_system": self.point_system
+            
         }
 
     @staticmethod
@@ -62,7 +65,18 @@ class Tournament:
             (id_map[white_id], id_map[black_id])
             for white_id, black_id in data.get("pairings", [])
         ]
+        t.point_system = data.get("point_system", [0,0.5,1])
         return t    
+        
+    @property
+    def point_system(self):
+        return self._point_system
+    
+    @point_system.setter
+    def point_system(self, value): # value should be a list [0,0.5,1] for loss draw and win
+        if not isinstance(value, list):
+            raise TypeError("value should be a list e.g. [0,0.5,1] for loss draw and win")
+        self._point_system = value
         
     @property
     def id(self):
