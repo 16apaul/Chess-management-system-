@@ -8,17 +8,22 @@ class PairPlayersController: # handle how tournament logic
         self.main_window = main_window
         
     def add_pairing_row(self, white, black):
+        tournament = self.main_window.get_current_tournament()
+        point_system = tournament.point_system
+
+        point_system = list(map(str, point_system)) # convert point system to string
+
         row_layout = QHBoxLayout()
 
         label1 = QLabel(white)
 
         combo1 = QComboBox()
-        combo1.addItems(["0", "0.5", "1"])
+        combo1.addItems(point_system)
         combo1.setFixedWidth(50)
         combo1.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
 
         combo2 = QComboBox()
-        combo2.addItems(["0", "0.5", "1"])
+        combo2.addItems(point_system)
         combo2.setFixedWidth(50)
         combo2.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
 
@@ -41,7 +46,10 @@ class PairPlayersController: # handle how tournament logic
         tournament = self.main_window.get_current_tournament()
         round_players = tournament.players_in_current_round
         tournament_players = tournament.players
-        
+        point_system = tournament.point_system
+        loss = point_system[0]
+        draw = point_system[1]
+        win = point_system[2]
         
         
         if ((not len(round_listbox) == 0 and len(self.main_window.pairings_scroll_layout) == 0)) or sim: # skip ui updates when sim is True
@@ -63,8 +71,8 @@ class PairPlayersController: # handle how tournament logic
                     if not last_half_bye:
                         players_to_be_paired.append(player)
                     else:
-                        player.points_increment(0.5)
-                        player.add_point_history(0.5)
+                        player.points_increment(draw) # planned bye gets a draw
+                        player.add_point_history(draw)
 
 
 
@@ -81,8 +89,8 @@ class PairPlayersController: # handle how tournament logic
                         )
                         
                         lowest_scoring_player.has_full_bye = True
-                        lowest_scoring_player.points_increment(1)
-                        lowest_scoring_player.add_point_history(1)
+                        lowest_scoring_player.points_increment(win) # win for odd numbered lowest scoring player
+                        lowest_scoring_player.add_point_history(win)
                         
                         players_to_be_paired.remove(lowest_scoring_player)
                         print(f"{lowest_scoring_player.name} gets a bye this round.")
@@ -130,10 +138,7 @@ class PairPlayersController: # handle how tournament logic
                                 p2.add_pairing("white",p1.id)
                                 tournament.add_pairing(p2,p1)
                             alternate_color+=1
-                            
-                            
-                            
-                            
+                         
                 else: # for every other round bar first
                     for bucket in reversed(valid_score_buckets): # reverse so highest scoring buckets paired first.
                         

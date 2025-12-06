@@ -26,7 +26,7 @@ class SubmitResultsController: # submit scores and assigns scores
                     if child_layout is not None:
                         self.clear_layout(child_layout)
                         
-    def submit_results(self, sim=False, results=None):
+    def submit_results(self, sim=False, results=None): # when submit results button is clicked
         if results is None:
             results = []
 
@@ -39,8 +39,7 @@ class SubmitResultsController: # submit scores and assigns scores
                 black_player.points_increment(bs)
                 black_player.add_point_history(bs)
 
-            # Do NOT clear the layout in sim mode
-            self.clear_layout(self.main_window.pairings_scroll_layout)
+           
 
             return
 
@@ -75,7 +74,7 @@ class SubmitResultsController: # submit scores and assigns scores
             
     
     
-    def get_row_widgets(self,row_layout):
+    def get_row_widgets(self,row_layout): #get row widgets in the pairing layout to get scores and names of the player
         widgets = []
         for i in range(row_layout.count()):
             w = row_layout.itemAt(i).widget()
