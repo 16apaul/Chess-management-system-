@@ -104,7 +104,7 @@ def create_tournament_tabs(window):
       
       simulate_all_round_button = QPushButton("Simulate all rounds on rating")
       pairings_tab_layout.addWidget(simulate_all_round_button, 2,3)
-      simulate_all_round_button.clicked.connect(window.simulation_controller.simulate_all_rounds)
+      simulate_all_round_button.clicked.connect(window.simulation_controller.simulate_all_rounds_on_rating)
       
       simulate_all_round_randomly_button = QPushButton("Simulate all rounds randomly")
       pairings_tab_layout.addWidget(simulate_all_round_randomly_button, 3,3)

@@ -16,6 +16,10 @@ class SimulationController: # assigns scores
            
         tournament = self.main_window.get_current_tournament()
         pairings = tournament.pairings
+        point_system = tournament.point_system 
+        win = point_system[2]
+        draw = point_system[1]
+        loss = point_system[0]
         results = []   # store results here when sim=True
         if sim:
             for pairing in pairings:
@@ -23,16 +27,16 @@ class SimulationController: # assigns scores
 
                 if random.randint(1, 3) == 1: # 1/3 percent chance white wins
                 
-                    white_score = 1   # White wins
-                    black_score = 0   # Black loses
+                    white_score = win   # White wins
+                    black_score = loss  # Black loses
 
                 elif random.randint(1, 3) == 2: # 1/3 black wins
-                    white_score = 0   # White loses
-                    black_score = 1   # Black wins
+                    white_score = loss   # White loses
+                    black_score = win   # Black wins
 
                 else: #1/3 it is a draw
-                    white_score = 0.5  # White draws
-                    black_score = 0.5   # Black draws 
+                    white_score = draw  # White draws
+                    black_score = draw   # Black draws 
                 results.append((white_player, black_player, white_score, black_score))
             return results
         
@@ -62,6 +66,9 @@ class SimulationController: # assigns scores
         tournament = self.main_window.get_current_tournament()
         pairings = tournament.pairings
         point_system = tournament.point_system
+        win = point_system[0]
+        draw = point_system[1]
+        loss = point_system[2]
         results = []   # store results here when sim=True
         if sim:
             for pairing in pairings:
@@ -69,14 +76,14 @@ class SimulationController: # assigns scores
                 black_player = pairing[1]
                  # ---- Compute result (same logic) ----
                 if abs(white_player.rating - black_player.rating) <= 50:
-                    white_score = point_system[1]   # draw
-                    black_score = point_system[1]
+                    white_score = draw  # draw
+                    black_score = draw
                 elif white_player.rating < black_player.rating:
-                    white_score = point_system[0]   # white loses
-                    black_score = point_system[2]   # black wins
+                    white_score = loss   # white loses
+                    black_score = win   # black wins
                 else:
-                    white_score = point_system[2]   # white wins
-                    black_score = point_system[0]   # black loses   
+                    white_score = win   # white wins
+                    black_score = loss   # black loses   
                 results.append((white_player, black_player, white_score, black_score))
             return results
 
@@ -86,7 +93,7 @@ class SimulationController: # assigns scores
         )
 
 
-        for row_widget in row_layouts:
+        for row_widget in row_layouts:# update combo scores according to the rating for each row
             w = self.main_window.submit_results_controller.get_row_widgets(row_widget)
 
             label1 = w[0]      # QLabel White name
@@ -99,23 +106,23 @@ class SimulationController: # assigns scores
 
             # give draw if not much rating difference
             if abs(white_player.rating - black_player.rating) <= 50:
-                white_score = point_system[1]   # draw
-                black_score = point_system[1]
+                white_score = draw   # draw
+                black_score = draw
             elif white_player.rating < black_player.rating:
-                white_score = point_system[0]   # white loses
-                black_score = point_system[2]   # black wins
+                white_score = loss   # white loses
+                black_score = win   # black wins
             else:
-                white_score = point_system[2]   # white wins
-                black_score = point_system[0]   # black loses   
+                white_score = win  # white wins
+                black_score = loss  # black loses   
 
             # update UI
-            if not sim:
-                combo1.setCurrentIndex(white_score)
-                combo2.setCurrentIndex(black_score)
+            
+            combo1.setCurrentIndex(white_score)
+            combo2.setCurrentIndex(black_score)
 
 
                 
-    def simulate_all_rounds(self):
+    def simulate_all_rounds_on_rating(self): # based on rating
 
         
         tournament = self.main_window.get_current_tournament()
