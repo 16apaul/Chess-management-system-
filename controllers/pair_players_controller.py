@@ -74,8 +74,6 @@ class PairPlayersController: # handle how tournament logic
                         player.points_increment(draw) # planned bye gets a draw
                         player.add_point_history(draw)
 
-
-
                 # Handle odd number of players: assign bye to lowest score player without a bye
                 
                 if len(players_to_be_paired) % 2 == 1:
@@ -121,7 +119,7 @@ class PairPlayersController: # handle how tournament logic
                 # Generate final pairings
                 tournament.pairings.clear() # clear the model first
                 if tournament.current_round == 0: # first round paired differently
-                    alternate_color = 0
+                    alternate_color = 0 # to alternate colors fairly in first round
                     for bucket in valid_score_buckets:
                         bucket_pairings = self.swiss_pairing(bucket) # pairings generated disregards color
                         for p1, p2 in bucket_pairings:
@@ -170,7 +168,6 @@ class PairPlayersController: # handle how tournament logic
                     #self.add_pairing_row(p1.name, p2.name)
 
                 # Clear round listbox and round players
-                
                 round_players.clear()
                 round_listbox.clear()
 

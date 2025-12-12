@@ -11,7 +11,45 @@ class Player: # player constructor
         self.has_full_bye = False   # flag to indicate if player has received a bye
         self.has_half_bye = False   # flag to indicate if player has received a half bye
         self.half_bye_history = [] # to see how may times a player had a half bye
-        self.point_history = [] # tracks points
+        self.point_history = [] # tracks points for every round
+        self.buchholz = 0.0 # buchholz score
+        self.sonneborn_berger = 0.0 # sonneborn berger score
+        self.aroc = 0.0 # average rating of opponents played
+        
+
+
+    @property
+    def buchholz(self):
+        return self._buchholz
+    @buchholz.setter
+    def buchholz(self, value):
+        if not isinstance(value, (int, float)):
+            raise TypeError("Buchholz score must be a number")
+        if value < 0:
+            raise ValueError("Buchholz score cannot be negative")
+        self._buchholz = float(value)
+        
+    @property
+    def sonneborn_berger(self):
+        return self._sonneborn_berger
+    @sonneborn_berger.setter
+    def sonneborn_berger(self, value):
+        if not isinstance(value, (int, float)):
+            raise TypeError("Sonneborn-Berger score must be a number")
+        if value < 0:
+            raise ValueError("Sonneborn-Berger score cannot be negative")
+        self._sonneborn_berger = float(value)
+        
+    @property
+    def aroc(self):
+        return self._aroc
+    @aroc.setter
+    def aroc(self, value):
+        if not isinstance(value, (int, float)):
+            raise TypeError("AROC score must be a number")
+        if value < 0:
+            raise ValueError("AROC score cannot be negative")
+        self._aroc = float(value)
 
         # --- name ---
     @property
@@ -182,7 +220,10 @@ class Player: # player constructor
             "has_full_bye": self.has_full_bye,
             "has_half_bye": self.has_half_bye,
             "half_bye_history": self.half_bye_history,
-            "point_history": self.point_history
+            "point_history": self.point_history,
+            "buchholz": self.buchholz,
+            "sonneborn_berger": self.sonneborn_berger,
+            "aroc": self.aroc
         }
 
     @classmethod
@@ -198,6 +239,9 @@ class Player: # player constructor
         player.has_half_bye = data.get("has_half_bye", False)
         player.half_bye_history = data.get("half_bye_history",[])
         player.point_history = data.get("point_history",[])
+        player.buchholz = data.get("buchholz", 0.0)
+        player.sonneborn_berger = data.get("sonneborn_berger", 0.0)
+        player.aroc = data.get("aroc", 0.0)
         return player
     def __repr__(self):
         return (f"Player_name={self.name}, id={self.id}, "

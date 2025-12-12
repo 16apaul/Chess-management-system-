@@ -13,6 +13,7 @@ from controllers.submit_results_controller import SubmitResultsController
 from dataset_controllers.dataset_controller import DatasetController
 from controllers.simulation_contoller import SimulationController
 from controllers.end_tournament_controller import EndTournamentController
+from controllers.tie_break_controller import TieBreakController
 import pandas as pd
 from models.tournament import Tournament
 from models.player import Player
@@ -44,6 +45,7 @@ class MainWindow(QMainWindow):
         self.dataset_controller = DatasetController(self)
         self.simulation_controller = SimulationController(self)
         self.end_tournament_controller = EndTournamentController(self)
+        self.tie_break_controller = TieBreakController(self)
         create_tournament_group(self)# creates a group to hold tournament buttons
         
         create_menu_bar(self)

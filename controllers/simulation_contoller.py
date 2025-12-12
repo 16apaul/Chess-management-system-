@@ -65,10 +65,10 @@ class SimulationController: # assigns scores
     def simulate_round_on_rating(self, sim=False): # sim would be true if simulate all rounds are clicked
         tournament = self.main_window.get_current_tournament()
         pairings = tournament.pairings
-        point_system = tournament.point_system
-        win = point_system[0]
+        point_system = tournament.point_system # list in form [loss,draw,win]
+        win = point_system[2] 
         draw = point_system[1]
-        loss = point_system[2]
+        loss = point_system[0]
         results = []   # store results here when sim=True
         if sim:
             for pairing in pairings:
@@ -117,8 +117,8 @@ class SimulationController: # assigns scores
 
             # update UI
             
-            combo1.setCurrentIndex(white_score)
-            combo2.setCurrentIndex(black_score)
+            combo1.setCurrentText(str(white_score))
+            combo2.setCurrentText(str(black_score))
 
 
                 
@@ -137,7 +137,7 @@ class SimulationController: # assigns scores
         for r in range(current_round, total_rounds):
             self.main_window.round_controller.add_all_players_to_round(True)
             self.main_window.pair_players_controller.pair_players(True)
-            
+                
             
             #results = self.random_scores(True)
             results = self.simulate_round_on_rating(True)

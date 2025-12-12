@@ -25,7 +25,7 @@ class DatasetController:
             # clean columns
             self.df.columns = self.df.columns.str.strip()
 
-            print("Columns:", self.df.columns.tolist())
+            #print("Columns:", self.df.columns.tolist())
             players = []
             for i, row in self.df.iterrows():
                 name = row["Name"]
@@ -47,7 +47,9 @@ class DatasetController:
                 #print(name, rating, federation, points)
 
             tournamentId = self.main_window.tournament_controller.get_current_tournament_id()
+            next_player_id = len(players) + 1 # update next player id
             tournament = Tournament(tournamentId,file,players,None,rounds)
+            tournament.next_player_id = next_player_id
             self.main_window.tournaments[file] = tournament #This creates a key in the dictionary   
             self.main_window.tournament_controller.add_button_to_tournament_group(file) # create the button and change current tournament id
 
