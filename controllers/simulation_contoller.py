@@ -43,23 +43,23 @@ class SimulationController: # assigns scores
         for row_widget in row_layouts:
             w = self.main_window.submit_results_controller.get_row_widgets(row_widget)
 
-            combo1 = w[1]      # QComboBox white score            
+            white_score_combo = w[1]      # QComboBox white score            
             
-            combo2 = w[2]      # QComboBox Black score
+            black_score_combo = w[2]      # QComboBox Black score
             
             random_number = random.randint(1, 3) # randpm numbers to assign scores
             if  random_number == 1: # 1/3 percent chance white wins
                 
-                combo1.setCurrentIndex(2)   # White wins
-                combo2.setCurrentIndex(0)   # Black loses
+                white_score_combo.setCurrentIndex(2)   # White wins
+                black_score_combo.setCurrentIndex(0)   # Black loses
 
             elif random_number == 2: # 1/3 black wins
-                combo1.setCurrentIndex(0)   # White loses
-                combo2.setCurrentIndex(2)   # Black wins
+                white_score_combo.setCurrentIndex(0)   # White loses
+                black_score_combo.setCurrentIndex(2)   # Black wins
 
             else: #1/3 it is a draw
-                combo1.setCurrentIndex(1)   # White draws
-                combo2.setCurrentIndex(1)   # Black draws
+                white_score_combo.setCurrentIndex(1)   # White draws
+                black_score_combo.setCurrentIndex(1)   # Black draws
             
         
     def simulate_round_on_rating(self, sim=False): # sim would be true if simulate all rounds are clicked
@@ -70,12 +70,13 @@ class SimulationController: # assigns scores
         draw = point_system[1]
         loss = point_system[0]
         results = []   # store results here when sim=True
+        rating_difference_threshold = 50  # threshold for rating difference to consider a draw
         if sim:
             for pairing in pairings:
                 white_player = pairing[0]
                 black_player = pairing[1]
                  # ---- Compute result (same logic) ----
-                if abs(white_player.rating - black_player.rating) <= 50:
+                if abs(white_player.rating - black_player.rating) <= rating_difference_threshold: # draw if not much rating difference
                     white_score = draw  # draw
                     black_score = draw
                 elif white_player.rating < black_player.rating:
@@ -96,13 +97,13 @@ class SimulationController: # assigns scores
         for row_widget in row_layouts:# update combo scores according to the rating for each row
             w = self.main_window.submit_results_controller.get_row_widgets(row_widget)
 
-            label1 = w[0]      # QLabel White name
-            combo1 = w[1]      # QComboBox white score
-            combo2 = w[2]      # QComboBox Black score
-            label2 = w[3]      # QLabel Black name
+            white_name_label = w[0]      # QLabel White name
+            white_score_combo = w[1]      # QComboBox white score
+            black_score_combo = w[2]      # QComboBox Black score
+            black_name_label = w[3]      # QLabel Black name
                 
-            white_player = self.main_window.submit_results_controller.get_player_from_name(label1.text())
-            black_player = self.main_window.submit_results_controller.get_player_from_name(label2.text())
+            white_player = self.main_window.submit_results_controller.get_player_from_name(white_name_label.text())
+            black_player = self.main_window.submit_results_controller.get_player_from_name(black_name_label.text())
 
             # give draw if not much rating difference
             if abs(white_player.rating - black_player.rating) <= 50:
@@ -117,8 +118,8 @@ class SimulationController: # assigns scores
 
             # update UI
             
-            combo1.setCurrentText(str(white_score))
-            combo2.setCurrentText(str(black_score))
+            white_score_combo.setCurrentText(str(white_score))
+            black_score_combo.setCurrentText(str(black_score))
 
 
                 

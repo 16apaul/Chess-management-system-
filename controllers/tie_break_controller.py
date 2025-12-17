@@ -7,7 +7,7 @@ class TieBreakController: # submit scores and assigns scores
     def __init__(self, main_window):
         self.main_window = main_window
         
-    def calculate_buchholz(self, player):
+    def calculate_buchholz(self, player): # calculates buchholz score , sum of opponents' points
         buchholz_score = 0.0
 
         for opponent_id in player.player_history:
@@ -18,7 +18,7 @@ class TieBreakController: # submit scores and assigns scores
         return buchholz_score
     
     
-    def calculate_sonneborn_berger(self, player): # calculates sonneborn berger score
+    def calculate_sonneborn_berger(self, player): # calculates sonneborn berger score, 
         tournament = self.main_window.get_current_tournament()
         point_system = tournament.point_system
         win = point_system[2]

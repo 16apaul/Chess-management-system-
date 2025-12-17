@@ -39,15 +39,7 @@ class EditTournamentDialog(QDialog):
         self.loss_input.setPlaceholderText("e.g. 0")
         self.loss_input.setText(str(point_system[0]))
 
-        # Disable points editing after tournament starts
-        if tournament.current_round == 0:
-            self.win_input.setEnabled(True)
-            self.draw_input.setEnabled(True)
-            self.loss_input.setEnabled(True)
-        else:
-            self.win_input.setEnabled(False)
-            self.draw_input.setEnabled(False)
-            self.loss_input.setEnabled(False)
+        
         # Rounds Input
         rounds_label = QLabel("Number of Rounds:")
         self.rounds_input = QLineEdit()
@@ -60,10 +52,44 @@ class EditTournamentDialog(QDialog):
         self.tournament_type_combo.addItems(["Swiss", "Round Robin", "Knockout"])
         self.tournament_type_combo.setCurrentText(tournament.style)
         
-        if tournament.current_round == 0: # only allow editing rounds if tournament hasn't started
+        # Disable points and rounds and type editing after tournament starts
+        if tournament.current_round == 0:
+            self.win_input.setEnabled(True)
+            self.draw_input.setEnabled(True)
+            self.loss_input.setEnabled(True)
+            
             self.rounds_input.setEnabled(True)
+            
+            self.tournament_type_combo.setEnabled(True)
+
+
         else:
+            self.win_input.setEnabled(False)
+            self.draw_input.setEnabled(False)
+            self.loss_input.setEnabled(False)
+            
             self.rounds_input.setEnabled(False)
+            
+            self.tournament_type_combo.setEnabled(False)
+
+            
+        # tournament data inputs
+        self.date_label = QLabel("Tournament Date:")
+        self.date_input = QDateEdit()
+        self.date_input.setCalendarPopup(True)  # shows calendar
+        if tournament.date:
+            date_parts = tournament.date.split("/")  # assuming format "dd/MM/yyyy"
+            day = int(date_parts[0])
+            month = int(date_parts[1])
+            year = int(date_parts[2])
+            self.date_input.setDate(QDate(year, month, day))
+        else:
+            self.date_input.setDate(QDate.currentDate()) # set to current date of tournament
+        self.date_input.setDisplayFormat("dd/MM/yyyy")
+        
+
+        
+        
             
         
         
@@ -87,6 +113,9 @@ class EditTournamentDialog(QDialog):
         grid.addWidget(self.tournament_type_label, 5,0)
         grid.addWidget(self.tournament_type_combo, 5,1)
         
+        grid.addWidget(self.date_label, 6,0)
+        grid.addWidget(self.date_input, 6,1)
+        
         # Save Button
         self.save_btn = QPushButton("Save")
         self.save_btn.clicked.connect(self.save_changes)
@@ -100,11 +129,11 @@ class EditTournamentDialog(QDialog):
 
     def save_changes(self): 
         
-        new_name = self.name_input.text().strip()
 
         #get values of tournament dict from main window
         tournaments = self.main_window.tournaments  # dict {name: Tournament}
         
+        new_name = self.name_input.text().strip()
         if new_name == "":
             QMessageBox.warning(self, "Invalid Name", "Tournament name cannot be empty.")
             return
@@ -118,10 +147,14 @@ class EditTournamentDialog(QDialog):
                 )
                 return
             
-            
-        self.tournament.style = self.tournament_type_combo.currentText()
-        
         self.tournament.name = new_name
+        self.tournament.style = self.tournament_type_combo.currentText()
+        self.tournament.date = self.date_input.date().toString("dd/MM/yyyy")
+        
+         # Try to update point system and rounds
+         # Show error message if invalid
+         # Close dialog if successful
+         # Update tournament object
         try:
             self.tournament.point_system = [
                 float(self.loss_input.text()),

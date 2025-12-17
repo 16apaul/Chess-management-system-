@@ -7,7 +7,7 @@ class PairPlayersController: # handle how tournament logic
     def __init__(self, main_window):
         self.main_window = main_window
         
-    def add_pairing_row(self, white, black):
+    def add_pairing_row(self, white_name, black_name):
         tournament = self.main_window.get_current_tournament()
         point_system = tournament.point_system
 
@@ -15,24 +15,24 @@ class PairPlayersController: # handle how tournament logic
 
         row_layout = QHBoxLayout()
 
-        label1 = QLabel(white)
+        white_name_label = QLabel(white_name)
 
-        combo1 = QComboBox()
-        combo1.addItems(point_system)
-        combo1.setFixedWidth(50)
-        combo1.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        white_score_combo = QComboBox()
+        white_score_combo.addItems(point_system)
+        white_score_combo.setFixedWidth(50)
+        white_score_combo.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
 
-        combo2 = QComboBox()
-        combo2.addItems(point_system)
-        combo2.setFixedWidth(50)
-        combo2.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        black_score_combo = QComboBox()
+        black_score_combo.addItems(point_system)
+        black_score_combo.setFixedWidth(50)
+        black_score_combo.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
 
-        label2 = QLabel(black)
+        black_name_label = QLabel(black_name)
 
-        row_layout.addWidget(label1)
-        row_layout.addWidget(combo1)
-        row_layout.addWidget(combo2)
-        row_layout.addWidget(label2)
+        row_layout.addWidget(white_name_label)
+        row_layout.addWidget(white_score_combo)
+        row_layout.addWidget(black_score_combo)
+        row_layout.addWidget(black_name_label)
 
         self.main_window.pairings_scroll_layout.addLayout(row_layout)
         

@@ -49,16 +49,16 @@ class SubmitResultsController: # submit scores and assigns scores
         for row_widget in row_layouts:
             w = self.get_row_widgets(row_widget)
 
-            label1 = w[0]      # QLabel White name
-            combo1 = w[1]      # QComboBox white score
-            combo2 = w[2]      # QComboBox Black score
-            label2 = w[3]      # QLabel Black name
+            white_name_label = w[0]      # QLabel White name
+            white_score_combo = w[1]      # QComboBox white score
+            black_score_combo = w[2]      # QComboBox Black score
+            black_name_label = w[3]      # QLabel Black name
 
-            white_player = self.get_player_from_name(label1.text())
-            black_player = self.get_player_from_name(label2.text())
+            white_player = self.get_player_from_name(white_name_label.text())
+            black_player = self.get_player_from_name(black_name_label.text())
 
-            value_white = float(combo1.currentText())
-            value_black = float(combo2.currentText())
+            value_white = float(white_score_combo.currentText())
+            value_black = float(black_score_combo.currentText())
 
             white_player.points_increment(value_white)
             white_player.add_point_history(value_white)
@@ -102,24 +102,24 @@ class SubmitResultsController: # submit scores and assigns scores
         for row_widget in row_layouts:
             w = self.get_row_widgets(row_widget)
 
-            combo1 = w[1]      # QComboBox white score            
+            white_score_combo = w[1]      # QComboBox white score            
             
-            combo2 = w[2]      # QComboBox Black score
+            black_score_combo = w[2]      # QComboBox Black score
             
             import random
 
             if random.randint(1, 3) == 1: # 1/3 percent chance white wins
                 
-                combo1.setCurrentIndex(2)   # White wins
-                combo2.setCurrentIndex(0)   # Black loses
+                white_score_combo.setCurrentIndex(2)   # White wins
+                black_score_combo.setCurrentIndex(0)   # Black loses
 
             elif random.randint(1, 3) == 2: # 1/3 black wins
-                combo1.setCurrentIndex(0)   # White loses
-                combo2.setCurrentIndex(2)   # Black wins
+                white_score_combo.setCurrentIndex(0)   # White loses
+                black_score_combo.setCurrentIndex(2)   # Black wins
 
             else: #1/3 it is a draw
-                combo1.setCurrentIndex(1)   # White draws
-                combo2.setCurrentIndex(1)   # Black draws
+                white_score_combo.setCurrentIndex(1)   # White draws
+                black_score_combo.setCurrentIndex(1)   # Black draws
             
     
 
