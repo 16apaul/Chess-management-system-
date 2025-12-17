@@ -4,7 +4,7 @@ from models.player import Player
 
 class Tournament:
 
-    def __init__(self,id, name, players=None, style = "swiss", rounds=None,date=None):
+    def __init__(self,id, name, players=None, style = "Swiss", rounds=None,date=None):
         self.name = name
 
         # If no players provided, initialize empty list
@@ -50,7 +50,7 @@ class Tournament:
             id=data.get("id"),
             name=data.get("name"),
             players=data.get("players", []),
-            style=data.get("style", "swiss"),
+            style=data.get("style", "Swiss"),
             rounds=data.get("rounds"),
             date=data.get("date")
         )

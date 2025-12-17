@@ -2,6 +2,7 @@
 from models.tournament import Tournament
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
+from dialog.edit_tournament_dialog import EditTournamentDialog
 
 
 class TournamentController: # handle how tournament logic
@@ -50,15 +51,15 @@ class TournamentController: # handle how tournament logic
         
 
     def edit_tournament(self):
-        from dialog.edit_tournament_dialog import EditTournamentDialog
 
         tournament = self.main_window.get_current_tournament()
 
-        old_name = tournament.name   
         
         selected_button = self.main_window.tournament_buttons.checkedButton()
         if selected_button:
-            dialog = EditTournamentDialog(tournament)
+            old_name = tournament.name   
+
+            dialog = EditTournamentDialog(tournament, self.main_window)
 
             if dialog.exec_() == QDialog.Accepted:
                 print("Updated:", tournament.name, tournament.point_system)
@@ -71,7 +72,7 @@ class TournamentController: # handle how tournament logic
 
                 # rename the dict
                 if old_name in tournaments:
-                    tournaments[tournament.name] = tournaments.pop(old_name)
+                    tournaments[tournament.name] = tournaments.pop(old_name) # change the key in the dict
 
         else:
             QMessageBox.warning(self.main_window, "No Selection", "Please select a tournament to edit.")
@@ -80,48 +81,18 @@ class TournamentController: # handle how tournament logic
    
     def create_tournament(self): # what happens when menu create tournament button is clicked
         
-        
-        tournament_round = None
-        
-        
-        tournament_name, ok_name = QInputDialog.getText( #input dialog to get tournament name
-            self.main_window, "Tournament Name", "Enter tournament name:", QLineEdit.Normal, "Spring Open",
-        )
-        tournament_type, ok_type = QInputDialog.getItem( #input dialog to get tournament type
-            self.main_window, "Tournament Type", "Select tournament type:", ["Swiss", "Round Robin", "Knockout"],0, False
-        )
-        
-        if tournament_type == "Swiss": # if swiss, get number of rounds
-            tournament_round, ok_round = QInputDialog.getInt(
-                self.main_window, "Number of Rounds", "Enter number of rounds:", min=0, # 0 means manager can end tournament whenever he wants
-            )
-        
-        tournaments = list(self.main_window.tournaments.values())  # Get the list of existing tournaments
-        
+        tournament_id = self.get_current_tournament_id()
 
-        repeat_names = False
-        ok = ok_name and ok_type and (tournament_type != "Swiss" or ok_round)
-        for t in tournaments: # makes sure no repeating names
-            if t.name == tournament_name:
-                repeat_names = True
-                break
-        if ok and tournament_name and not repeat_names:
-            
-            tournament_id = self.get_current_tournament_id()
-            tournament = Tournament(int(tournament_id), tournament_name,None,tournament_type,tournament_round) # Create a new Tournament object
-            self.main_window.tournaments[tournament_name] = tournament #This creates a key in the dictionary
+        tournament = Tournament(int(tournament_id),"spring open",None,"Swiss",0) # Create a new Tournament object  
+        dialog = EditTournamentDialog(tournament, self.main_window)
+
+        if dialog.exec_() == QDialog.Accepted: # if user clicks save
+            self.main_window.tournaments[tournament.name] = tournament #This creates a key in the dictionary, save tournament object if valid tournament
             
             
-            self.add_button_to_tournament_group(tournament_name) # create the button and change current tournament id
+            self.add_button_to_tournament_group(tournament.name) # create the button and change current tournament id
 
 
-        elif  not ok:
-            pass  # User cancelled the input dialog
-            
-        else:
-            QMessageBox.warning(self.main_window, "Input Error", "Tournament name cannot be empty and must be unique.")
-            
-        
         
     def open_tournament(self): # what happens when a specific tournament button is clicked
         selected_button = self.main_window.sender()  # the clicked button
@@ -174,4 +145,4 @@ class TournamentController: # handle how tournament logic
         latest_tournament = list(tournaments.values())[-1]
         latest_tournament_id = latest_tournament.id
         
-        return latest_tournament_id + 1
+        return latest_tournament_id + 1 # Increment by 1 for new tournament ID

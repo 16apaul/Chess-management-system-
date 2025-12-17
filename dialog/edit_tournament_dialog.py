@@ -1,15 +1,13 @@
-from PyQt5.QtWidgets import (
-    QDialog, QVBoxLayout, QLineEdit, QPushButton,
-    QMessageBox, QGridLayout, QLabel
-)
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
 
 class EditTournamentDialog(QDialog):
-    def __init__(self, tournament):
+    def __init__(self, tournament, main_window):
         super().__init__()
         self.setWindowTitle("Edit Tournament")
         self.setFixedSize(320, 260)
         self.tournament = tournament  
-
+        self.main_window = main_window
         main_layout = QVBoxLayout()
         grid = QGridLayout()
 
@@ -50,7 +48,26 @@ class EditTournamentDialog(QDialog):
             self.win_input.setEnabled(False)
             self.draw_input.setEnabled(False)
             self.loss_input.setEnabled(False)
-
+        # Rounds Input
+        rounds_label = QLabel("Number of Rounds:")
+        self.rounds_input = QLineEdit()
+        self.rounds_input.setPlaceholderText("e.g. 5")
+        self.rounds_input.setText(str(tournament.rounds))
+        
+        # tournament type
+        self.tournament_type_label = QLabel("Current tournament type:")
+        self.tournament_type_combo = QComboBox()
+        self.tournament_type_combo.addItems(["Swiss", "Round Robin", "Knockout"])
+        self.tournament_type_combo.setCurrentText(tournament.style)
+        
+        if tournament.current_round == 0: # only allow editing rounds if tournament hasn't started
+            self.rounds_input.setEnabled(True)
+        else:
+            self.rounds_input.setEnabled(False)
+            
+        
+        
+        
         # Grid Layout Placement
         grid.addWidget(name_label, 0, 0)
         grid.addWidget(self.name_input, 0, 1)
@@ -64,6 +81,12 @@ class EditTournamentDialog(QDialog):
         grid.addWidget(loss_label, 3, 0)
         grid.addWidget(self.loss_input, 3, 1)
 
+        grid.addWidget(rounds_label, 4, 0)
+        grid.addWidget(self.rounds_input, 4, 1)
+        
+        grid.addWidget(self.tournament_type_label, 5,0)
+        grid.addWidget(self.tournament_type_combo, 5,1)
+        
         # Save Button
         self.save_btn = QPushButton("Save")
         self.save_btn.clicked.connect(self.save_changes)
@@ -75,17 +98,42 @@ class EditTournamentDialog(QDialog):
 
         self.setLayout(main_layout)
 
-    def save_changes(self):
-        try:
-            self.tournament.name = self.name_input.text()
+    def save_changes(self): 
+        
+        new_name = self.name_input.text().strip()
 
+        #get values of tournament dict from main window
+        tournaments = self.main_window.tournaments  # dict {name: Tournament}
+        
+        if new_name == "":
+            QMessageBox.warning(self, "Invalid Name", "Tournament name cannot be empty.")
+            return
+        # Check for duplicate names
+        for existing_name, t in tournaments.items():
+            if t is not self.tournament and existing_name == new_name:
+                QMessageBox.warning(
+                    self,
+                    "Duplicate Name",
+                    "A tournament with this name already exists."
+                )
+                return
+            
+            
+        self.tournament.style = self.tournament_type_combo.currentText()
+        
+        self.tournament.name = new_name
+        try:
             self.tournament.point_system = [
                 float(self.loss_input.text()),
                 float(self.draw_input.text()),
                 float(self.win_input.text())
             ]
+            self.tournament.rounds = int(self.rounds_input.text())
+
+            
+            
 
             self.accept()   # Close 
 
         except ValueError:
-            QMessageBox.warning(self, "Invalid Input", "Points must be numbers!")
+            QMessageBox.warning(self, "Invalid Input", "Points/rounds must be numbers!")
