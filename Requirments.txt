@@ -1,1 +1,0 @@
-Install scipy,pytest,numpy,pyqy5,pandas
