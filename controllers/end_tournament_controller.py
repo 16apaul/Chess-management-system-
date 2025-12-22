@@ -44,11 +44,11 @@ class EndTournamentController: # when end tournament is clicked
         y_id =list( y_dict.keys())
         y_score = list(y_dict.values())
         
-        print("simulation ids", x_id)
-        print("sim values", x_score)
+        #print("simulation ids", x_id)
+        #print("sim values", x_score)
         
-        print("actual ids",y_id)
-        print("actual scores,", y_score)
+        #print("actual ids",y_id)
+        #print("actual scores,", y_score)
         # calculate kendall tau including ties
 
         sim_ranks = stats.rankdata([-s for s in x_score], method='average')  # rank the scores

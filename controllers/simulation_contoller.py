@@ -70,7 +70,7 @@ class SimulationController: # assigns scores
         draw = point_system[1]
         loss = point_system[0]
         results = []   # store results here when sim=True
-        rating_difference_threshold = 50  # threshold for rating difference to consider a draw
+        rating_difference_threshold = 20  # threshold for rating difference to consider a draw
         if sim:
             for pairing in pairings:
                 white_player = pairing[0]
