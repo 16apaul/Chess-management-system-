@@ -228,7 +228,7 @@ class PairPlayersController: # handle how tournament logic
         
         # make sure each bucket has even number of players
         
-        for i in range(len(buckets)):  
+        for i in range(len(buckets)):  # This loop ensures all buckets have even number of players
             if len(buckets[i]) % 2 == 1: # odd number of players in bucket
                 
                 float_player = buckets[i].pop()  # remove one player
@@ -237,14 +237,14 @@ class PairPlayersController: # handle how tournament logic
                 return self.valid_buckets(buckets)  # recheck from start
         
 
-        for i in range(len(buckets)):
+        for i in range(len(buckets)): # if bucket has no valid pairings, try to merge it with next bucket
             
             valid_pairings = self.valid_pairings_exist(buckets[i])
             if valid_pairings: # if bucket has valid pairings check next bucket
                 continue
             else:
                 
-                if i == len(buckets) - 1:  # last bucket, can't merge down merge up
+                if i == len(buckets) - 1:  # last bucket, can't merge down so merge up
                     buckets[i - 1].extend(buckets[i])  # merge with next higher bucket
                     buckets[i] = []  # clear current bucket
                     
@@ -313,8 +313,8 @@ class PairPlayersController: # handle how tournament logic
 
         #print("Strict Swiss pairing failed — attempting player swaps...")
         
-        # ----- Second ATTEMPT: strict halves -----
-        top = players[:mid]
+        # ----- First ATTEMPT: strict halves -----
+        top = players[:mid] #try to pair top half vs bottom half
         bottom = players[mid:]
 
         result = can_pair(top, bottom)
@@ -324,7 +324,7 @@ class PairPlayersController: # handle how tournament logic
 
         # ----- SWAP LOGIC (FLOATING) -----
         # Try swapping player from top with from bottom
-            
+        # try all combinations until a valid pairing is found 
         for i in range(len(top)):
             for j in range(len(bottom)):
                 new_top = top.copy()

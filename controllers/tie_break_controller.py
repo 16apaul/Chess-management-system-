@@ -7,7 +7,7 @@ class TieBreakController: # submit scores and assigns scores
     def __init__(self, main_window):
         self.main_window = main_window
         
-    def calculate_buchholz(self, player): # calculates buchholz score , sum of opponents' points
+    def calculate_buchholz(self, player): # calculates buchholz score , sum of opponents' points 
         buchholz_score = 0.0
 
         for opponent_id in player.player_history:
