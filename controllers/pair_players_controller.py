@@ -390,7 +390,6 @@ class PairPlayersController: # handle how tournament logic
         return buckets
             
             
-                
             
             
             

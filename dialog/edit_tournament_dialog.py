@@ -49,7 +49,7 @@ class EditTournamentDialog(QDialog):
         # tournament type
         self.tournament_type_label = QLabel("Current tournament type:")
         self.tournament_type_combo = QComboBox()
-        self.tournament_type_combo.addItems(["Swiss", "Round Robin", "Knockout"])
+        self.tournament_type_combo.addItems(["Swiss", "Double Round Robin", "Knockout"])
         self.tournament_type_combo.setCurrentText(tournament.style)
         
         # Disable points and rounds and type editing after tournament starts

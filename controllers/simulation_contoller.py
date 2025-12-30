@@ -61,6 +61,14 @@ class SimulationController: # assigns scores
                 white_score_combo.setCurrentIndex(1)   # White draws
                 black_score_combo.setCurrentIndex(1)   # Black draws
             
+    
+    
+    def probability_of_win(self,player_a, player_b):
+        # Using Elo rating system formula to calculate win probability
+        rating_a = player_a.rating
+        rating_b = player_b.rating
+        expected_score_a = 1 / (1 + 10 ** ((rating_b - rating_a) / 400))
+        return expected_score_a
         
     def simulate_round_on_rating(self, sim=False): # sim would be true if simulate all rounds are clicked
         tournament = self.main_window.get_current_tournament()
@@ -71,12 +79,15 @@ class SimulationController: # assigns scores
         loss = point_system[0]
         results = []   # store results here when sim=True
         rating_difference_threshold = 20  # threshold for rating difference to consider a draw
+        expected_score_threshold = 0.06  # threshold for expected score difference to consider a draw
         if sim:
             for pairing in pairings:
                 white_player = pairing[0]
                 black_player = pairing[1]
+                prob_white_win = self.probability_of_win(white_player, black_player)
+                prob_black_win = 1 - prob_white_win
                  # ---- Compute result (same logic) ----
-                if abs(white_player.rating - black_player.rating) <= rating_difference_threshold: # draw if not much rating difference
+                if abs(prob_white_win - prob_black_win) <= expected_score_threshold: # draw if not much expected win difference
                     white_score = draw  # draw
                     black_score = draw
                 elif white_player.rating < black_player.rating:
@@ -106,7 +117,7 @@ class SimulationController: # assigns scores
             black_player = self.main_window.submit_results_controller.get_player_from_name(black_name_label.text())
 
             # give draw if not much rating difference
-            if abs(white_player.rating - black_player.rating) <= 50:
+            if abs(prob_white_win - prob_black_win) <= expected_score_threshold:
                 white_score = draw   # draw
                 black_score = draw
             elif white_player.rating < black_player.rating:
