@@ -109,6 +109,20 @@ class EndTournamentController: # when end tournament is clicked
         buchholz_tau_label = QLabel("Kendall Tau with buchholz ranking no ties:")
         self.add_to_stats_groupbox_no_ties(x_buchholz_dict, y_sorted_ids, buchholz_tau_label)
         
+        
+        # -----------------------
+        #  Buchholz Alternate (with ties)
+        # -----------------------
+        x_buchholz_alternate_dict = self.get_all_buchholz_alternate() # buchholz scores for simulated
+        buchholz_alternate_tau_label = QLabel("Kendall Tau with Buchholz Alternate ranking (ties):")
+        self.add_to_stats_groupbox_ties(x_buchholz_alternate_dict, actual_ranks, buchholz_alternate_tau_label)
+        
+        # -----------------------
+        #  Buchholz Alternate (no ties)
+        # -----------------------
+        buchholz_alternate_tau_label = QLabel("Kendall Tau with Buchholz Alternate ranking (no ties):")
+        self.add_to_stats_groupbox_no_ties(x_buchholz_alternate_dict, y_sorted_ids, buchholz_alternate_tau_label)
+        
         # -----------------------
         #  SONNEBORN-BERGER (with ties)
         # -----------------------
@@ -296,6 +310,20 @@ class EndTournamentController: # when end tournament is clicked
         
         return sonneborn_berger
     
+    def get_buchholz_alternate(self, player): # returns the buchholz alternate for a player in the current tournament
+        buchholz_alternate = self.main_window.tie_break_controller.calculate_buchholz_alternate(player)
+        
+        return buchholz_alternate
+    
+    def get_all_buchholz_alternate(self): # returns a dictionary of player id and their buchholz alternate for al players in the current tournament
+        tournament = self.main_window.get_current_tournament()
+        players = tournament.players
+        buchholz_alternate_dict = {}
+        for p in players:
+            buchholz_alternate = self.get_buchholz_alternate(p)
+            buchholz_alternate_dict[p.id] = buchholz_alternate
+        return buchholz_alternate_dict
+    
     def get_all_sonneborn_berger(self): # returns a dictionary of player id and their sonneborn berger for al players in the current tournament
         tournament = self.main_window.get_current_tournament()
         players = tournament.players
@@ -322,7 +350,8 @@ class EndTournamentController: # when end tournament is clicked
             p.aroc = self.get_aroc(p)
             p.buchholz = self.get_buchholz(p)
             p.sonneborn_berger = self.get_sonneborn_berger(p)
-            summary_label = QLabel(f"{p.id}) {p.name} - {p.points}, Buchholz: {p.buchholz}, Sonneborn-Berger: {p.sonneborn_berger}, AROC: {p.aroc}") 
+            p.buchholz_alternate = self.get_buchholz_alternate(p)
+            summary_label = QLabel(f"{p.id}) {p.name} - {p.points}, Buchholz: {p.buchholz}, Buchholz Alt: {p.buchholz_alternate}, Sonneborn-Berger: {p.sonneborn_berger}, AROC: {p.aroc}") 
             item = QListWidgetItem()
 
             self.main_window.results_listbox.addItem(item)

@@ -102,20 +102,20 @@ def create_tournament_tabs(window):
       simulate_round_on_rating_button.clicked.connect(window.simulation_controller.simulate_round_on_rating)
       
       
-      simulate_all_round_button = QPushButton("Simulate all rounds on rating")
-      pairings_tab_layout.addWidget(simulate_all_round_button, 2,3)
-      simulate_all_round_button.clicked.connect(window.simulation_controller.simulate_all_rounds_on_rating)
-      
       simulate_all_round_randomly_button = QPushButton("Simulate all rounds randomly")
       pairings_tab_layout.addWidget(simulate_all_round_randomly_button, 3,3)
       simulate_all_round_randomly_button.clicked.connect(window.simulation_controller.simulate_all_rounds_randomly)
+      
+      simulate_all_round_button = QPushButton("Simulate all rounds on rating")
+      pairings_tab_layout.addWidget(simulate_all_round_button, 4,3)
+      simulate_all_round_button.clicked.connect(window.simulation_controller.simulate_all_rounds_on_rating)
       
       #apply_scores_in_dataset_button = QPushButton("Apply scores in dataset")
       #pairings_tab_layout.addWidget(apply_scores_in_dataset_button,3,3)
       #apply_scores_in_dataset_button.clicked.connect(window.dataset_controller.apply_scores_in_dataset)
       
       end_tournament_button = QPushButton("End tournament")
-      pairings_tab_layout.addWidget(end_tournament_button,5,3)
+      pairings_tab_layout.addWidget(end_tournament_button,5,2)
       end_tournament_button.clicked.connect(window.end_tournament_controller.end_tournament)
       
 

@@ -17,7 +17,17 @@ class TieBreakController: # submit scores and assigns scores
         player.buchholz = buchholz_score
         return buchholz_score
     
-    
+    def calculate_buchholz_alternate(self, player): # calculates buchholz alternate score , sum of opponents' points multiplied by player score 
+        buchholz_alternate_score = 0.0
+
+        for opponent_id in player.player_history:
+            opponent = self.main_window.find_player_from_id(opponent_id)
+            if opponent:
+                buchholz_alternate_score += opponent.points
+          
+        buchholz_alternate_score = buchholz_alternate_score *  player.points          
+        
+        return buchholz_alternate_score
     def calculate_sonneborn_berger(self, player): # calculates sonneborn berger score, 
         tournament = self.main_window.get_current_tournament()
         point_system = tournament.point_system

@@ -45,7 +45,7 @@ class DatasetController:
                 players.append(player)
 
                 #print(name, rating, federation, points)
-
+            
             tournamentId = self.main_window.tournament_controller.get_current_tournament_id()
             next_player_id = len(players) + 1 # update next player id
             tournament = Tournament(tournamentId,file,players,None,rounds)
@@ -62,9 +62,19 @@ class DatasetController:
 
         print("Number of CSV files:", len(csv_files))
         print("CSV files:")
+        
+        files_skipped = []
         for file in csv_files:
-            self.import_players_from_dataset(file)
+            tournaments = self.main_window.tournaments  # get all the tournaments
+            if file in tournaments:
+                print(f"Tournament '{file}' already exists. Skipping import.")
+                files_skipped.append(file)
+            else:
+                self.import_players_from_dataset(file)
+        if files_skipped:
+            QMessageBox.warning(self.main_window, "Files skipped", f'files skipped due to duplicates: {files_skipped}')
 
+        
     def apply_scores_in_dataset(self):
         tournament = self.main_window.get_current_tournament()
         path = self.find_dataset_file()
